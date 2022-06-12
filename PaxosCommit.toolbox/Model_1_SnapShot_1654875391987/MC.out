@@ -1,0 +1,914 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 20 and seed -6593954272690833378 with 6 workers on 12 cores with 1214MB heap and 2730MB offheap memory [pid: 57239] (Mac OS X 10.14.3 x86_64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/PaxosCommit.toolbox/Model_1/MC.tla
+Parsing file /Users/wengjialin/learn-space/tla+/PaxosCommit.toolbox/Model_1/PaxosCommit.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/TLC.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Integers.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Naturals.tla
+Parsing file /Users/wengjialin/learn-space/tla+/PaxosCommit.toolbox/Model_1/TCommit.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Sequences.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/FiniteSets.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module TCommit
+Semantic processing of module PaxosCommit
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2022-06-10 23:36:25)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at 2022-06-10 23:36:26.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(12) at 2022-06-10 23:36:29: 346,857 states generated (346,857 s/min), 56,875 distinct states found (56,875 ds/min), 28,123 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant TCConsistent is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ msgs = {}
+/\ rmState = (r1 :> "working" @@ r2 :> "working")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <RMPrepare line 120, col 3 to line 123, col 21 of module PaxosCommit>
+/\ msgs = {[type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"]}
+/\ rmState = (r1 :> "prepared" @@ r2 :> "working")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <RMPrepare line 120, col 3 to line 123, col 21 of module PaxosCommit>
+/\ msgs = { [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "prepared")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <Phase1a line 171, col 3 to line 172, col 34 of module PaxosCommit>
+/\ msgs = { [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "prepared")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <Phase1b line 231, col 3 to line 241, col 24 of module PaxosCommit>
+/\ msgs = { [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "prepared")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <Phase1b line 231, col 3 to line 241, col 24 of module PaxosCommit>
+/\ msgs = { [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "prepared")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Phase2a line 191, col 3 to line 205, col 34 of module PaxosCommit>
+/\ msgs = { [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r1, bal |-> 1, val |-> "aborted"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "prepared")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <Phase2b line 244, col 3 to line 252, col 22 of module PaxosCommit>
+/\ msgs = { [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r1, bal |-> 1, val |-> "aborted"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2b", ins |-> r1, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "prepared")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> 0, mbal |-> 0, val |-> "prepared"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <Phase2b line 244, col 3 to line 252, col 22 of module PaxosCommit>
+/\ msgs = { [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r1, bal |-> 1, val |-> "aborted"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2b", ins |-> r1, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [type |-> "phase2b", ins |-> r1, bal |-> 1, val |-> "aborted", acc |-> a3],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "prepared")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> 1, mbal |-> 1, val |-> "aborted"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <PCDecide line 213, col 3 to line 225, col 34 of module PaxosCommit>
+/\ msgs = { [type |-> "Abort"],
+  [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r1, bal |-> 1, val |-> "aborted"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2b", ins |-> r1, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [type |-> "phase2b", ins |-> r1, bal |-> 1, val |-> "aborted", acc |-> a3],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "prepared")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> 1, mbal |-> 1, val |-> "aborted"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <RMRcvAbortMsg line 152, col 3 to line 154, col 31 of module PaxosCommit>
+/\ msgs = { [type |-> "Abort"],
+  [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r1, bal |-> 1, val |-> "aborted"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2b", ins |-> r1, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [type |-> "phase2b", ins |-> r1, bal |-> 1, val |-> "aborted", acc |-> a3],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "aborted")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> 1, mbal |-> 1, val |-> "aborted"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> -1, mbal |-> 0, val |-> "none"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <Phase2b line 244, col 3 to line 252, col 22 of module PaxosCommit>
+/\ msgs = { [type |-> "Abort"],
+  [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r1, bal |-> 1, val |-> "aborted"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2b", ins |-> r1, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [type |-> "phase2b", ins |-> r1, bal |-> 1, val |-> "aborted", acc |-> a3],
+  [type |-> "phase2b", ins |-> r2, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "aborted")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> 1, mbal |-> 1, val |-> "aborted"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> 0, mbal |-> 0, val |-> "prepared"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <PCDecide line 213, col 3 to line 225, col 34 of module PaxosCommit>
+/\ msgs = { [type |-> "Commit"],
+  [type |-> "Abort"],
+  [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r1, bal |-> 1, val |-> "aborted"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2b", ins |-> r1, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [type |-> "phase2b", ins |-> r1, bal |-> 1, val |-> "aborted", acc |-> a3],
+  [type |-> "phase2b", ins |-> r2, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "prepared" @@ r2 :> "aborted")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> 1, mbal |-> 1, val |-> "aborted"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> 0, mbal |-> 0, val |-> "prepared"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <RMRcvCommitMsg line 143, col 3 to line 145, col 31 of module PaxosCommit>
+/\ msgs = { [type |-> "Commit"],
+  [type |-> "Abort"],
+  [type |-> "phase1a", ins |-> r1, bal |-> 1],
+  [type |-> "phase2a", ins |-> r1, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2a", ins |-> r1, bal |-> 1, val |-> "aborted"],
+  [type |-> "phase2a", ins |-> r2, bal |-> 0, val |-> "prepared"],
+  [type |-> "phase2b", ins |-> r1, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [type |-> "phase2b", ins |-> r1, bal |-> 1, val |-> "aborted", acc |-> a3],
+  [type |-> "phase2b", ins |-> r2, bal |-> 0, val |-> "prepared", acc |-> a3],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a1 ],
+  [ type |-> "phase1b",
+    ins |-> r1,
+    bal |-> -1,
+    mbal |-> 1,
+    val |-> "none",
+    acc |-> a2 ] }
+/\ rmState = (r1 :> "committed" @@ r2 :> "aborted")
+/\ aState = ( r1 :>
+      ( a1 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 1, val |-> "none"] @@
+        a3 :> [bal |-> 1, mbal |-> 1, val |-> "aborted"] ) @@
+  r2 :>
+      ( a1 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a2 :> [bal |-> -1, mbal |-> 0, val |-> "none"] @@
+        a3 :> [bal |-> 0, mbal |-> 0, val |-> "prepared"] ) )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2022-06-10 23:36:31
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<PCInit line 97, col 1 to line 97, col 6 of module PaxosCommit>: 2:2
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 98, col 3 to line 102, col 14 of module PaxosCommit: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<RMPrepare line 115, col 1 to line 115, col 12 of module PaxosCommit>: 3:13829
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 120, col 6 to line 120, col 27 of module PaxosCommit: 163292
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 120, col 6 to line 120, col 15 of module PaxosCommit: 149463
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 121, col 6 to line 121, col 50 of module PaxosCommit: 13829
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 122, col 6 to line 122, col 73 of module PaxosCommit: 13829
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 123, col 6 to line 123, col 21 of module PaxosCommit: 13829
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<RMChooseToAbort line 125, col 1 to line 125, col 18 of module PaxosCommit>: 4:13827
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 131, col 6 to line 131, col 27 of module PaxosCommit: 163288
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 131, col 6 to line 131, col 15 of module PaxosCommit: 149461
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 132, col 6 to line 132, col 49 of module PaxosCommit: 13827
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 133, col 6 to line 133, col 72 of module PaxosCommit: 13827
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 134, col 6 to line 134, col 21 of module PaxosCommit: 13827
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<RMRcvCommitMsg line 136, col 1 to line 136, col 17 of module PaxosCommit>: 1766:6762
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 143, col 6 to line 143, col 33 of module PaxosCommit: 156221
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 143, col 6 to line 143, col 24 of module PaxosCommit: 149461
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 143, col 30 to line 143, col 33 of module PaxosCommit: 149461
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 144, col 6 to line 144, col 51 of module PaxosCommit: 6760
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 144, col 17 to line 144, col 51 of module PaxosCommit: 6762
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 145, col 6 to line 145, col 31 of module PaxosCommit: 6760
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<RMRcvAbortMsg line 147, col 1 to line 147, col 16 of module PaxosCommit>: 6312:39201
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 152, col 6 to line 152, col 32 of module PaxosCommit: 188659
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 152, col 6 to line 152, col 23 of module PaxosCommit: 149458
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 152, col 29 to line 152, col 32 of module PaxosCommit: 149458
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 153, col 6 to line 153, col 49 of module PaxosCommit: 39201
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 154, col 6 to line 154, col 31 of module PaxosCommit: 39201
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Phase1a line 164, col 1 to line 164, col 15 of module PaxosCommit>: 13:149452
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 171, col 6 to line 171, col 55 of module PaxosCommit: 149452
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 172, col 6 to line 172, col 34 of module PaxosCommit: 149452
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Phase2a line 174, col 1 to line 174, col 15 of module PaxosCommit>: 9670:41502
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 191, col 6 to line 193, col 34 of module PaxosCommit: 179380
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 191, col 7 to line 193, col 34 of module PaxosCommit: 149451
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 191, col 23 to line 193, col 34 of module PaxosCommit: 1117767
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 191, col 26 to line 191, col 43 of module PaxosCommit: 1117767
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 192, col 26 to line 192, col 36 of module PaxosCommit: 357129
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 193, col 26 to line 193, col 34 of module PaxosCommit: 119321
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 191, col 16 to line 191, col 19 of module PaxosCommit: 149451
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 203, col 47 to line 203, col 56 of module PaxosCommit: 245938
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 203, col 47 to line 203, col 51 of module PaxosCommit: 187207
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 203, col 55 to line 203, col 56 of module PaxosCommit: 187207
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 203, col 40 to line 203, col 43 of module PaxosCommit: 310232
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |line 195, col 21 to line 198, col 51 of module PaxosCommit: 310232:497439
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 195, col 35 to line 198, col 50 of module PaxosCommit: 3025807
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 195, col 38 to line 195, col 55 of module PaxosCommit: 3025807
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 196, col 38 to line 196, col 47 of module PaxosCommit: 759616
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 197, col 38 to line 197, col 49 of module PaxosCommit: 301550
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 198, col 38 to line 198, col 50 of module PaxosCommit: 301550
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 195, col 28 to line 195, col 31 of module PaxosCommit: 310232
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 203, col 26 to line 203, col 27 of module PaxosCommit: 261654
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 107, col 12 to line 107, col 32 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 204, col 21 to line 204, col 77 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 204, col 42 to line 204, col 50 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 204, col 53 to line 204, col 63 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 204, col 74 to line 204, col 76 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 200, col 20 to line 202, col 66 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 200, col 23 to line 200, col 33 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 200, col 23 to line 200, col 28 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||line 199, col 23 to line 199, col 51 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||line 37, col 3 to line 38, col 55 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||line 37, col 6 to line 37, col 11 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||line 38, col 18 to line 38, col 55 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||line 38, col 35 to line 38, col 55 of module PaxosCommit: 48828
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||line 38, col 48 to line 38, col 55 of module PaxosCommit: 63480
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||line 38, col 44 to line 38, col 44 of module PaxosCommit: 48828
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||line 38, col 31 to line 38, col 31 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  ||||||line 199, col 31 to line 199, col 50 of module PaxosCommit: 41502:161136
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||line 199, col 32 to line 199, col 36 of module PaxosCommit: 58731
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||line 199, col 46 to line 199, col 49 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  ||||||||line 195, col 21 to line 198, col 51 of module PaxosCommit: 41502:100233
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||line 195, col 35 to line 198, col 50 of module PaxosCommit: 417188
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||line 195, col 38 to line 195, col 55 of module PaxosCommit: 417188
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||line 196, col 38 to line 196, col 47 of module PaxosCommit: 134236
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||line 197, col 38 to line 197, col 49 of module PaxosCommit: 81867
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||line 198, col 38 to line 198, col 50 of module PaxosCommit: 81867
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||line 195, col 28 to line 195, col 31 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 200, col 32 to line 200, col 33 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 202, col 27 to line 202, col 66 of module PaxosCommit: 18641
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 202, col 28 to line 202, col 61 of module PaxosCommit: 18641
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||line 202, col 48 to line 202, col 61 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||line 202, col 48 to line 202, col 52 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||line 202, col 56 to line 202, col 61 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||line 199, col 23 to line 199, col 51 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||line 37, col 3 to line 38, col 55 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||line 37, col 6 to line 37, col 11 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||line 38, col 18 to line 38, col 55 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||line 38, col 35 to line 38, col 55 of module PaxosCommit: 40619
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||||line 38, col 48 to line 38, col 55 of module PaxosCommit: 69923
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||||line 38, col 44 to line 38, col 44 of module PaxosCommit: 40619
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||line 38, col 31 to line 38, col 31 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  ||||||||line 199, col 31 to line 199, col 50 of module PaxosCommit: 25967:151161
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||line 199, col 32 to line 199, col 36 of module PaxosCommit: 42694
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||line 199, col 46 to line 199, col 49 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  ||||||||||line 195, col 21 to line 198, col 51 of module PaxosCommit: 25967:68661
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||||line 195, col 35 to line 198, col 50 of module PaxosCommit: 266866
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||||line 195, col 38 to line 195, col 55 of module PaxosCommit: 266866
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||||line 196, col 38 to line 196, col 47 of module PaxosCommit: 82437
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||||line 197, col 38 to line 197, col 49 of module PaxosCommit: 54643
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||||||line 198, col 38 to line 198, col 50 of module PaxosCommit: 54643
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||||||line 195, col 28 to line 195, col 31 of module PaxosCommit: 25967
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||line 202, col 41 to line 202, col 44 of module PaxosCommit: 18641
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  ||||||line 195, col 21 to line 198, col 51 of module PaxosCommit: 18641:25967
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||line 195, col 35 to line 198, col 50 of module PaxosCommit: 191469
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||line 195, col 38 to line 195, col 55 of module PaxosCommit: 191469
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||line 196, col 38 to line 196, col 47 of module PaxosCommit: 57402
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||line 197, col 38 to line 197, col 49 of module PaxosCommit: 37507
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||||line 198, col 38 to line 198, col 50 of module PaxosCommit: 37507
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||||line 195, col 28 to line 195, col 31 of module PaxosCommit: 18641
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 194, col 16 to line 194, col 23 of module PaxosCommit: 87218
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 205, col 6 to line 205, col 34 of module PaxosCommit: 41502
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<PCDecide line 207, col 1 to line 207, col 8 of module PaxosCommit>: 11423:86257
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 29 to line 220, col 73 of module PaxosCommit: 648883
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 219, col 29 to line 220, col 64 of module PaxosCommit: 617006
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 220, col 70 to line 220, col 73 of module PaxosCommit: 617006
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 24 to line 219, col 25 of module PaxosCommit: 578880
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 218, col 21 to line 218, col 26 of module PaxosCommit: 96480
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 218, col 36 to line 218, col 43 of module PaxosCommit: 96480
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 221, col 38 to line 221, col 38 of module PaxosCommit: 96480
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 221, col 25 to line 221, col 26 of module PaxosCommit: 74725
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 222, col 16 to line 222, col 40 of module PaxosCommit: 13252
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 29 to line 220, col 73 of module PaxosCommit: 1074159
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 219, col 29 to line 220, col 64 of module PaxosCommit: 972590
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 220, col 70 to line 220, col 73 of module PaxosCommit: 972590
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 24 to line 219, col 25 of module PaxosCommit: 896700
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 218, col 21 to line 218, col 26 of module PaxosCommit: 149450
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 218, col 36 to line 218, col 43 of module PaxosCommit: 149450
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 223, col 38 to line 223, col 38 of module PaxosCommit: 149450
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 223, col 25 to line 223, col 26 of module PaxosCommit: 74725
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 224, col 16 to line 224, col 39 of module PaxosCommit: 73005
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 225, col 6 to line 225, col 34 of module PaxosCommit: 86257
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Phase1b line 230, col 1 to line 230, col 12 of module PaxosCommit>: 28715:177382
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 232, col 8 to line 232, col 25 of module PaxosCommit: 2407053
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 232, col 8 to line 232, col 13 of module PaxosCommit: 2229671
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 233, col 8 to line 233, col 38 of module PaxosCommit: 177382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 233, col 8 to line 233, col 30 of module PaxosCommit: 385023
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 233, col 34 to line 233, col 38 of module PaxosCommit: 385023
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 234, col 8 to line 234, col 59 of module PaxosCommit: 177382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 235, col 8 to line 240, col 27 of module PaxosCommit: 177382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 241, col 8 to line 241, col 24 of module PaxosCommit: 177382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 231, col 12 to line 231, col 15 of module PaxosCommit: 224166
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Phase2b line 243, col 1 to line 243, col 12 of module PaxosCommit>: 74279:405038
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 245, col 11 to line 245, col 28 of module PaxosCommit: 2634702
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 245, col 11 to line 245, col 16 of module PaxosCommit: 2229664
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 246, col 11 to line 246, col 44 of module PaxosCommit: 405038
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 246, col 11 to line 246, col 33 of module PaxosCommit: 588449
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 246, col 40 to line 246, col 44 of module PaxosCommit: 588449
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 247, col 11 to line 249, col 62 of module PaxosCommit: 405038
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 250, col 11 to line 251, col 46 of module PaxosCommit: 405038
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 244, col 15 to line 244, col 18 of module PaxosCommit: 224164
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 252, col 6 to line 252, col 22 of module PaxosCommit: 405038
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<PCTypeOK line 85, col 1 to line 85, col 8 of module PaxosCommit>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 3 to line 95, col 28 of module PaxosCommit: 132186
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<TCConsistent line 281, col 1 to line 281, col 16 of module PaxosCommit>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 281, col 1 to line 281, col 16 of module PaxosCommit: 132186
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 281, col 1 to line 281, col 16 of module PaxosCommit: 132186
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 57, col 3 to line 58, col 51 of module TCommit: 132186
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 57, col 22 to line 58, col 51 of module TCommit: 528741
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 57, col 24 to line 58, col 51 of module TCommit: 528741
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 57, col 27 to line 57, col 49 of module TCommit: 528741
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 58, col 27 to line 58, col 51 of module TCommit: 232453
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 57, col 17 to line 57, col 18 of module TCommit: 132186
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(14) at 2022-06-10 23:36:31: 933,196 states generated (9,023,651 s/min), 132,186 distinct states found (1,278,188 ds/min), 57,464 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+933196 states generated, 132186 distinct states found, 57464 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 14.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2268:0 @!@!@
+The average outdegree of the complete state graph is 2 (minimum is 0, the maximum 12 and the 95th percentile is 5).
+@!@!@ENDMSG 2268 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 6213ms at (2022-06-10 23:36:31)
+@!@!@ENDMSG 2186 @!@!@
