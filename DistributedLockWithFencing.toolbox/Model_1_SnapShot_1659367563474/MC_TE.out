@@ -1,0 +1,201 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 21 and seed -3067254882983380298 with 6 workers on 12 cores with 1214MB heap and 2730MB offheap memory [pid: 4185] (Mac OS X 10.14.3 x86_64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/DistributedLockWithFencing.toolbox/Model_1/MC.tla
+Parsing file /Users/wengjialin/learn-space/tla+/DistributedLockWithFencing.toolbox/Model_1/DistributedLockWithFencing.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/TLC.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/FiniteSets.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Integers.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Naturals.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module Integers
+Semantic processing of module DistributedLockWithFencing
+Semantic processing of module TLC
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2022-08-01 23:26:01)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2102:1 @!@!@
+TLC encountered a non-enumerable quantifier bound
+Nat.
+line 26, col 42 to line 26, col 44 of module DistributedLockWithFencing
+While working on the initial state:
+/\ lockLeaseState = "unlock"
+/\ lockClientRef = "noClient"
+/\ usedTokens = {}
+/\ clientFencingToken = [c1 |-> 0, c2 |-> 0]
+/\ clientHeldLockState = [c1 |-> "notHeldLock", c2 |-> "notHeldLock"]
+/\ storageLastToken = 0
+/\ storageState = "notwrite"
+/\ lockLastToken = 0
+/\ clientState = [c1 |-> "init", c2 |-> "init"]
+
+@!@!@ENDMSG 2102 @!@!@
+@!@!@STARTMSG 2103:1 @!@!@
+The error occurred when TLC was evaluating the nested
+expressions at the following positions:
+0. Line 33, column 5 to line 41, column 22 in DistributedLockWithFencing
+1. Line 33, column 8 to line 33, column 46 in DistributedLockWithFencing
+2. Line 34, column 8 to line 34, column 61 in DistributedLockWithFencing
+3. Line 35, column 8 to line 35, column 32 in DistributedLockWithFencing
+4. Line 36, column 8 to line 36, column 33 in DistributedLockWithFencing
+5. Line 37, column 8 to line 37, column 32 in DistributedLockWithFencing
+6. Line 38, column 8 to line 38, column 24 in DistributedLockWithFencing
+7. Line 39, column 8 to line 39, column 27 in DistributedLockWithFencing
+8. Line 40, column 8 to line 40, column 48 in DistributedLockWithFencing
+9. Line 41, column 8 to line 41, column 22 in DistributedLockWithFencing
+10. Line 11, column 4 to line 11, column 9 in MC
+11. Line 18, column 5 to line 26, column 57 in DistributedLockWithFencing
+12. Line 26, column 8 to line 26, column 57 in DistributedLockWithFencing
+13. Line 26, column 31 to line 26, column 55 in DistributedLockWithFencing
+14. Line 26, column 31 to line 26, column 45 in DistributedLockWithFencing
+
+
+@!@!@ENDMSG 2103 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2022-08-01 23:26:02
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 28, col 1 to line 28, col 4 of module DistributedLockWithFencing>: 2:2
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 33, col 5 to line 41, col 22 of module DistributedLockWithFencing: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ClientLocking line 45, col 1 to line 45, col 16 of module DistributedLockWithFencing>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 52, col 21 to line 52, col 46 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 53, col 21 to line 53, col 84 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 54, col 21 to line 54, col 90 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 55, col 21 to line 55, col 54 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 56, col 21 to line 56, col 95 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 57, col 21 to line 57, col 38 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 58, col 21 to line 58, col 76 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 61, col 20 to line 61, col 80 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 62, col 20 to line 62, col 162 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ClientPrepareWritingData line 65, col 1 to line 65, col 27 of module DistributedLockWithFencing>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 70, col 8 to line 70, col 70 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 71, col 8 to line 71, col 150 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ClientWritingData line 74, col 1 to line 74, col 20 of module DistributedLockWithFencing>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 82, col 20 to line 82, col 60 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 83, col 20 to line 83, col 75 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 84, col 20 to line 84, col 44 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 85, col 20 to line 85, col 76 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 86, col 20 to line 86, col 118 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 88, col 20 to line 88, col 77 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 89, col 20 to line 89, col 162 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ClientWroteData line 92, col 1 to line 92, col 18 of module DistributedLockWithFencing>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 94, col 8 to line 94, col 65 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 95, col 8 to line 95, col 33 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 96, col 8 to line 96, col 136 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ClientReleaseLock line 99, col 1 to line 99, col 20 of module DistributedLockWithFencing>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 101, col 8 to line 101, col 64 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 102, col 8 to line 102, col 80 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 103, col 8 to line 103, col 33 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 104, col 8 to line 104, col 34 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 105, col 8 to line 105, col 98 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<LockExpire line 108, col 1 to line 108, col 10 of module DistributedLockWithFencing>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 113, col 8 to line 113, col 33 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 114, col 8 to line 114, col 34 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 115, col 8 to line 115, col 132 of module DistributedLockWithFencing: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<Action line 11, col 4 to line 11, col 9 of module MC>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 11, col 4 to line 11, col 9 of module MC: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(1) at 2022-08-01 23:26:02: 1 states generated (66 s/min), 1 distinct states found (66 ds/min), 1 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+1 states generated, 1 distinct states found, 1 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 912ms at (2022-08-01 23:26:02)
+@!@!@ENDMSG 2186 @!@!@

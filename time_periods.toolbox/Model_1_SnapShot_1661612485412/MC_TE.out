@@ -1,0 +1,265 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 41 and seed 4802707507374246040 with 6 workers on 12 cores with 1214MB heap and 2730MB offheap memory [pid: 27367] (Mac OS X 10.14.3 x86_64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/time_periods.toolbox/Model_1/MC.tla
+Parsing file /Users/wengjialin/learn-space/tla+/time_periods.toolbox/Model_1/time_periods.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/TLC.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Integers.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Naturals.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Sequences.tla
+Parsing file /Applications/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/FiniteSets.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module time_periods
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2022-08-27 23:01:21)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 2 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 4 distinct states generated at 2022-08-27 23:01:24.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant ResourceInvariant is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ resources_left = 6
+/\ pc = (a1 :> "WaitForResources" @@ a2 :> "WaitForResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 2 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <WaitForResources line 62, col 27 to line 65, col 77 of module time_periods>
+/\ resources_left = 6
+/\ pc = (a1 :> "WaitForResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 2 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <WaitForResources line 62, col 27 to line 65, col 77 of module time_periods>
+/\ resources_left = 6
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 2 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = 5
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 1 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = 4
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 0 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = 4
+/\ pc = (a1 :> "WaitForResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 2 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <WaitForResources line 62, col 27 to line 65, col 77 of module time_periods>
+/\ resources_left = 4
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 2 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = 3
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 1 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = 2
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 0 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = 2
+/\ pc = (a1 :> "WaitForResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 2 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <WaitForResources line 62, col 27 to line 65, col 77 of module time_periods>
+/\ resources_left = 2
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 2 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = 1
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 1 @@ a2 :> 2)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = 0
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 1 @@ a2 :> 1)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <UseResources line 67, col 23 to line 75, col 60 of module time_periods>
+/\ resources_left = -1
+/\ pc = (a1 :> "UseResources" @@ a2 :> "UseResources" @@ "time" :> "Tick")
+/\ resources_needed = (a1 :> 0 @@ a2 :> 1)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2022-08-27 23:01:24
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 55, col 1 to line 55, col 4 of module time_periods>: 8:8
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 56, col 12 to line 56, col 39 of module time_periods: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 58, col 12 to line 58, col 61 of module time_periods: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 59, col 12 to line 60, col 67 of module time_periods: 8
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WaitForResources line 62, col 1 to line 62, col 22 of module time_periods>: 33:115
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 62, col 30 to line 62, col 58 of module time_periods: 459
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 62, col 30 to line 62, col 37 of module time_periods: 344
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 63, col 30 to line 63, col 69 of module time_periods: 115
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 63, col 30 to line 63, col 43 of module time_periods: 140
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 63, col 48 to line 63, col 69 of module time_periods: 140
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 64, col 30 to line 64, col 71 of module time_periods: 115
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 65, col 30 to line 65, col 77 of module time_periods: 115
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<UseResources line 67, col 1 to line 67, col 18 of module time_periods>: 131:274
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 67, col 26 to line 67, col 50 of module time_periods: 538
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 67, col 26 to line 67, col 33 of module time_periods: 340
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 68, col 29 to line 68, col 54 of module time_periods: 204
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 69, col 37 to line 69, col 72 of module time_periods: 128
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 69, col 55 to line 69, col 72 of module time_periods: 134
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 70, col 37 to line 70, col 118 of module time_periods: 128
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 70, col 57 to line 70, col 118 of module time_periods: 134
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 71, col 37 to line 71, col 78 of module time_periods: 128
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 71, col 43 to line 71, col 78 of module time_periods: 134
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 73, col 39 to line 73, col 95 of module time_periods: 140
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 72, col 46 to line 72, col 62 of module time_periods: 70
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 74, col 37 to line 74, col 82 of module time_periods: 140
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 75, col 37 to line 75, col 60 of module time_periods: 140
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Tick line 79, col 1 to line 79, col 4 of module time_periods>: 7:179
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 79, col 12 to line 79, col 30 of module time_periods: 358
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 79, col 12 to line 79, col 21 of module time_periods: 179
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 80, col 12 to line 80, col 40 of module time_periods: 179
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 81, col 12 to line 81, col 47 of module time_periods: 179
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 82, col 12 to line 82, col 37 of module time_periods: 179
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<ResourceInvariant line 47, col 1 to line 47, col 17 of module time_periods>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 47, col 22 to line 47, col 40 of module time_periods: 175
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(15) at 2022-08-27 23:01:24: 542 states generated (12,125 s/min), 175 distinct states found (3,914 ds/min), 3 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+542 states generated, 175 distinct states found, 3 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 15.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2268:0 @!@!@
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 3 and the 95th percentile is 2).
+@!@!@ENDMSG 2268 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 2690ms at (2022-08-27 23:01:24)
+@!@!@ENDMSG 2186 @!@!@
