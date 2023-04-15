@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.lamport.tla.toolbox.tool.tlc.modelCheck">
+    <stringAttribute key="configurationName" value="Model_1_SnapShot_1669031895107"/>
+    <intAttribute key="distributedFPSetCount" value="0"/>
+    <stringAttribute key="distributedNetworkInterface" value="172.16.85.1"/>
+    <intAttribute key="distributedNodesCount" value="1"/>
+    <stringAttribute key="distributedTLC" value="off"/>
+    <intAttribute key="fpIndex" value="33"/>
+    <intAttribute key="maxHeapSize" value="25"/>
+    <stringAttribute key="modelBehaviorInit" value=""/>
+    <stringAttribute key="modelBehaviorNext" value=""/>
+    <stringAttribute key="modelBehaviorSpec" value="Spec"/>
+    <intAttribute key="modelBehaviorSpecType" value="1"/>
+    <stringAttribute key="modelBehaviorVars" value="final, pc, consumed, assignments, input, count, queue, result, total, stack"/>
+    <stringAttribute key="modelComments" value=""/>
+    <booleanAttribute key="modelCorrectnessCheckDeadlock" value="true"/>
+    <listAttribute key="modelCorrectnessInvariants">
+        <listEntry value="1TypeInvariant"/>
+    </listAttribute>
+    <listAttribute key="modelCorrectnessProperties">
+        <listEntry value="0Termination"/>
+        <listEntry value="1Liveness"/>
+    </listAttribute>
+    <intAttribute key="modelEditorOpenTabs" value="8"/>
+    <stringAttribute key="modelExpressionEval" value=""/>
+    <listAttribute key="modelParameterConstants">
+        <listEntry value="Workers;;{w1, w2, w3};1;0"/>
+        <listEntry value="Reducer;;Reducer;1;0"/>
+        <listEntry value="NULL;;NULL;1;0"/>
+        <listEntry value="ItemCount;;4;0;0"/>
+        <listEntry value="ItemRange;;0..2;0;0"/>
+    </listAttribute>
+    <intAttribute key="modelVersion" value="20191005"/>
+    <intAttribute key="numberOfWorkers" value="6"/>
+    <stringAttribute key="result.mail.address" value=""/>
+    <stringAttribute key="specName" value="MapReduce3"/>
+    <stringAttribute key="tlcResourcesProfile" value="local custom"/>
+</launchConfiguration>

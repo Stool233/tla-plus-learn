@@ -1,0 +1,489 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 110 and seed 1785375572488237197 with 6 workers on 12 cores with 1214MB heap and 2730MB offheap memory [pid: 29249] (Mac OS X 10.14.3 x86_64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/MapReduce2.toolbox/Model_1/MC.tla
+Parsing file /Users/wengjialin/learn-space/tla+/MapReduce2.toolbox/Model_1/MapReduce2.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/TLC.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Integers.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Sequences.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/FiniteSets.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Naturals.tla
+Parsing file /Users/wengjialin/learn-space/tla+/MapReduce2.toolbox/Model_1/PT.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module PT
+Semantic processing of module MapReduce2
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2022-11-20 21:43:14)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 1 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 2 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 4 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 8 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 16 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 32 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 64 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 81 distinct states generated at 2022-11-20 21:43:16.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2132:1 @!@!@
+The first argument of Assert evaluated to FALSE; the second argument was:
+"Failure of assertion at line 73, column 9."
+@!@!@ENDMSG 2132 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ final = 0
+/\ pc = (w1 :> "FairWorker" @@ w2 :> "RegularWorker" @@ Reducer :> "Schedule")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<>> @@ w2 :> <<>>)
+/\ result = (w1 :> NULL @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = (w1 :> <<>> @@ w2 :> <<>> @@ Reducer :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Schedule line 132, col 13 to line 140, col 75 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "FairWorker" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<0, 0>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> NULL @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = (w1 :> <<>> @@ w2 :> <<>> @@ Reducer :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <ReduceResult line 142, col 17 to line 156, col 69 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "FairWorker" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<0, 0>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> NULL @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = (w1 :> <<>> @@ w2 :> <<>> @@ Reducer :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <FairWorker line 166, col 21 to line 173, col 76 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<0, 0>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> NULL @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <WaitForQueue line 108, col 23 to line 112, col 56 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "Process" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<0, 0>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> NULL @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <Process line 114, col 18 to line 121, col 73 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "Process" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<0>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> NULL @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Process line 114, col 18 to line 121, col 73 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "Process" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> NULL @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <Process line 114, col 18 to line 121, col 73 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "Result" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> NULL @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <Result line 123, col 17 to line 128, col 64 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "Done" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> 0 @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = (w1 :> <<>> @@ w2 :> <<>> @@ Reducer :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <ReduceResult line 142, col 17 to line 156, col 69 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "Done" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> TRUE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> 0 @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = (w1 :> <<>> @@ w2 :> <<>> @@ Reducer :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <ReduceResult line 142, col 17 to line 156, col 69 of module MapReduce2>
+/\ final = 0
+/\ pc = (w1 :> "Done" @@ w2 :> "RegularWorker" @@ Reducer :> "Finish")
+/\ consumed = (w1 :> TRUE @@ w2 :> TRUE)
+/\ input = <<0, 0, 1, 0>>
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> 0 @@ w2 :> NULL)
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = (w1 :> <<>> @@ w2 :> <<>> @@ Reducer :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2103:1 @!@!@
+The error occurred when TLC was evaluating the nested
+expressions at the following positions:
+0. Line 158, column 11 to line 162, column 80 in MapReduce2
+1. Line 158, column 14 to line 158, column 35 in MapReduce2
+2. Line 159, column 14 to line 160, column 65 in MapReduce2
+
+
+@!@!@ENDMSG 2103 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2022-11-20 21:43:17
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 94, col 1 to line 94, col 4 of module MapReduce2>: 162:162
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 95, col 12 to line 95, col 35 of module MapReduce2: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 96, col 12 to line 96, col 44 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 97, col 12 to line 97, col 43 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 99, col 12 to line 99, col 44 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 102, col 12 to line 102, col 47 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 103, col 12 to line 103, col 47 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 104, col 12 to line 106, col 85 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WaitForQueue line 108, col 1 to line 108, col 18 of module MapReduce2>: 1452:2435
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 108, col 26 to line 108, col 50 of module MapReduce2: 22843
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 108, col 26 to line 108, col 33 of module MapReduce2: 20408
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 109, col 26 to line 109, col 44 of module MapReduce2: 5194
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 109, col 26 to line 109, col 36 of module MapReduce2: 2759
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 109, col 41 to line 109, col 44 of module MapReduce2: 2759
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 110, col 26 to line 110, col 62 of module MapReduce2: 2435
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 111, col 26 to line 112, col 56 of module MapReduce2: 2435
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Process line 114, col 1 to line 114, col 13 of module MapReduce2>: 3174:5440
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 114, col 21 to line 114, col 40 of module MapReduce2: 25847
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 114, col 21 to line 114, col 28 of module MapReduce2: 20407
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 115, col 24 to line 115, col 42 of module MapReduce2: 5440
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 116, col 29 to line 118, col 68 of module MapReduce2: 3949
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 119, col 32 to line 119, col 67 of module MapReduce2: 1491
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 120, col 32 to line 120, col 59 of module MapReduce2: 1491
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 121, col 21 to line 121, col 73 of module MapReduce2: 5440
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Result line 123, col 1 to line 123, col 12 of module MapReduce2>: 700:1167
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 123, col 20 to line 123, col 38 of module MapReduce2: 21571
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 123, col 20 to line 123, col 27 of module MapReduce2: 20404
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 124, col 20 to line 124, col 66 of module MapReduce2: 1167
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 125, col 20 to line 125, col 67 of module MapReduce2: 1167
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 126, col 20 to line 126, col 76 of module MapReduce2: 1167
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 127, col 20 to line 127, col 70 of module MapReduce2: 1167
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 128, col 20 to line 128, col 64 of module MapReduce2: 1167
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Schedule line 132, col 1 to line 132, col 8 of module MapReduce2>: 81:325
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 132, col 16 to line 132, col 39 of module MapReduce2: 7142
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 132, col 16 to line 132, col 26 of module MapReduce2: 6817
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 134, col 18 to line 138, col 27 of module MapReduce2: 325
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 139, col 16 to line 139, col 60 of module MapReduce2: 325
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 140, col 16 to line 140, col 75 of module MapReduce2: 325
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ReduceResult line 142, col 1 to line 142, col 12 of module MapReduce2>: 805:3955
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 142, col 20 to line 142, col 47 of module MapReduce2: 10520
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 142, col 20 to line 142, col 30 of module MapReduce2: 6816
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 143, col 23 to line 143, col 52 of module MapReduce2: 6482
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 143, col 41 to line 143, col 52 of module MapReduce2: 6747
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 143, col 32 to line 143, col 38 of module MapReduce2: 6482
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 145, col 39 to line 146, col 82 of module MapReduce2: 749
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  line 144, col 46 to line 144, col 95 of module MapReduce2: 6387:7136
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 144, col 62 to line 144, col 94 of module MapReduce2: 12774
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 144, col 62 to line 144, col 73 of module MapReduce2: 12774
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 144, col 78 to line 144, col 94 of module MapReduce2: 9578
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 144, col 53 to line 144, col 59 of module MapReduce2: 6387
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 149, col 39 to line 151, col 90 of module MapReduce2: 3111
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  line 147, col 77 to line 148, col 72 of module MapReduce2: 6387:9498
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 147, col 99 to line 148, col 71 of module MapReduce2: 6387
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 147, col 99 to line 147, col 110 of module MapReduce2: 6387
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 148, col 56 to line 148, col 71 of module MapReduce2: 3361
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 147, col 84 to line 147, col 96 of module MapReduce2: 6387
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 152, col 37 to line 152, col 50 of module MapReduce2: 3111
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 153, col 31 to line 153, col 75 of module MapReduce2: 3860
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 154, col 31 to line 154, col 69 of module MapReduce2: 95
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 155, col 31 to line 155, col 61 of module MapReduce2: 95
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 156, col 20 to line 156, col 69 of module MapReduce2: 3955
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Finish line 158, col 1 to line 158, col 6 of module MapReduce2>: 3:3
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 158, col 14 to line 158, col 35 of module MapReduce2: 6816
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 158, col 14 to line 158, col 24 of module MapReduce2: 6813
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 159, col 14 to line 160, col 65 of module MapReduce2: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 159, col 21 to line 159, col 41 of module MapReduce2: 10
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 161, col 14 to line 161, col 50 of module MapReduce2: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 162, col 14 to line 162, col 80 of module MapReduce2: 3
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<FairWorker line 166, col 1 to line 166, col 16 of module MapReduce2>: 576:1369
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 166, col 24 to line 166, col 46 of module MapReduce2: 8170
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 166, col 24 to line 166, col 31 of module MapReduce2: 6801
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 167, col 24 to line 170, col 72 of module MapReduce2: 1369
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 171, col 24 to line 171, col 58 of module MapReduce2: 1369
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 172, col 24 to line 172, col 65 of module MapReduce2: 1369
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 173, col 24 to line 173, col 76 of module MapReduce2: 1369
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<RegularWorker line 177, col 1 to line 177, col 19 of module MapReduce2>: 1114:1538
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 177, col 27 to line 177, col 52 of module MapReduce2: 8338
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 177, col 27 to line 177, col 34 of module MapReduce2: 6800
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 178, col 27 to line 181, col 75 of module MapReduce2: 1538
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 182, col 27 to line 182, col 61 of module MapReduce2: 1538
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 183, col 27 to line 183, col 68 of module MapReduce2: 1538
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 184, col 27 to line 184, col 79 of module MapReduce2: 1538
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Terminating line 189, col 1 to line 189, col 11 of module MapReduce2>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 189, col 40 to line 189, col 56 of module MapReduce2: 7565
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 189, col 31 to line 189, col 37 of module MapReduce2: 6800
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 190, col 19 to line 190, col 32 of module MapReduce2: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(12) at 2022-11-20 21:43:17: 16,303 states generated (273,310 s/min), 7,986 distinct states found (133,880 ds/min), 1,180 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+16303 states generated, 7986 distinct states found, 1180 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 3586ms at (2022-11-20 21:43:17)
+@!@!@ENDMSG 2186 @!@!@

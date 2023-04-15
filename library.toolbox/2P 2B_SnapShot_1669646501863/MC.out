@@ -1,0 +1,388 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 69 and seed -5332924902116978215 with 6 workers on 12 cores with 1214MB heap and 2730MB offheap memory [pid: 15537] (Mac OS X 10.14.3 x86_64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/library.toolbox/2P 2B/MC.tla
+Parsing file /Users/wengjialin/learn-space/tla+/library.toolbox/2P 2B/library.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/B3FEC993-693D-4C5A-B130-031957824C48/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/TLC.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/B3FEC993-693D-4C5A-B130-031957824C48/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Integers.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/B3FEC993-693D-4C5A-B130-031957824C48/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Sequences.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/B3FEC993-693D-4C5A-B130-031957824C48/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/FiniteSets.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/B3FEC993-693D-4C5A-B130-031957824C48/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Naturals.tla
+Parsing file /Users/wengjialin/learn-space/tla+/library.toolbox/2P 2B/PT.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module PT
+Semantic processing of module library
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2022-11-28 22:41:35)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2284:3 @!@!@
+Declaring state or action constraints during liveness checking is dangerous: Please read section 14.3.5 on page 247 of Specifying Systems (https://lamport.azurewebsites.net/tla/book.html) and optionally the discussion at https://discuss.tlapl.us/msg00994.html for more details.
+@!@!@ENDMSG 2284 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 4 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 2 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 4 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 8 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2191:0 @!@!@
+Finished computing initial states: 16 states generated, with 9 of them distinct at 2022-11-28 22:41:39.
+@!@!@ENDMSG 2191 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(9) at 2022-11-28 22:41:41: 15,136 states generated, 2,025 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2192:0 @!@!@
+Checking 4 branches of temporal properties for the complete state space with 8100 total distinct states at (2022-11-28 22:41:41)
+@!@!@ENDMSG 2192 @!@!@
+@!@!@STARTMSG 2116:1 @!@!@
+Temporal properties were violated.
+
+@!@!@ENDMSG 2116 @!@!@
+@!@!@STARTMSG 2264:1 @!@!@
+The following behavior constitutes a counter-example:
+
+@!@!@ENDMSG 2264 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ books = (p1 :> {} @@ p2 :> {})
+/\ wants = (p1 :> {b2} @@ p2 :> {b2})
+/\ library = (b1 :> 1 @@ b2 :> 1)
+/\ pc = (p1 :> "Person" @@ p2 :> "Person" @@ b1 :> "Expire" @@ b2 :> "Expire")
+/\ reserves = (b1 :> <<>> @@ b2 :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Person line 99, col 17 to line 119, col 55 of module library>
+/\ books = (p1 :> {} @@ p2 :> {})
+/\ wants = (p1 :> {b2} @@ p2 :> {b2})
+/\ library = (b1 :> 1 @@ b2 :> 1)
+/\ pc = (p1 :> "Person" @@ p2 :> "Person" @@ b1 :> "Expire" @@ b2 :> "Expire")
+/\ reserves = (b1 :> <<>> @@ b2 :> <<p1>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <Person line 99, col 17 to line 119, col 55 of module library>
+/\ books = (p1 :> {} @@ p2 :> {})
+/\ wants = (p1 :> {b2} @@ p2 :> {b2})
+/\ library = (b1 :> 1 @@ b2 :> 1)
+/\ pc = (p1 :> "Person" @@ p2 :> "Person" @@ b1 :> "Expire" @@ b2 :> "Expire")
+/\ reserves = (b1 :> <<p2>> @@ b2 :> <<p1>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <Expire line 123, col 17 to line 127, col 56 of module library>
+/\ books = (p1 :> {} @@ p2 :> {})
+/\ wants = (p1 :> {b2} @@ p2 :> {b2})
+/\ library = (b1 :> 1 @@ b2 :> 1)
+/\ pc = (p1 :> "Person" @@ p2 :> "Person" @@ b1 :> "Expire" @@ b2 :> "Expire")
+/\ reserves = (b1 :> <<p2>> @@ b2 :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <Person line 99, col 17 to line 119, col 55 of module library>
+/\ books = (p1 :> {b2} @@ p2 :> {})
+/\ wants = (p1 :> {} @@ p2 :> {b2})
+/\ library = (b1 :> 1 @@ b2 :> 0)
+/\ pc = (p1 :> "Person" @@ p2 :> "Person" @@ b1 :> "Expire" @@ b2 :> "Expire")
+/\ reserves = (b1 :> <<p2>> @@ b2 :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <Expire line 123, col 17 to line 127, col 56 of module library>
+/\ books = (p1 :> {b2} @@ p2 :> {})
+/\ wants = (p1 :> {} @@ p2 :> {b2})
+/\ library = (b1 :> 1 @@ b2 :> 0)
+/\ pc = (p1 :> "Person" @@ p2 :> "Person" @@ b1 :> "Expire" @@ b2 :> "Expire")
+/\ reserves = (b1 :> <<>> @@ b2 :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Person line 99, col 17 to line 119, col 55 of module library>
+/\ books = (p1 :> {b2} @@ p2 :> {})
+/\ wants = (p1 :> {b2} @@ p2 :> {b2})
+/\ library = (b1 :> 1 @@ b2 :> 0)
+/\ pc = (p1 :> "Person" @@ p2 :> "Person" @@ b1 :> "Expire" @@ b2 :> "Expire")
+/\ reserves = (b1 :> <<>> @@ b2 :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <Person line 99, col 17 to line 119, col 55 of module library>
+/\ books = (p1 :> {b2} @@ p2 :> {})
+/\ wants = (p1 :> {b2} @@ p2 :> {b2})
+/\ library = (b1 :> 1 @@ b2 :> 0)
+/\ pc = (p1 :> "Person" @@ p2 :> "Person" @@ b1 :> "Expire" @@ b2 :> "Expire")
+/\ reserves = (b1 :> <<>> @@ b2 :> <<p1>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2122:4 @!@!@
+2: Back to state: <Person line 99, col 17 to line 119, col 55 of module library>
+
+@!@!@ENDMSG 2122 @!@!@
+@!@!@STARTMSG 2267:0 @!@!@
+Finished checking temporal properties in 00s at 2022-11-28 22:41:41
+@!@!@ENDMSG 2267 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2022-11-28 22:41:41
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 90, col 1 to line 90, col 4 of module library>: 32:32
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 12 to line 91, col 43 of module library: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 92, col 12 to line 92, col 44 of module library: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 94, col 12 to line 94, col 43 of module library: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 95, col 12 to line 95, col 45 of module library: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 96, col 12 to line 97, col 70 of module library: 32
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Person line 99, col 1 to line 99, col 12 of module library>: 2016:12115
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 99, col 20 to line 99, col 38 of module library: 7930
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 99, col 20 to line 99, col 27 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 101, col 31 to line 101, col 79 of module library: 562
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 102, col 31 to line 102, col 80 of module library: 562
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 103, col 31 to line 103, col 80 of module library: 562
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 104, col 34 to line 104, col 80 of module library: 562
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 104, col 34 to line 104, col 52 of module library: 562
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 104, col 57 to line 104, col 80 of module library: 362
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 105, col 39 to line 105, col 95 of module library: 362
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 106, col 42 to line 106, col 45 of module library: 200
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 107, col 42 to line 107, col 59 of module library: 200
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 100, col 35 to line 100, col 94 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 100, col 36 to line 100, col 79 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 100, col 36 to line 100, col 56 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |||line 80, col 5 to line 82, col 33 of module library: 4109:4671
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 81, col 9 to line 82, col 32 of module library: 2765
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||line 81, col 12 to line 81, col 29 of module library: 2765
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||line 82, col 12 to line 82, col 32 of module library: 2169
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 80, col 12 to line 80, col 25 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |||||line 78, col 19 to line 78, col 47 of module library: 4109:6874
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||line 78, col 33 to line 78, col 46 of module library: 8218
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||||line 78, col 26 to line 78, col 30 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 100, col 52 to line 100, col 55 of module library: 1879
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 100, col 69 to line 100, col 79 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 100, col 84 to line 100, col 94 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 109, col 28 to line 110, col 80 of module library: 2728
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 108, col 35 to line 108, col 45 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 111, col 26 to line 111, col 54 of module library: 2728
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 113, col 28 to line 113, col 89 of module library: 3353
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  line 112, col 35 to line 112, col 82 of module library: 4109:7462
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 112, col 49 to line 112, col 81 of module library: 8218
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 112, col 49 to line 112, col 52 of module library: 8218
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 112, col 61 to line 112, col 81 of module library: 8218
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 36, col 13 to line 36, col 37 of module PT: 8218
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 36, col 15 to line 36, col 18 of module PT: 9730
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 36, col 28 to line 36, col 35 of module PT: 8218
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 112, col 70 to line 112, col 80 of module library: 8218
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 112, col 42 to line 112, col 46 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 114, col 26 to line 114, col 60 of module library: 3353
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 115, col 26 to line 115, col 41 of module library: 5477
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 115, col 26 to line 115, col 36 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 115, col 40 to line 115, col 41 of module library: 4109
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 117, col 28 to line 117, col 62 of module library: 5472
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  line 116, col 35 to line 116, col 46 of module library: 1368:8250
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 118, col 26 to line 118, col 63 of module library: 5472
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 119, col 20 to line 119, col 55 of module library: 12115
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Expire line 123, col 1 to line 123, col 12 of module library>: 0:3243
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 123, col 20 to line 123, col 38 of module library: 7344
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 123, col 20 to line 123, col 27 of module library: 4101
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 124, col 20 to line 124, col 41 of module library: 7344
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 124, col 20 to line 124, col 33 of module library: 4101
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 124, col 38 to line 124, col 41 of module library: 4101
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 125, col 20 to line 125, col 79 of module library: 3243
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 126, col 20 to line 126, col 55 of module library: 3243
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 127, col 20 to line 127, col 56 of module library: 3243
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<TypeInvariant line 145, col 1 to line 145, col 13 of module library>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 146, col 5 to line 150, col 30 of module library: 3382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 146, col 8 to line 146, col 44 of module library: 3382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 147, col 8 to line 147, col 41 of module library: 3382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 148, col 8 to line 148, col 41 of module library: 3382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 149, col 8 to line 149, col 42 of module library: 3382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 150, col 8 to line 150, col 30 of module library: 3382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 141, col 5 to line 143, col 54 of module library: 3382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 142, col 9 to line 143, col 54 of module library: 6764
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 143, col 13 to line 143, col 54 of module library: 13500
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||line 143, col 13 to line 143, col 18 of module library: 13500
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||||line 143, col 23 to line 143, col 54 of module library: 5400
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 142, col 21 to line 142, col 39 of module library: 6764
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 141, col 14 to line 141, col 18 of module library: 3382
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(9) at 2022-11-28 22:41:41: 15,136 states generated (150,208 s/min), 2,025 distinct states found (20,095 ds/min), 0 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+15136 states generated, 2025 distinct states found, 0 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 6057ms at (2022-11-28 22:41:41)
+@!@!@ENDMSG 2186 @!@!@

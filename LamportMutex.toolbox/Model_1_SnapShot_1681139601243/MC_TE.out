@@ -1,0 +1,834 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 84 and seed 3362199663132728697 with 6 workers on 12 cores with 1214MB heap and 2730MB offheap memory [pid: 65252] (Mac OS X 10.16 x86_64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/LamportMutex.toolbox/Model_1/MC.tla
+Parsing file /Users/wengjialin/learn-space/tla+/LamportMutex.toolbox/Model_1/LamportMutex.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/68F5FD2D-EA99-4B56-8F0D-221DDE664679/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/TLC.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/68F5FD2D-EA99-4B56-8F0D-221DDE664679/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Naturals.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/68F5FD2D-EA99-4B56-8F0D-221DDE664679/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Sequences.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/68F5FD2D-EA99-4B56-8F0D-221DDE664679/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/FiniteSets.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module LamportMutex
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2023-04-10 23:13:09)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at 2023-04-10 23:13:10.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(25) at 2023-04-10 23:13:13: 357,909 states generated (357,909 s/min), 124,745 distinct states found (124,745 ds/min), 27,686 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2110:1 @!@!@
+Invariant ClockConstraint is violated.
+@!@!@ENDMSG 2110 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ network = <<<<<<>>, <<>>, <<>>>>, <<<<>>, <<>>, <<>>>>, <<<<>>, <<>>, <<>>>>>>
+/\ req = <<<<0, 0, 0>>, <<0, 0, 0>>, <<0, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{}, {}, {}>>
+/\ clock = <<1, 1, 1>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Request line 91, col 3 to line 95, col 30 of module LamportMutex>
+/\ network = << <<<<>>, <<>>, <<>>>>,
+   << <<[clock |-> 1, type |-> "req"]>>,
+      <<>>,
+      <<[clock |-> 1, type |-> "req"]>> >>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<0, 0, 0>>, <<0, 1, 0>>, <<0, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{}, {2}, {}>>
+/\ clock = <<1, 1, 1>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 0, type |-> "ack"]>>, <<>>>>,
+   <<<<>>, <<>>, <<[clock |-> 1, type |-> "req"]>>>>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<0, 1, 0>>, <<0, 1, 0>>, <<0, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{}, {2}, {}>>
+/\ clock = <<2, 1, 1>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <Request line 91, col 3 to line 95, col 30 of module LamportMutex>
+/\ network = << << <<>>,
+      <<[clock |-> 0, type |-> "ack"], [clock |-> 2, type |-> "req"]>>,
+      <<[clock |-> 2, type |-> "req"]>> >>,
+   <<<<>>, <<>>, <<[clock |-> 1, type |-> "req"]>>>>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 1, 0>>, <<0, 1, 0>>, <<0, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{1}, {2}, {}>>
+/\ clock = <<2, 1, 1>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <ReceiveAck line 115, col 3 to line 120, col 42 of module LamportMutex>
+/\ network = << << <<>>,
+      <<[clock |-> 2, type |-> "req"]>>,
+      <<[clock |-> 2, type |-> "req"]>> >>,
+   <<<<>>, <<>>, <<[clock |-> 1, type |-> "req"]>>>>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 1, 0>>, <<0, 1, 0>>, <<0, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{1}, {1, 2}, {}>>
+/\ clock = <<2, 1, 1>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   <<<<>>, <<>>, <<[clock |-> 1, type |-> "req"]>>>>,
+   <<<<[clock |-> 0, type |-> "ack"]>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 1, 0>>, <<0, 1, 0>>, <<2, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{1}, {1, 2}, {}>>
+/\ clock = <<2, 1, 3>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <ReceiveAck line 115, col 3 to line 120, col 42 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   <<<<>>, <<>>, <<[clock |-> 1, type |-> "req"]>>>>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 1, 0>>, <<0, 1, 0>>, <<2, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {1, 2}, {}>>
+/\ clock = <<2, 1, 3>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   <<<<>>, <<>>, <<>>>>,
+   <<<<>>, <<[clock |-> 0, type |-> "ack"]>>, <<>>>> >>
+/\ req = <<<<2, 1, 0>>, <<0, 1, 0>>, <<2, 1, 0>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {1, 2}, {}>>
+/\ clock = <<2, 1, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <Request line 91, col 3 to line 95, col 30 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   <<<<>>, <<>>, <<>>>>,
+   << <<[clock |-> 4, type |-> "req"]>>,
+      <<[clock |-> 0, type |-> "ack"], [clock |-> 4, type |-> "req"]>>,
+      <<>> >> >>
+/\ req = <<<<2, 1, 0>>, <<0, 1, 0>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {1, 2}, {3}>>
+/\ clock = <<2, 1, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <ReceiveAck line 115, col 3 to line 120, col 42 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   <<<<>>, <<>>, <<>>>>,
+   << <<[clock |-> 4, type |-> "req"]>>,
+      <<[clock |-> 4, type |-> "req"]>>,
+      <<>> >> >>
+/\ req = <<<<2, 1, 0>>, <<0, 1, 0>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {1, 2, 3}, {3}>>
+/\ clock = <<2, 1, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <Enter line 126, col 3 to line 129, col 43 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   <<<<>>, <<>>, <<>>>>,
+   << <<[clock |-> 4, type |-> "req"]>>,
+      <<[clock |-> 4, type |-> "req"]>>,
+      <<>> >> >>
+/\ req = <<<<2, 1, 0>>, <<0, 1, 0>>, <<2, 1, 4>>>>
+/\ crit = {2}
+/\ ack = <<{1, 3}, {1, 2, 3}, {3}>>
+/\ clock = <<2, 1, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <Exit line 135, col 3 to line 140, col 20 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   << <<[clock |-> 0, type |-> "rel"]>>,
+      <<>>,
+      <<[clock |-> 0, type |-> "rel"]>> >>,
+   << <<[clock |-> 4, type |-> "req"]>>,
+      <<[clock |-> 4, type |-> "req"]>>,
+      <<>> >> >>
+/\ req = <<<<2, 1, 0>>, <<0, 0, 0>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {}, {3}>>
+/\ clock = <<2, 1, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <ReceiveRelease line 146, col 3 to line 151, col 42 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   <<<<>>, <<>>, <<[clock |-> 0, type |-> "rel"]>>>>,
+   << <<[clock |-> 4, type |-> "req"]>>,
+      <<[clock |-> 4, type |-> "req"]>>,
+      <<>> >> >>
+/\ req = <<<<2, 0, 0>>, <<0, 0, 0>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {}, {3}>>
+/\ clock = <<2, 1, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 2, type |-> "req"]>>, <<>>>>,
+   << <<>>,
+      <<>>,
+      <<[clock |-> 0, type |-> "rel"], [clock |-> 0, type |-> "ack"]>> >>,
+   <<<<[clock |-> 4, type |-> "req"]>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 0, 0>>, <<0, 0, 4>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {}, {3}>>
+/\ clock = <<2, 5, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << <<<<>>, <<>>, <<>>>>,
+   << <<[clock |-> 0, type |-> "ack"]>>,
+      <<>>,
+      <<[clock |-> 0, type |-> "rel"], [clock |-> 0, type |-> "ack"]>> >>,
+   <<<<[clock |-> 4, type |-> "req"]>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 0, 0>>, <<2, 0, 4>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {}, {3}>>
+/\ clock = <<2, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <Request line 91, col 3 to line 95, col 30 of module LamportMutex>
+/\ network = << <<<<>>, <<>>, <<>>>>,
+   << <<[clock |-> 0, type |-> "ack"], [clock |-> 6, type |-> "req"]>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<[clock |-> 4, type |-> "req"]>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 0, 0>>, <<2, 6, 4>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {3}>>
+/\ clock = <<2, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <ReceiveAck line 115, col 3 to line 120, col 42 of module LamportMutex>
+/\ network = << <<<<>>, <<>>, <<>>>>,
+   << <<[clock |-> 6, type |-> "req"]>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<[clock |-> 4, type |-> "req"]>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 0, 0>>, <<2, 6, 4>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 2, 3}, {2}, {3}>>
+/\ clock = <<2, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 0, type |-> "ack"]>>, <<>>>>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<[clock |-> 4, type |-> "req"]>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 6, 0>>, <<2, 6, 4>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 2, 3}, {2}, {3}>>
+/\ clock = <<7, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+19: <Enter line 126, col 3 to line 129, col 43 of module LamportMutex>
+/\ network = << <<<<>>, <<[clock |-> 0, type |-> "ack"]>>, <<>>>>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<[clock |-> 4, type |-> "req"]>>, <<>>, <<>>>> >>
+/\ req = <<<<2, 6, 0>>, <<2, 6, 4>>, <<2, 1, 4>>>>
+/\ crit = {1}
+/\ ack = <<{1, 2, 3}, {2}, {3}>>
+/\ clock = <<7, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+20: <Exit line 135, col 3 to line 140, col 20 of module LamportMutex>
+/\ network = << << <<>>,
+      <<[clock |-> 0, type |-> "ack"], [clock |-> 0, type |-> "rel"]>>,
+      <<[clock |-> 0, type |-> "rel"]>> >>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<[clock |-> 4, type |-> "req"]>>, <<>>, <<>>>> >>
+/\ req = <<<<0, 6, 0>>, <<2, 6, 4>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{}, {2}, {3}>>
+/\ clock = <<7, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+21: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << << <<>>,
+      <<[clock |-> 0, type |-> "ack"], [clock |-> 0, type |-> "rel"]>>,
+      <<[clock |-> 0, type |-> "rel"], [clock |-> 0, type |-> "ack"]>> >>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<0, 6, 4>>, <<2, 6, 4>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{}, {2}, {3}>>
+/\ clock = <<8, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+22: <Request line 91, col 3 to line 95, col 30 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 8, type |-> "req"] >> >>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<2, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1}, {2}, {3}>>
+/\ clock = <<8, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+23: <ReceiveRelease line 146, col 3 to line 151, col 42 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<[clock |-> 0, type |-> "ack"], [clock |-> 8, type |-> "req"]>> >>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<0, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1}, {2}, {3}>>
+/\ clock = <<8, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+24: <ReceiveAck line 115, col 3 to line 120, col 42 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<[clock |-> 8, type |-> "req"]>> >>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<0, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1}, {2}, {1, 3}>>
+/\ clock = <<8, 6, 4>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+25: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<[clock |-> 0, type |-> "ack"]>>, <<>>, <<>>>> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<8, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1}, {2}, {1, 3}>>
+/\ clock = <<8, 6, 9>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+26: <ReceiveAck line 115, col 3 to line 120, col 42 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   << <<>>,
+      <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 6, type |-> "req"] >> >>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<8, 1, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {1, 3}>>
+/\ clock = <<8, 6, 9>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+27: <ReceiveRelease line 146, col 3 to line 151, col 42 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   << <<>>,
+      <<>>,
+      <<[clock |-> 0, type |-> "ack"], [clock |-> 6, type |-> "req"]>> >>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<8, 0, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {1, 3}>>
+/\ clock = <<8, 6, 9>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+28: <ReceiveAck line 115, col 3 to line 120, col 42 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   <<<<>>, <<>>, <<[clock |-> 6, type |-> "req"]>>>>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<8, 0, 4>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {1, 2, 3}>>
+/\ clock = <<8, 6, 9>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+29: <Enter line 126, col 3 to line 129, col 43 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   <<<<>>, <<>>, <<[clock |-> 6, type |-> "req"]>>>>,
+   <<<<>>, <<>>, <<>>>> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<8, 0, 4>>>>
+/\ crit = {3}
+/\ ack = <<{1, 3}, {2}, {1, 2, 3}>>
+/\ clock = <<8, 6, 9>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+30: <Exit line 135, col 3 to line 140, col 20 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   <<<<>>, <<>>, <<[clock |-> 6, type |-> "req"]>>>>,
+   << <<[clock |-> 0, type |-> "rel"]>>,
+      <<[clock |-> 0, type |-> "rel"]>>,
+      <<>> >> >>
+/\ req = <<<<8, 6, 4>>, <<2, 6, 4>>, <<8, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {}>>
+/\ clock = <<8, 6, 9>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+31: <ReceiveRelease line 146, col 3 to line 151, col 42 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   <<<<>>, <<>>, <<[clock |-> 6, type |-> "req"]>>>>,
+   <<<<>>, <<[clock |-> 0, type |-> "rel"]>>, <<>>>> >>
+/\ req = <<<<8, 6, 0>>, <<2, 6, 4>>, <<8, 0, 0>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {}>>
+/\ clock = <<8, 6, 9>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+32: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   <<<<>>, <<>>, <<>>>>,
+   << <<>>,
+      <<[clock |-> 0, type |-> "rel"], [clock |-> 0, type |-> "ack"]>>,
+      <<>> >> >>
+/\ req = <<<<8, 6, 0>>, <<2, 6, 4>>, <<8, 6, 0>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {}>>
+/\ clock = <<8, 6, 10>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+33: <Request line 91, col 3 to line 95, col 30 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<>> >>,
+   <<<<>>, <<>>, <<>>>>,
+   << <<[clock |-> 10, type |-> "req"]>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 10, type |-> "req"] >>,
+      <<>> >> >>
+/\ req = <<<<8, 6, 0>>, <<2, 6, 4>>, <<8, 6, 10>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {3}>>
+/\ clock = <<8, 6, 10>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+34: <ReceiveRequest line 101, col 3 to line 109, col 35 of module LamportMutex>
+/\ network = << << <<>>,
+      << [clock |-> 0, type |-> "ack"],
+         [clock |-> 0, type |-> "rel"],
+         [clock |-> 8, type |-> "req"] >>,
+      <<[clock |-> 0, type |-> "ack"]>> >>,
+   <<<<>>, <<>>, <<>>>>,
+   << <<>>,
+      << [clock |-> 0, type |-> "rel"],
+         [clock |-> 0, type |-> "ack"],
+         [clock |-> 10, type |-> "req"] >>,
+      <<>> >> >>
+/\ req = <<<<8, 6, 10>>, <<2, 6, 4>>, <<8, 6, 10>>>>
+/\ crit = {}
+/\ ack = <<{1, 3}, {2}, {3}>>
+/\ clock = <<11, 6, 10>>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2023-04-10 23:13:19
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 63, col 1 to line 63, col 4 of module LamportMutex>: 2:2
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 64, col 3 to line 68, col 14 of module LamportMutex: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Request line 90, col 1 to line 90, col 10 of module LamportMutex>: 57632:227192
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 6 to line 91, col 18 of module LamportMutex: 2047121
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 91, col 6 to line 91, col 14 of module LamportMutex: 1819929
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 92, col 6 to line 92, col 42 of module LamportMutex: 227192
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 93, col 6 to line 93, col 74 of module LamportMutex: 227192
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 94, col 6 to line 94, col 35 of module LamportMutex: 227192
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 95, col 6 to line 95, col 30 of module LamportMutex: 227192
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ReceiveRequest line 100, col 1 to line 100, col 19 of module LamportMutex>: 213691:569679
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 101, col 6 to line 101, col 26 of module LamportMutex: 4209418
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 101, col 6 to line 101, col 18 of module LamportMutex: 3639744
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 101, col 22 to line 101, col 26 of module LamportMutex: 3639744
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 104, col 13 to line 104, col 26 of module LamportMutex: 2413775
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 104, col 13 to line 104, col 18 of module LamportMutex: 1844101
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 105, col 13 to line 105, col 43 of module LamportMutex: 569674
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 105, col 20 to line 105, col 43 of module LamportMutex: 569679
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 106, col 13 to line 106, col 80 of module LamportMutex: 569674
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 106, col 22 to line 106, col 80 of module LamportMutex: 569679
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 106, col 23 to line 106, col 27 of module LamportMutex: 569679
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 106, col 36 to line 106, col 79 of module LamportMutex: 569679
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 106, col 43 to line 106, col 79 of module LamportMutex: 569679
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 106, col 46 to line 106, col 57 of module LamportMutex: 569679
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 106, col 64 to line 106, col 68 of module LamportMutex: 219979
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 106, col 75 to line 106, col 79 of module LamportMutex: 349700
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 107, col 13 to line 108, col 71 of module LamportMutex: 569674
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 107, col 24 to line 108, col 71 of module LamportMutex: 569679
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 109, col 13 to line 109, col 35 of module LamportMutex: 569674
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ReceiveAck line 114, col 1 to line 114, col 15 of module LamportMutex>: 243632:705652
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 115, col 6 to line 115, col 26 of module LamportMutex: 4345381
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 115, col 6 to line 115, col 18 of module LamportMutex: 3639729
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 115, col 22 to line 115, col 26 of module LamportMutex: 3639729
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 117, col 13 to line 117, col 26 of module LamportMutex: 2549738
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 117, col 13 to line 117, col 18 of module LamportMutex: 1844086
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 118, col 13 to line 118, col 51 of module LamportMutex: 705652
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 119, col 13 to line 119, col 57 of module LamportMutex: 705652
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 120, col 13 to line 120, col 42 of module LamportMutex: 705652
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Enter line 125, col 1 to line 125, col 8 of module LamportMutex>: 24449:90442
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 126, col 6 to line 126, col 18 of module LamportMutex: 1910365
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 126, col 6 to line 126, col 11 of module LamportMutex: 1819923
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 126, col 15 to line 126, col 18 of module LamportMutex: 1819923
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 77, col 6 to line 77, col 18 of module LamportMutex: 332660
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 77, col 6 to line 77, col 14 of module LamportMutex: 285340
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 78, col 6 to line 78, col 26 of module LamportMutex: 124984
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 78, col 6 to line 78, col 14 of module LamportMutex: 285340
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 78, col 18 to line 78, col 26 of module LamportMutex: 285340
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 79, col 6 to line 79, col 26 of module LamportMutex: 293920
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 79, col 6 to line 79, col 14 of module LamportMutex: 285340
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 79, col 18 to line 79, col 26 of module LamportMutex: 285340
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 79, col 31 to line 79, col 35 of module LamportMutex: 8580
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 79, col 31 to line 79, col 31 of module LamportMutex: 19007
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 79, col 35 to line 79, col 35 of module LamportMutex: 19007
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 127, col 34 to line 127, col 34 of module LamportMutex: 285340
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 127, col 36 to line 127, col 36 of module LamportMutex: 285340
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 127, col 15 to line 127, col 24 of module LamportMutex: 169211
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 128, col 6 to line 128, col 28 of module LamportMutex: 90442
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 129, col 6 to line 129, col 43 of module LamportMutex: 90442
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Exit line 134, col 1 to line 134, col 7 of module LamportMutex>: 25482:43536
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 135, col 6 to line 135, col 15 of module LamportMutex: 1863456
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 135, col 6 to line 135, col 6 of module LamportMutex: 1819920
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 135, col 12 to line 135, col 15 of module LamportMutex: 1819920
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 136, col 6 to line 136, col 23 of module LamportMutex: 43536
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 137, col 6 to line 137, col 64 of module LamportMutex: 43536
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 138, col 6 to line 138, col 36 of module LamportMutex: 43536
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 139, col 6 to line 139, col 34 of module LamportMutex: 43536
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 140, col 6 to line 140, col 20 of module LamportMutex: 43536
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ReceiveRelease line 145, col 1 to line 145, col 19 of module LamportMutex>: 145968:568770
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 146, col 6 to line 146, col 26 of module LamportMutex: 4208492
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 146, col 6 to line 146, col 18 of module LamportMutex: 3639722
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 146, col 22 to line 146, col 26 of module LamportMutex: 3639722
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 148, col 13 to line 148, col 26 of module LamportMutex: 2412849
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 148, col 13 to line 148, col 18 of module LamportMutex: 1844079
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 149, col 13 to line 149, col 43 of module LamportMutex: 568770
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 150, col 13 to line 150, col 57 of module LamportMutex: 568770
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 151, col 13 to line 151, col 42 of module LamportMutex: 568770
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<ClockConstraint line 171, col 1 to line 171, col 15 of module LamportMutex>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 171, col 20 to line 171, col 55 of module LamportMutex: 710855
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 171, col 36 to line 171, col 55 of module LamportMutex: 2132559
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 171, col 29 to line 171, col 32 of module LamportMutex: 710855
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<BoundedNetwork line 177, col 1 to line 177, col 14 of module LamportMutex>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 177, col 19 to line 177, col 59 of module LamportMutex: 710850
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 177, col 37 to line 177, col 59 of module LamportMutex: 6397650
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 177, col 30 to line 177, col 33 of module LamportMutex: 710850
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<Mutex line 182, col 1 to line 182, col 5 of module LamportMutex>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 182, col 10 to line 182, col 32 of module LamportMutex: 710850
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 182, col 28 to line 182, col 32 of module LamportMutex: 46902
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 182, col 21 to line 182, col 24 of module LamportMutex: 710850
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(35) at 2023-04-10 23:13:19: 2,205,208 states generated (11,908,242 s/min), 710,855 distinct states found (3,838,655 ds/min), 104,236 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+2205208 states generated, 710855 distinct states found, 104236 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 35.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2268:0 @!@!@
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 7 and the 95th percentile is 3).
+@!@!@ENDMSG 2268 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 11154ms at (2023-04-10 23:13:20)
+@!@!@ENDMSG 2186 @!@!@

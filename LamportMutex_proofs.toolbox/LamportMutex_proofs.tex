@@ -1,0 +1,2217 @@
+\batchmode %% Suppresses most terminal output.
+\documentclass{article}
+\usepackage{color}
+\definecolor{boxshade}{gray}{0.85}
+\setlength{\textwidth}{360pt}
+\setlength{\textheight}{541pt}
+\usepackage{latexsym}
+\usepackage{ifthen}
+% \usepackage{color}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SWITCHES                                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newboolean{shading} 
+\setboolean{shading}{false}
+\makeatletter
+ %% this is needed only when inserted into the file, not when
+ %% used as a package file.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                                           %
+% DEFINITIONS OF SYMBOL-PRODUCING COMMANDS                                  %
+%                                                                           %
+%    TLA+      LaTeX                                                        %
+%    symbol    command                                                      %
+%    ------    -------                                                      %
+%    =>        \implies                                                     %
+%    <:        \ltcolon                                                     %
+%    :>        \colongt                                                     %
+%    ==        \defeq                                                       %
+%    ..        \dotdot                                                      %
+%    ::        \coloncolon                                                  %
+%    =|        \eqdash                                                      %
+%    ++        \pp                                                          %
+%    --        \mm                                                          %
+%    **        \stst                                                        %
+%    //        \slsl                                                        %
+%    ^         \ct                                                          %
+%    \A        \A                                                           %
+%    \E        \E                                                           %
+%    \AA       \AA                                                          %
+%    \EE       \EE                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\symlength}
+\newcommand{\implies}{\Rightarrow}
+\newcommand{\ltcolon}{\mathrel{<\!\!\mbox{:}}}
+\newcommand{\colongt}{\mathrel{\!\mbox{:}\!\!>}}
+\newcommand{\defeq}{\;\mathrel{\smash   %% keep this symbol from being too tall
+    {{\stackrel{\scriptscriptstyle\Delta}{=}}}}\;}
+\newcommand{\dotdot}{\mathrel{\ldotp\ldotp}}
+\newcommand{\coloncolon}{\mathrel{::\;}}
+\newcommand{\eqdash}{\mathrel = \joinrel \hspace{-.28em}|}
+\newcommand{\pp}{\mathbin{++}}
+\newcommand{\mm}{\mathbin{--}}
+\newcommand{\stst}{*\!*}
+\newcommand{\slsl}{/\!/}
+\newcommand{\ct}{\hat{\hspace{.4em}}}
+\newcommand{\A}{\forall}
+\newcommand{\E}{\exists}
+\renewcommand{\AA}{\makebox{$\raisebox{.05em}{\makebox[0pt][l]{%
+   $\forall\hspace{-.517em}\forall\hspace{-.517em}\forall$}}%
+   \forall\hspace{-.517em}\forall \hspace{-.517em}\forall\,$}}
+\newcommand{\EE}{\makebox{$\raisebox{.05em}{\makebox[0pt][l]{%
+   $\exists\hspace{-.517em}\exists\hspace{-.517em}\exists$}}%
+   \exists\hspace{-.517em}\exists\hspace{-.517em}\exists\,$}}
+\newcommand{\whileop}{\.{\stackrel
+  {\mbox{\raisebox{-.3em}[0pt][0pt]{$\scriptscriptstyle+\;\,$}}}%
+  {-\hspace{-.16em}\triangleright}}}
+
+% Commands are defined to produce the upper-case keywords.
+% Note that some have space after them.
+\newcommand{\ASSUME}{\textsc{assume }}
+\newcommand{\ASSUMPTION}{\textsc{assumption }}
+\newcommand{\AXIOM}{\textsc{axiom }}
+\newcommand{\BOOLEAN}{\textsc{boolean }}
+\newcommand{\CASE}{\textsc{case }}
+\newcommand{\CONSTANT}{\textsc{constant }}
+\newcommand{\CONSTANTS}{\textsc{constants }}
+\newcommand{\ELSE}{\settowidth{\symlength}{\THEN}%
+   \makebox[\symlength][l]{\textsc{ else}}}
+\newcommand{\EXCEPT}{\textsc{ except }}
+\newcommand{\EXTENDS}{\textsc{extends }}
+\newcommand{\FALSE}{\textsc{false}}
+\newcommand{\IF}{\textsc{if }}
+\newcommand{\IN}{\settowidth{\symlength}{\LET}%
+   \makebox[\symlength][l]{\textsc{in}}}
+\newcommand{\INSTANCE}{\textsc{instance }}
+\newcommand{\LET}{\textsc{let }}
+\newcommand{\LOCAL}{\textsc{local }}
+\newcommand{\MODULE}{\textsc{module }}
+\newcommand{\OTHER}{\textsc{other }}
+\newcommand{\STRING}{\textsc{string}}
+\newcommand{\THEN}{\textsc{ then }}
+\newcommand{\THEOREM}{\textsc{theorem }}
+\newcommand{\LEMMA}{\textsc{lemma }}
+\newcommand{\PROPOSITION}{\textsc{proposition }}
+\newcommand{\COROLLARY}{\textsc{corollary }}
+\newcommand{\TRUE}{\textsc{true}}
+\newcommand{\VARIABLE}{\textsc{variable }}
+\newcommand{\VARIABLES}{\textsc{variables }}
+\newcommand{\WITH}{\textsc{ with }}
+\newcommand{\WF}{\textrm{WF}}
+\newcommand{\SF}{\textrm{SF}}
+\newcommand{\CHOOSE}{\textsc{choose }}
+\newcommand{\ENABLED}{\textsc{enabled }}
+\newcommand{\UNCHANGED}{\textsc{unchanged }}
+\newcommand{\SUBSET}{\textsc{subset }}
+\newcommand{\UNION}{\textsc{union }}
+\newcommand{\DOMAIN}{\textsc{domain }}
+% Added for tla2tex
+\newcommand{\BY}{\textsc{by }}
+\newcommand{\OBVIOUS}{\textsc{obvious }}
+\newcommand{\HAVE}{\textsc{have }}
+\newcommand{\QED}{\textsc{qed }}
+\newcommand{\TAKE}{\textsc{take }}
+\newcommand{\DEF}{\textsc{ def }}
+\newcommand{\HIDE}{\textsc{hide }}
+\newcommand{\RECURSIVE}{\textsc{recursive }}
+\newcommand{\USE}{\textsc{use }}
+\newcommand{\DEFINE}{\textsc{define }}
+\newcommand{\PROOF}{\textsc{proof }}
+\newcommand{\WITNESS}{\textsc{witness }}
+\newcommand{\PICK}{\textsc{pick }}
+\newcommand{\DEFS}{\textsc{defs }}
+\newcommand{\PROVE}{\settowidth{\symlength}{\ASSUME}%
+   \makebox[\symlength][l]{\textsc{prove}}\@s{-4.1}}%
+  %% The \@s{-4.1) is a kludge added on 24 Oct 2009 [happy birthday, Ellen]
+  %% so the correct alignment occurs if the user types
+  %%   ASSUME X
+  %%   PROVE  Y
+  %% because it cancels the extra 4.1 pts added because of the 
+  %% extra space after the PROVE.  This seems to works OK.
+  %% However, the 4.1 equals Parameters.LaTeXLeftSpace(1) and
+  %% should be changed if that method ever changes.
+\newcommand{\SUFFICES}{\textsc{suffices }}
+\newcommand{\NEW}{\textsc{new }}
+\newcommand{\LAMBDA}{\textsc{lambda }}
+\newcommand{\STATE}{\textsc{state }}
+\newcommand{\ACTION}{\textsc{action }}
+\newcommand{\TEMPORAL}{\textsc{temporal }}
+\newcommand{\ONLY}{\textsc{only }}              %% added by LL on 2 Oct 2009
+\newcommand{\OMITTED}{\textsc{omitted }}        %% added by LL on 31 Oct 2009
+\newcommand{\@pfstepnum}[2]{\ensuremath{\langle#1\rangle}\textrm{#2}}
+\newcommand{\bang}{\@s{1}\mbox{\small !}\@s{1}}
+%% We should format || differently in PlusCal code than in TLA+ formulas.
+\newcommand{\p@barbar}{\ifpcalsymbols
+   \,\,\rule[-.25em]{.075em}{1em}\hspace*{.2em}\rule[-.25em]{.075em}{1em}\,\,%
+   \else \,||\,\fi}
+%% PlusCal keywords
+\newcommand{\p@fair}{\textbf{fair }}
+\newcommand{\p@semicolon}{\textbf{\,; }}
+\newcommand{\p@algorithm}{\textbf{algorithm }}
+\newcommand{\p@mmfair}{\textbf{-{}-fair }}
+\newcommand{\p@mmalgorithm}{\textbf{-{}-algorithm }}
+\newcommand{\p@assert}{\textbf{assert }}
+\newcommand{\p@await}{\textbf{await }}
+\newcommand{\p@begin}{\textbf{begin }}
+\newcommand{\p@end}{\textbf{end }}
+\newcommand{\p@call}{\textbf{call }}
+\newcommand{\p@define}{\textbf{define }}
+\newcommand{\p@do}{\textbf{ do }}
+\newcommand{\p@either}{\textbf{either }}
+\newcommand{\p@or}{\textbf{or }}
+\newcommand{\p@goto}{\textbf{goto }}
+\newcommand{\p@if}{\textbf{if }}
+\newcommand{\p@then}{\,\,\textbf{then }}
+\newcommand{\p@else}{\ifcsyntax \textbf{else } \else \,\,\textbf{else }\fi}
+\newcommand{\p@elsif}{\,\,\textbf{elsif }}
+\newcommand{\p@macro}{\textbf{macro }}
+\newcommand{\p@print}{\textbf{print }}
+\newcommand{\p@procedure}{\textbf{procedure }}
+\newcommand{\p@process}{\textbf{process }}
+\newcommand{\p@return}{\textbf{return}}
+\newcommand{\p@skip}{\textbf{skip}}
+\newcommand{\p@variable}{\textbf{variable }}
+\newcommand{\p@variables}{\textbf{variables }}
+\newcommand{\p@while}{\textbf{while }}
+\newcommand{\p@when}{\textbf{when }}
+\newcommand{\p@with}{\textbf{with }}
+\newcommand{\p@lparen}{\textbf{(\,\,}}
+\newcommand{\p@rparen}{\textbf{\,\,) }}   
+\newcommand{\p@lbrace}{\textbf{\{\,\,}}   
+\newcommand{\p@rbrace}{\textbf{\,\,\} }}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% REDEFINE STANDARD COMMANDS TO MAKE THEM FORMAT BETTER %
+%                                                       %
+% We redefine \in and \notin                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\_}{\rule{.4em}{.06em}\hspace{.05em}}
+\newlength{\equalswidth}
+\let\oldin=\in
+\let\oldnotin=\notin
+\renewcommand{\in}{%
+   {\settowidth{\equalswidth}{$\.{=}$}\makebox[\equalswidth][c]{$\oldin$}}}
+\renewcommand{\notin}{%
+   {\settowidth{\equalswidth}{$\.{=}$}\makebox[\equalswidth]{$\oldnotin$}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                                  %
+% HORIZONTAL BARS:                                 %
+%                                                  %
+%   \moduleLeftDash    |~~~~~~~~~~                 %
+%   \moduleRightDash    ~~~~~~~~~~|                %
+%   \midbar            |----------|                %
+%   \bottombar         |__________|                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\charwidth}\settowidth{\charwidth}{{\small\tt M}}
+\newlength{\boxrulewd}\setlength{\boxrulewd}{.4pt}
+\newlength{\boxlineht}\setlength{\boxlineht}{.5\baselineskip}
+\newcommand{\boxsep}{\charwidth}
+\newlength{\boxruleht}\setlength{\boxruleht}{.5ex}
+\newlength{\boxruledp}\setlength{\boxruledp}{-\boxruleht}
+\addtolength{\boxruledp}{\boxrulewd}
+\newcommand{\boxrule}{\leaders\hrule height \boxruleht depth \boxruledp
+                      \hfill\mbox{}}
+\newcommand{\@computerule}{%
+  \setlength{\boxruleht}{.5ex}%
+  \setlength{\boxruledp}{-\boxruleht}%
+  \addtolength{\boxruledp}{\boxrulewd}}
+
+\newcommand{\bottombar}{\hspace{-\boxsep}%
+  \raisebox{-\boxrulewd}[0pt][0pt]{\rule[.5ex]{\boxrulewd}{\boxlineht}}%
+  \boxrule
+  \raisebox{-\boxrulewd}[0pt][0pt]{%
+      \rule[.5ex]{\boxrulewd}{\boxlineht}}\hspace{-\boxsep}\vspace{0pt}}
+
+\newcommand{\moduleLeftDash}%
+   {\hspace*{-\boxsep}%
+     \raisebox{-\boxlineht}[0pt][0pt]{\rule[.5ex]{\boxrulewd
+               }{\boxlineht}}%
+    \boxrule\hspace*{.4em }}
+
+\newcommand{\moduleRightDash}%
+    {\hspace*{.4em}\boxrule
+    \raisebox{-\boxlineht}[0pt][0pt]{\rule[.5ex]{\boxrulewd
+               }{\boxlineht}}\hspace{-\boxsep}}%\vspace{.2em}
+
+\newcommand{\midbar}{\hspace{-\boxsep}\raisebox{-.5\boxlineht}[0pt][0pt]{%
+   \rule[.5ex]{\boxrulewd}{\boxlineht}}\boxrule\raisebox{-.5\boxlineht%
+   }[0pt][0pt]{\rule[.5ex]{\boxrulewd}{\boxlineht}}\hspace{-\boxsep}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FORMATING COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PLUSCAL SHADING                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% The TeX pcalshading switch is set on to cause PlusCal shading to be
+% performed.  This changes the behavior of the following commands and
+% environments to cause full-width shading to be performed on all lines.
+% 
+%   \tstrut \@x cpar mcom \@pvspace
+% 
+% The TeX pcalsymbols switch is turned on when typesetting a PlusCal algorithm,
+% whether or not shading is being performed.  It causes symbols (other than
+% parentheses and braces and PlusCal-only keywords) that should be typeset
+% differently depending on whether they are in an algorithm to be typeset
+% appropriately.  Currently, the only such symbol is "||".
+%
+% The TeX csyntax switch is turned on when typesetting a PlusCal algorithm in
+% c-syntax.  This allows symbols to be format differently in the two syntaxes.
+% The "else" keyword is the only one that is.
+
+\newif\ifpcalshading \pcalshadingfalse
+\newif\ifpcalsymbols \pcalsymbolsfalse
+\newif\ifcsyntax     \csyntaxtrue
+
+% The \@pvspace command makes a vertical space.  It uses \vspace
+% except with \ifpcalshading, in which case it sets \pvcalvspace
+% and the space is added by a following \@x command.
+%
+\newlength{\pcalvspace}\setlength{\pcalvspace}{0pt}%
+\newcommand{\@pvspace}[1]{%
+  \ifpcalshading
+     \par\global\setlength{\pcalvspace}{#1}%
+  \else
+     \par\vspace{#1}%
+  \fi
+}
+
+% The lcom environment was changed to set \lcomindent equal to
+% the indentation it produces.  This length is used by the
+% cpar environment to make shading extend for the full width
+% of the line.  This assumes that lcom environments are not
+% nested.  I hope TLATeX does not nest them.
+%
+\newlength{\lcomindent}%
+\setlength{\lcomindent}{0pt}%
+
+%\tstrut: A strut to produce inter-paragraph space in a comment.
+%\rstrut: A strut to extend the bottom of a one-line comment so
+%         there's no break in the shading between comments on 
+%         successive lines.
+\newcommand\tstrut%
+  {\raisebox{\vshadelen}{\raisebox{-.25em}{\rule{0pt}{1.15em}}}%
+   \global\setlength{\vshadelen}{0pt}}
+\newcommand\rstrut{\raisebox{-.25em}{\rule{0pt}{1.15em}}%
+ \global\setlength{\vshadelen}{0pt}}
+
+
+% \.{op} formats operator op in math mode with empty boxes on either side.
+% Used because TeX otherwise vary the amount of space it leaves around op.
+\renewcommand{\.}[1]{\ensuremath{\mbox{}#1\mbox{}}}
+
+% \@s{n} produces an n-point space
+\newcommand{\@s}[1]{\hspace{#1pt}}           
+
+% \@x{txt} starts a specification line in the beginning with txt
+% in the final LaTeX source.
+\newlength{\@xlen}
+\newcommand\xtstrut%
+  {\setlength{\@xlen}{1.05em}%
+   \addtolength{\@xlen}{\pcalvspace}%
+    \raisebox{\vshadelen}{\raisebox{-.25em}{\rule{0pt}{\@xlen}}}%
+   \global\setlength{\vshadelen}{0pt}%
+   \global\setlength{\pcalvspace}{0pt}}
+
+\newcommand{\@x}[1]{\par
+  \ifpcalshading
+  \makebox[0pt][l]{\shadebox{\xtstrut\hspace*{\textwidth}}}%
+  \fi
+  \mbox{$\mbox{}#1\mbox{}$}}  
+
+% \@xx{txt} continues a specification line with the text txt.
+\newcommand{\@xx}[1]{\mbox{$\mbox{}#1\mbox{}$}}  
+
+% \@y{cmt} produces a one-line comment.
+\newcommand{\@y}[1]{\mbox{\footnotesize\hspace{.65em}%
+  \ifthenelse{\boolean{shading}}{%
+      \shadebox{#1\hspace{-\the\lastskip}\rstrut}}%
+               {#1\hspace{-\the\lastskip}\rstrut}}}
+
+% \@z{cmt} produces a zero-width one-line comment.
+\newcommand{\@z}[1]{\makebox[0pt][l]{\footnotesize
+  \ifthenelse{\boolean{shading}}{%
+      \shadebox{#1\hspace{-\the\lastskip}\rstrut}}%
+               {#1\hspace{-\the\lastskip}\rstrut}}}
+
+
+% \@w{str} produces the TLA+ string "str".
+\newcommand{\@w}[1]{\textsf{``{#1}''}}             
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SHADING                                                                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\graymargin{1}
+  % The number of points of margin in the shaded box.
+
+% \definecolor{boxshade}{gray}{.85}
+% Defines the darkness of the shading: 1 = white, 0 = black
+% Added by TLATeX only if needed.
+
+% \shadebox{txt} puts txt in a shaded box.
+\newlength{\templena}
+\newlength{\templenb}
+\newsavebox{\tempboxa}
+\newcommand{\shadebox}[1]{{\setlength{\fboxsep}{\graymargin pt}%
+     \savebox{\tempboxa}{#1}%
+     \settoheight{\templena}{\usebox{\tempboxa}}%
+     \settodepth{\templenb}{\usebox{\tempboxa}}%
+     \hspace*{-\fboxsep}\raisebox{0pt}[\templena][\templenb]%
+        {\colorbox{boxshade}{\usebox{\tempboxa}}}\hspace*{-\fboxsep}}}
+
+% \vshade{n} makes an n-point inter-paragraph space, with
+%  shading if the `shading' flag is true.
+\newlength{\vshadelen}
+\setlength{\vshadelen}{0pt}
+\newcommand{\vshade}[1]{\ifthenelse{\boolean{shading}}%
+   {\global\setlength{\vshadelen}{#1pt}}%
+   {\vspace{#1pt}}}
+
+\newlength{\boxwidth}
+\newlength{\multicommentdepth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE cpar ENVIRONMENT                                                      %
+% ^^^^^^^^^^^^^^^^^^^^                                                      %
+% The LaTeX input                                                           %
+%                                                                           %
+%   \begin{cpar}{pop}{nest}{isLabel}{d}{e}{arg6}                            %
+%     XXXXXXXXXXXXXXX                                                       %
+%     XXXXXXXXXXXXXXX                                                       %
+%     XXXXXXXXXXXXXXX                                                       %
+%   \end{cpar}                                                              %
+%                                                                           %
+% produces one of two possible results.  If isLabel is the letter "T",      %
+% it produces the following, where [label] is the result of typesetting     %
+% arg6 in an LR box, and d is is a number representing a distance in        %
+% points.                                                                   %
+%                                                                           %
+%   prevailing |<-- d -->[label]<- e ->XXXXXXXXXXXXXXX                      %
+%         left |                       XXXXXXXXXXXXXXX                      %
+%       margin |                       XXXXXXXXXXXXXXX                      %
+%                                                                           %
+% If isLabel is the letter "F", then it produces                            %
+%                                                                           %
+%   prevailing |<-- d -->XXXXXXXXXXXXXXXXXXXXXXX                            %
+%         left |         <- e ->XXXXXXXXXXXXXXXX                            %
+%       margin |                XXXXXXXXXXXXXXXX                            %
+%                                                                           %
+% where d and e are numbers representing distances in points.               %
+%                                                                           %
+% The prevailing left margin is the one in effect before the most recent    %
+% pop (argument 1) cpar environments with "T" as the nest argument, where   %
+% pop is a number \geq 0.                                                   %
+%                                                                           %
+% If the nest argument is the letter "T", then the prevailing left          %
+% margin is moved to the left of the second (and following) lines of        %
+% X's.  Otherwise, the prevailing left margin is left unchanged.            %
+%                                                                           %
+% An \unnest{n} command moves the prevailing left margin to where it was    %
+% before the most recent n cpar environments with "T" as the nesting        %
+% argument.                                                                 %
+%                                                                           %
+% The environment leaves no vertical space above or below it, or between    %
+% its paragraphs.  (TLATeX inserts the proper amount of vertical space.)    %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{pardepth}
+\setcounter{pardepth}{0}
+
+% \setgmargin{txt} defines \gmarginN to be txt, where N is \roman{pardepth}.
+% \thegmargin equals \gmarginN, where N is \roman{pardepth}.
+\newcommand{\setgmargin}[1]{%
+  \expandafter\xdef\csname gmargin\roman{pardepth}\endcsname{#1}}
+\newcommand{\thegmargin}{\csname gmargin\roman{pardepth}\endcsname}
+\newcommand{\gmargin}{0pt}
+
+\newsavebox{\tempsbox}
+
+\newlength{\@cparht}
+\newlength{\@cpardp}
+\newenvironment{cpar}[6]{%
+  \addtocounter{pardepth}{-#1}%
+  \ifthenelse{\boolean{shading}}{\par\begin{lrbox}{\tempsbox}%
+                                 \begin{minipage}[t]{\linewidth}}{}%
+  \begin{list}{}{%
+     \edef\temp{\thegmargin}
+     \ifthenelse{\equal{#3}{T}}%
+       {\settowidth{\leftmargin}{\hspace{\temp}\footnotesize #6\hspace{#5pt}}%
+        \addtolength{\leftmargin}{#4pt}}%
+       {\setlength{\leftmargin}{#4pt}%
+        \addtolength{\leftmargin}{#5pt}%
+        \addtolength{\leftmargin}{\temp}%
+        \setlength{\itemindent}{-#5pt}}%
+      \ifthenelse{\equal{#2}{T}}{\addtocounter{pardepth}{1}%
+                                 \setgmargin{\the\leftmargin}}{}%
+      \setlength{\labelwidth}{0pt}%
+      \setlength{\labelsep}{0pt}%
+      \setlength{\itemindent}{-\leftmargin}%
+      \setlength{\topsep}{0pt}%
+      \setlength{\parsep}{0pt}%
+      \setlength{\partopsep}{0pt}%
+      \setlength{\parskip}{0pt}%
+      \setlength{\itemsep}{0pt}
+      \setlength{\itemindent}{#4pt}%
+      \addtolength{\itemindent}{-\leftmargin}}%
+   \ifthenelse{\equal{#3}{T}}%
+      {\item[\tstrut\footnotesize \hspace{\temp}{#6}\hspace{#5pt}]
+        }%
+      {\item[\tstrut\hspace{\temp}]%
+         }%
+   \footnotesize}
+ {\hspace{-\the\lastskip}\tstrut
+ \end{list}%
+  \ifthenelse{\boolean{shading}}%
+          {\end{minipage}%
+           \end{lrbox}%
+           \ifpcalshading
+             \setlength{\@cparht}{\ht\tempsbox}%
+             \setlength{\@cpardp}{\dp\tempsbox}%
+             \addtolength{\@cparht}{.15em}%
+             \addtolength{\@cpardp}{.2em}%
+             \addtolength{\@cparht}{\@cpardp}%
+            % I don't know what's going on here.  I want to add a
+            % \pcalvspace high shaded line, but I don't know how to
+            % do it.  A little trial and error shows that the following
+            % does a reasonable job approximating that, eliminating
+            % the line if \pcalvspace is small.
+            \addtolength{\@cparht}{\pcalvspace}%
+             \ifdim \pcalvspace > .8em
+               \addtolength{\pcalvspace}{-.2em}%
+               \hspace*{-\lcomindent}%
+               \shadebox{\rule{0pt}{\pcalvspace}\hspace*{\textwidth}}\par
+               \global\setlength{\pcalvspace}{0pt}%
+               \fi
+             \hspace*{-\lcomindent}%
+             \makebox[0pt][l]{\raisebox{-\@cpardp}[0pt][0pt]{%
+                 \shadebox{\rule{0pt}{\@cparht}\hspace*{\textwidth}}}}%
+             \hspace*{\lcomindent}\usebox{\tempsbox}%
+             \par
+           \else
+             \shadebox{\usebox{\tempsbox}}\par
+           \fi}%
+           {}%
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE ppar ENVIRONMENT                                                       %
+% ^^^^^^^^^^^^^^^^^^^^                                                       %
+% The environment                                                            %
+%                                                                            %
+%   \begin{ppar} ... \end{ppar}                                              %
+%                                                                            %
+% is equivalent to                                                           %
+%                                                                            %
+%   \begin{cpar}{0}{F}{F}{0}{0}{} ... \end{cpar}                             %
+%                                                                            %
+% The environment is put around each line of the output for a PlusCal        %
+% algorithm.                                                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\newenvironment{ppar}{%
+%  \ifthenelse{\boolean{shading}}{\par\begin{lrbox}{\tempsbox}%
+%                                 \begin{minipage}[t]{\linewidth}}{}%
+%  \begin{list}{}{%
+%     \edef\temp{\thegmargin}
+%        \setlength{\leftmargin}{0pt}%
+%        \addtolength{\leftmargin}{\temp}%
+%        \setlength{\itemindent}{0pt}%
+%      \setlength{\labelwidth}{0pt}%
+%      \setlength{\labelsep}{0pt}%
+%      \setlength{\itemindent}{-\leftmargin}%
+%      \setlength{\topsep}{0pt}%
+%      \setlength{\parsep}{0pt}%
+%      \setlength{\partopsep}{0pt}%
+%      \setlength{\parskip}{0pt}%
+%      \setlength{\itemsep}{0pt}
+%      \setlength{\itemindent}{0pt}%
+%      \addtolength{\itemindent}{-\leftmargin}}%
+%      \item[\tstrut\hspace{\temp}]}%
+% {\hspace{-\the\lastskip}\tstrut
+% \end{list}%
+%  \ifthenelse{\boolean{shading}}{\end{minipage}  
+%                                 \end{lrbox}%
+%                                 \shadebox{\usebox{\tempsbox}}\par}{}%
+%  }
+
+ %%% TESTING
+ \newcommand{\xtest}[1]{\par
+ \makebox[0pt][l]{\shadebox{\xtstrut\hspace*{\textwidth}}}%
+ \mbox{$\mbox{}#1\mbox{}$}} 
+
+% \newcommand{\xxtest}[1]{\par
+% \makebox[0pt][l]{\shadebox{\xtstrut{#1}\hspace*{\textwidth}}}%
+% \mbox{$\mbox{}#1\mbox{}$}} 
+
+%\newlength{\pcalvspace}
+%\setlength{\pcalvspace}{0pt}
+% \newlength{\xxtestlen}
+% \setlength{\xxtestlen}{0pt}
+% \newcommand\xtstrut%
+%   {\setlength{\xxtestlen}{1.15em}%
+%    \addtolength{\xxtestlen}{\pcalvspace}%
+%     \raisebox{\vshadelen}{\raisebox{-.25em}{\rule{0pt}{\xxtestlen}}}%
+%    \global\setlength{\vshadelen}{0pt}%
+%    \global\setlength{\pcalvspace}{0pt}}
+   
+   %%%% TESTING
+   
+   %% The xcpar environment
+   %%  Note: overloaded use of \pcalvspace for testing.
+   %%
+%   \newlength{\xcparht}%
+%   \newlength{\xcpardp}%
+   
+%   \newenvironment{xcpar}[6]{%
+%  \addtocounter{pardepth}{-#1}%
+%  \ifthenelse{\boolean{shading}}{\par\begin{lrbox}{\tempsbox}%
+%                                 \begin{minipage}[t]{\linewidth}}{}%
+%  \begin{list}{}{%
+%     \edef\temp{\thegmargin}%
+%     \ifthenelse{\equal{#3}{T}}%
+%       {\settowidth{\leftmargin}{\hspace{\temp}\footnotesize #6\hspace{#5pt}}%
+%        \addtolength{\leftmargin}{#4pt}}%
+%       {\setlength{\leftmargin}{#4pt}%
+%        \addtolength{\leftmargin}{#5pt}%
+%        \addtolength{\leftmargin}{\temp}%
+%        \setlength{\itemindent}{-#5pt}}%
+%      \ifthenelse{\equal{#2}{T}}{\addtocounter{pardepth}{1}%
+%                                 \setgmargin{\the\leftmargin}}{}%
+%      \setlength{\labelwidth}{0pt}%
+%      \setlength{\labelsep}{0pt}%
+%      \setlength{\itemindent}{-\leftmargin}%
+%      \setlength{\topsep}{0pt}%
+%      \setlength{\parsep}{0pt}%
+%      \setlength{\partopsep}{0pt}%
+%      \setlength{\parskip}{0pt}%
+%      \setlength{\itemsep}{0pt}%
+%      \setlength{\itemindent}{#4pt}%
+%      \addtolength{\itemindent}{-\leftmargin}}%
+%   \ifthenelse{\equal{#3}{T}}%
+%      {\item[\xtstrut\footnotesize \hspace{\temp}{#6}\hspace{#5pt}]%
+%        }%
+%      {\item[\xtstrut\hspace{\temp}]%
+%         }%
+%   \footnotesize}
+% {\hspace{-\the\lastskip}\tstrut
+% \end{list}%
+%  \ifthenelse{\boolean{shading}}{\end{minipage}  
+%                                 \end{lrbox}%
+%                                 \setlength{\xcparht}{\ht\tempsbox}%
+%                                 \setlength{\xcpardp}{\dp\tempsbox}%
+%                                 \addtolength{\xcparht}{.15em}%
+%                                 \addtolength{\xcpardp}{.2em}%
+%                                 \addtolength{\xcparht}{\xcpardp}%
+%                                 \hspace*{-\lcomindent}%
+%                                 \makebox[0pt][l]{\raisebox{-\xcpardp}[0pt][0pt]{%
+%                                      \shadebox{\rule{0pt}{\xcparht}\hspace*{\textwidth}}}}%
+%                                 \hspace*{\lcomindent}\usebox{\tempsbox}%
+%                                 \par}{}%
+%  }
+%  
+% \newlength{\xmcomlen}
+%\newenvironment{xmcom}[1]{%
+%  \setcounter{pardepth}{0}%
+%  \hspace{.65em}%
+%  \begin{lrbox}{\alignbox}\sloppypar%
+%      \setboolean{shading}{false}%
+%      \setlength{\boxwidth}{#1pt}%
+%      \addtolength{\boxwidth}{-.65em}%
+%      \begin{minipage}[t]{\boxwidth}\footnotesize
+%      \parskip=0pt\relax}%
+%       {\end{minipage}\end{lrbox}%
+%       \setlength{\xmcomlen}{\textwidth}%
+%       \addtolength{\xmcomlen}{-\wd\alignbox}%
+%       \settodepth{\alignwidth}{\usebox{\alignbox}}%
+%       \global\setlength{\multicommentdepth}{\alignwidth}%
+%       \setlength{\boxwidth}{\alignwidth}%
+%       \global\addtolength{\alignwidth}{-\maxdepth}%
+%       \addtolength{\boxwidth}{.1em}%
+%       \raisebox{0pt}[0pt][0pt]{%
+%        \ifthenelse{\boolean{shading}}%
+%          {\hspace*{-\xmcomlen}\shadebox{\rule[-\boxwidth]{0pt}{0pt}%
+%                                 \hspace*{\xmcomlen}\usebox{\alignbox}}}%
+%          {\usebox{\alignbox}}}%
+%       \vspace*{\alignwidth}\pagebreak[0]\vspace{-\alignwidth}\par}
+% % a multi-line comment, whose first argument is its width in points.
+%  
+   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE lcom ENVIRONMENT                                                       %
+% ^^^^^^^^^^^^^^^^^^^^                                                       %
+% A multi-line comment with no text to its left is typeset in an lcom        % 
+% environment, whose argument is a number representing the indentation       % 
+% of the left margin, in points.  All the text of the comment should be      % 
+% inside cpar environments.                                                  % 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{lcom}[1]{%
+  \setlength{\lcomindent}{#1pt} % Added for PlusCal handling.
+  \par\vspace{.2em}%
+  \sloppypar
+  \setcounter{pardepth}{0}%
+  \footnotesize
+  \begin{list}{}{%
+    \setlength{\leftmargin}{#1pt}
+    \setlength{\labelwidth}{0pt}%
+    \setlength{\labelsep}{0pt}%
+    \setlength{\itemindent}{0pt}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+    \setlength{\parskip}{0pt}}
+    \item[]}%
+  {\end{list}\vspace{.3em}\setlength{\lcomindent}{0pt}%
+ }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE mcom ENVIRONMENT AND \mutivspace COMMAND                              %
+% ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                              %
+%                                                                           %
+% A part of the spec containing a right-comment of the form                 %
+%                                                                           %
+%      xxxx (*************)                                                 %
+%      yyyy (* ccccccccc *)                                                 %
+%      ...  (* ccccccccc *)                                                 %
+%           (* ccccccccc *)                                                 %
+%           (* ccccccccc *)                                                 %
+%           (*************)                                                 %
+%                                                                           %
+% is typeset by                                                             %
+%                                                                           %
+%     XXXX \begin{mcom}{d}                                                  %
+%            CCCC ... CCC                                                   %
+%          \end{mcom}                                                       %
+%     YYYY ...                                                              %
+%     \multivspace{n}                                                       %
+%                                                                           %
+% where the number d is the width in points of the comment, n is the        %
+% number of xxxx, yyyy, ...  lines to the left of the comment.              %
+% All the text of the comment should be typeset in cpar environments.       %
+%                                                                           %
+% This puts the comment into a single box (so no page breaks can occur      %
+% within it).  The entire box is shaded iff the shading flag is true.       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\xmcomlen}%
+\newenvironment{mcom}[1]{%
+  \setcounter{pardepth}{0}%
+  \hspace{.65em}%
+  \begin{lrbox}{\alignbox}\sloppypar%
+      \setboolean{shading}{false}%
+      \setlength{\boxwidth}{#1pt}%
+      \addtolength{\boxwidth}{-.65em}%
+      \begin{minipage}[t]{\boxwidth}\footnotesize
+      \parskip=0pt\relax}%
+       {\end{minipage}\end{lrbox}%
+       \setlength{\xmcomlen}{\textwidth}%       % For PlusCal shading
+       \addtolength{\xmcomlen}{-\wd\alignbox}%  % For PlusCal shading
+       \settodepth{\alignwidth}{\usebox{\alignbox}}%
+       \global\setlength{\multicommentdepth}{\alignwidth}%
+       \setlength{\boxwidth}{\alignwidth}%      % For PlusCal shading
+       \global\addtolength{\alignwidth}{-\maxdepth}%
+       \addtolength{\boxwidth}{.1em}%           % For PlusCal shading
+      \raisebox{0pt}[0pt][0pt]{%
+        \ifthenelse{\boolean{shading}}%
+          {\ifpcalshading
+             \hspace*{-\xmcomlen}%
+             \shadebox{\rule[-\boxwidth]{0pt}{0pt}\hspace*{\xmcomlen}%
+                          \usebox{\alignbox}}%
+           \else
+             \shadebox{\usebox{\alignbox}}
+           \fi
+          }%
+          {\usebox{\alignbox}}}%
+       \vspace*{\alignwidth}\pagebreak[0]\vspace{-\alignwidth}\par}
+ % a multi-line comment, whose first argument is its width in points.
+
+
+% \multispace{n} produces the vertical space indicated by "|"s in 
+% this situation
+%   
+%     xxxx (*************)
+%     xxxx (* ccccccccc *)
+%      |   (* ccccccccc *)
+%      |   (* ccccccccc *)
+%      |   (* ccccccccc *)
+%      |   (*************)
+%
+% where n is the number of "xxxx" lines.
+\newcommand{\multivspace}[1]{\addtolength{\multicommentdepth}{-#1\baselineskip}%
+ \addtolength{\multicommentdepth}{1.2em}%
+ \ifthenelse{\lengthtest{\multicommentdepth > 0pt}}%
+    {\par\vspace{\multicommentdepth}\par}{}}
+
+%\newenvironment{hpar}[2]{%
+%  \begin{list}{}{\setlength{\leftmargin}{#1pt}%
+%                 \addtolength{\leftmargin}{#2pt}%
+%                 \setlength{\itemindent}{-#2pt}%
+%                 \setlength{\topsep}{0pt}%
+%                 \setlength{\parsep}{0pt}%
+%                 \setlength{\partopsep}{0pt}%
+%                 \setlength{\parskip}{0pt}%
+%                 \addtolength{\labelsep}{0pt}}%
+%  \item[]\footnotesize}{\end{list}}
+%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    % Typesets a sequence of paragraphs like this:                         %
+%    %                                                                      %
+%    %      left |<-- d1 --> XXXXXXXXXXXXXXXXXXXXXXXX                       %
+%    %    margin |           <- d2 -> XXXXXXXXXXXXXXX                       %
+%    %           |                    XXXXXXXXXXXXXXX                       %
+%    %           |                                                          %
+%    %           |                    XXXXXXXXXXXXXXX                       %
+%    %           |                    XXXXXXXXXXXXXXX                       %
+%    %                                                                      %
+%    % where d1 = #1pt and d2 = #2pt, but with no vspace between            %
+%    % paragraphs.                                                          %
+%    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Commands for repeated characters that produce dashes.              %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \raisedDash{wd}{ht}{thk} makes a horizontal line wd characters wide, 
+% raised a distance ht ex's above the baseline, with a thickness of 
+% thk em's.
+\newcommand{\raisedDash}[3]{\raisebox{#2ex}{\setlength{\alignwidth}{.5em}%
+  \rule{#1\alignwidth}{#3em}}}
+
+% The following commands take a single argument n and produce the
+% output for n repeated characters, as follows
+%   \cdash:    -
+%   \tdash:    ~
+%   \ceqdash:  =
+%   \usdash:   _
+\newcommand{\cdash}[1]{\raisedDash{#1}{.5}{.04}}
+\newcommand{\usdash}[1]{\raisedDash{#1}{0}{.04}}
+\newcommand{\ceqdash}[1]{\raisedDash{#1}{.5}{.08}}
+\newcommand{\tdash}[1]{\raisedDash{#1}{1}{.08}}
+
+\newlength{\spacewidth}
+\setlength{\spacewidth}{.2em}
+\newcommand{\e}[1]{\hspace{#1\spacewidth}}
+%% \e{i} produces space corresponding to i input spaces.
+
+
+%% Alignment-file Commands
+
+\newlength{\alignboxwidth}
+\newlength{\alignwidth}
+\newsavebox{\alignbox}
+
+% \al{i}{j}{txt} is used in the alignment file to put "%{i}{j}{wd}"
+% in the log file, where wd is the width of the line up to that point,
+% and txt is the following text.
+\newcommand{\al}[3]{%
+  \typeout{\%{#1}{#2}{\the\alignwidth}}%
+  \cl{#3}}
+
+%% \cl{txt} continues a specification line in the alignment file
+%% with text txt.
+\newcommand{\cl}[1]{%
+  \savebox{\alignbox}{\mbox{$\mbox{}#1\mbox{}$}}%
+  \settowidth{\alignboxwidth}{\usebox{\alignbox}}%
+  \addtolength{\alignwidth}{\alignboxwidth}%
+  \usebox{\alignbox}}
+
+% \fl{txt} in the alignment file begins a specification line that
+% starts with the text txt.
+\newcommand{\fl}[1]{%
+  \par
+  \savebox{\alignbox}{\mbox{$\mbox{}#1\mbox{}$}}%
+  \settowidth{\alignwidth}{\usebox{\alignbox}}%
+  \usebox{\alignbox}}
+
+
+
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ordinarily, TeX typesets letters in math mode in a special math italic    %
+% font.  This makes it typeset "it" to look like the product of the         %
+% variables i and t, rather than like the word "it".  The following         %
+% commands tell TeX to use an ordinary italic font instead.                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifx\documentclass\undefined
+\else
+  \DeclareSymbolFont{tlaitalics}{\encodingdefault}{cmr}{m}{it}
+  \let\itfam\symtlaitalics
+\fi
+
+\makeatletter
+\newcommand{\tlx@c}{\c@tlx@ctr\advance\c@tlx@ctr\@ne}
+\newcounter{tlx@ctr}
+\c@tlx@ctr=\itfam \multiply\c@tlx@ctr"100\relax \advance\c@tlx@ctr "7061\relax
+\mathcode`a=\tlx@c \mathcode`b=\tlx@c \mathcode`c=\tlx@c \mathcode`d=\tlx@c
+\mathcode`e=\tlx@c \mathcode`f=\tlx@c \mathcode`g=\tlx@c \mathcode`h=\tlx@c
+\mathcode`i=\tlx@c \mathcode`j=\tlx@c \mathcode`k=\tlx@c \mathcode`l=\tlx@c
+\mathcode`m=\tlx@c \mathcode`n=\tlx@c \mathcode`o=\tlx@c \mathcode`p=\tlx@c
+\mathcode`q=\tlx@c \mathcode`r=\tlx@c \mathcode`s=\tlx@c \mathcode`t=\tlx@c
+\mathcode`u=\tlx@c \mathcode`v=\tlx@c \mathcode`w=\tlx@c \mathcode`x=\tlx@c
+\mathcode`y=\tlx@c \mathcode`z=\tlx@c
+\c@tlx@ctr=\itfam \multiply\c@tlx@ctr"100\relax \advance\c@tlx@ctr "7041\relax
+\mathcode`A=\tlx@c \mathcode`B=\tlx@c \mathcode`C=\tlx@c \mathcode`D=\tlx@c
+\mathcode`E=\tlx@c \mathcode`F=\tlx@c \mathcode`G=\tlx@c \mathcode`H=\tlx@c
+\mathcode`I=\tlx@c \mathcode`J=\tlx@c \mathcode`K=\tlx@c \mathcode`L=\tlx@c
+\mathcode`M=\tlx@c \mathcode`N=\tlx@c \mathcode`O=\tlx@c \mathcode`P=\tlx@c
+\mathcode`Q=\tlx@c \mathcode`R=\tlx@c \mathcode`S=\tlx@c \mathcode`T=\tlx@c
+\mathcode`U=\tlx@c \mathcode`V=\tlx@c \mathcode`W=\tlx@c \mathcode`X=\tlx@c
+\mathcode`Y=\tlx@c \mathcode`Z=\tlx@c
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                THE describe ENVIRONMENT                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+% It is like the description environment except it takes an argument
+% ARG that should be the text of the widest label.  It adjusts the
+% indentation so each item with label LABEL produces
+%%      LABEL             blah blah blah
+%%      <- width of ARG ->blah blah blah
+%%                        blah blah blah
+\newenvironment{describe}[1]%
+   {\begin{list}{}{\settowidth{\labelwidth}{#1}%
+            \setlength{\labelsep}{.5em}%
+            \setlength{\leftmargin}{\labelwidth}% 
+            \addtolength{\leftmargin}{\labelsep}%
+            \addtolength{\leftmargin}{\parindent}%
+            \def\makelabel##1{\rm ##1\hfill}}%
+            \setlength{\topsep}{0pt}}%% 
+                % Sets \topsep to 0 to reduce vertical space above
+                % and below embedded displayed equations
+   {\end{list}}
+
+%   For tlatex.TeX
+\usepackage{verbatim}
+\makeatletter
+\def\tla{\let\%\relax%
+         \@bsphack
+         \typeout{\%{\the\linewidth}}%
+             \let\do\@makeother\dospecials\catcode`\^^M\active
+             \let\verbatim@startline\relax
+             \let\verbatim@addtoline\@gobble
+             \let\verbatim@processline\relax
+             \let\verbatim@finish\relax
+             \verbatim@}
+\let\endtla=\@esphack
+
+\let\pcal=\tla
+\let\endpcal=\endtla
+\let\ppcal=\tla
+\let\endppcal=\endtla
+
+% The tlatex environment is used by TLATeX.TeX to typeset TLA+.
+% TLATeX.TLA starts its files by writing a \tlatex command.  This
+% command/environment sets \parindent to 0 and defines \% to its
+% standard definition because the writing of the log files is messed up
+% if \% is defined to be something else.  It also executes
+% \@computerule to determine the dimensions for the TLA horizonatl
+% bars.
+\newenvironment{tlatex}{\@computerule%
+                        \setlength{\parindent}{0pt}%
+                       \makeatletter\chardef\%=`\%}{}
+
+
+% The notla environment produces no output.  You can turn a 
+% tla environment to a notla environment to prevent tlatex.TeX from
+% re-formatting the environment.
+
+\def\notla{\let\%\relax%
+         \@bsphack
+             \let\do\@makeother\dospecials\catcode`\^^M\active
+             \let\verbatim@startline\relax
+             \let\verbatim@addtoline\@gobble
+             \let\verbatim@processline\relax
+             \let\verbatim@finish\relax
+             \verbatim@}
+\let\endnotla=\@esphack
+
+\let\nopcal=\notla
+\let\endnopcal=\endnotla
+\let\noppcal=\notla
+\let\endnoppcal=\endnotla
+
+%%%%%%%%%%%%%%%%%%%%%%%% end of tlatex.sty file %%%%%%%%%%%%%%%%%%%%%%% 
+% last modified on Fri  3 August 2012 at 14:23:49 PST by lamport
+
+\begin{document}
+\tlatex
+\setboolean{shading}{true}
+ \@x{}\moduleLeftDash\@xx{ {\MODULE}
+ LamportMutex\_proofs}\moduleRightDash\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+ Proof of type correctness and safety of \ensuremath{Lamport}\mbox{'}s
+ distributed
+ mutual-exclusion algorithm.
+\end{cpar}%
+\end{lcom}%
+\@x{ {\EXTENDS} LamportMutex ,\, SequenceTheorems ,\, TLAPS}%
+\@pvspace{8.0pt}%
+\@x{ {\USE} {\DEF} Clock}%
+\@pvspace{8.0pt}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Proof of type correctness.
+\end{cpar}%
+\end{lcom}%
+\@x{ {\LEMMA} BroadcastType \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} network \.{\in} [ Proc \.{\rightarrow} [ Proc
+ \.{\rightarrow} Seq ( Message ) ] ] ,\,}%
+\@x{\@s{46.44} {\NEW} s \.{\in} Proc ,\, {\NEW} m \.{\in} Message}%
+ \@x{\@s{8.2} {\PROVE}\@s{4.1} Broadcast ( s ,\, m ) \.{\in} [ Proc
+ \.{\rightarrow} Seq ( Message ) ]}%
+\@x{ {\BY} AppendProperties {\DEF} Broadcast}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} TypeCorrect \.{\defeq} Spec \.{\implies} {\Box} TypeOK}%
+\@x{\@pfstepnum{1}{1.}\  Init \.{\implies} TypeOK}%
+\@x{\@s{8.2} {\BY} {\DEF} Init ,\, TypeOK}%
+ \@x{\@pfstepnum{1}{2.}\  TypeOK \.{\land} [ Next ]_{ vars} \.{\implies}
+ TypeOK \.{'}}%
+\@x{\@s{8.2}\@pfstepnum{2}{}\  {\SUFFICES} {\ASSUME} TypeOK ,\,}%
+\@x{\@s{106.84} [ Next ]_{ vars}}%
+\@x{\@s{68.59} {\PROVE}\@s{4.1} TypeOK \.{'}}%
+\@x{\@s{16.4} {\OBVIOUS}}%
+\@x{\@s{8.2}\@pfstepnum{2}{} . {\USE} {\DEF} TypeOK}%
+\@x{\@s{8.2}\@pfstepnum{2}{1.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\,}%
+\@x{\@s{70.33} Request ( p )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} TypeOK \.{'}}%
+ \@x{\@s{16.4} {\BY}\@pfstepnum{2}{1} ,\, BroadcastType ,\, Zenon {\DEF}
+ Request ,\, Message}%
+\@x{\@s{8.2}\@pfstepnum{2}{2.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\,}%
+\@x{\@s{70.33} Enter ( p )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} TypeOK \.{'}}%
+\@x{\@s{16.4} {\BY}\@pfstepnum{2}{2}\  {\DEF} Enter}%
+\@x{\@s{8.2}\@pfstepnum{2}{3.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\,}%
+\@x{\@s{70.33} Exit ( p )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} TypeOK \.{'}}%
+ \@x{\@s{16.4} {\BY}\@pfstepnum{2}{3} ,\, BroadcastType ,\, Zenon {\DEF} Exit
+ ,\, Message}%
+\@x{\@s{8.2}\@pfstepnum{2}{4.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\,}%
+\@x{\@s{70.33} {\NEW} q\@s{0.25} \.{\in} Proc \.{\,\backslash\,} \{ p \} ,\,}%
+\@x{\@s{70.33} ReceiveRequest ( p ,\, q )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} TypeOK \.{'}}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\DEFINE} m \.{\defeq} Head ( network [ q ] [
+ p ] )}%
+\@x{\@s{67.64} c\@s{3.77} \.{\defeq} m . clock}%
+ \@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} network [ q ] [ p ] \.{\neq}
+ {\langle} {\rangle}}%
+\@x{\@s{36.95} \.{\land} m . type \.{=}\@w{req}}%
+ \@x{\@s{36.95} \.{\land} req \.{'} \.{=} [ req {\EXCEPT} {\bang} [ p ] [ q ]
+ \.{=} c ]}%
+ \@x{\@s{36.95} \.{\land} clock \.{'} \.{=} [ clock {\EXCEPT} {\bang} [ p ]
+ \.{=} {\IF} c\@s{6.70} \.{>} clock [ p ] \.{\THEN} c \.{+} 1 \.{\ELSE} @
+ \.{+} 1 ]}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ q
+ ] [ p ] \.{=} Tail ( @ ) ,\,}%
+\@x{\@s{179.39} {\bang} [ p ] [ q ] \.{=} Append ( @ ,\, AckMessage ) ]}%
+\@x{\@s{36.95} \.{\land} {\UNCHANGED} {\langle} ack ,\, crit {\rangle}}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{2}{4}\  {\DEF} ReceiveRequest}%
+\@x{\@s{16.4}\@pfstepnum{3}{2.}\  m \.{\in} Message}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{1}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{3.}\  m \.{\in} \{ ReqMessage ( cc ) \.{:} cc
+ \.{\in} Clock \}}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}\  {\DEF} Message
+ ,\, AckMessage ,\, RelMessage}%
+ \@x{\@s{16.4}\@pfstepnum{3}{4.} \.{\land} clock \.{'} \.{\in} [ Proc
+ \.{\rightarrow} Clock ]}%
+ \@x{\@s{36.95} \.{\land} req \.{'} \.{\in} [ Proc \.{\rightarrow} [ Proc
+ \.{\rightarrow} Nat ] ]}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}\  {\DEF}
+ ReqMessage}%
+ \@x{\@s{16.4}\@pfstepnum{3}{5.}\  network \.{'} \.{\in} [ Proc
+ \.{\rightarrow} [ Proc \.{\rightarrow} Seq ( Message ) ] ]}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\DEFINE} nw \.{\defeq} [ network {\EXCEPT}
+ {\bang} [ q ] [ p ] \.{=} Tail ( @ ) ]}%
+ \@x{\@s{24.59}\@pfstepnum{4}{1.}\  nw \.{\in} [ Proc \.{\rightarrow} [ Proc
+ \.{\rightarrow} Seq ( Message ) ] ]}%
+\@x{\@s{32.8} {\BY}\@pfstepnum{3}{1}\ }%
+\@x{\@s{24.59}\@pfstepnum{4}{} . {\HIDE} {\DEF} nw}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.}\  AckMessage \.{\in} Message}%
+\@x{\@s{32.8} {\BY} {\DEF} Message}%
+ \@x{\@s{24.59}\@pfstepnum{4}{3.}\  [ nw {\EXCEPT} {\bang} [ p ] [ q ] \.{=}
+ Append ( @ ,\, AckMessage ) ] \.{\in} [ Proc \.{\rightarrow} [ Proc
+ \.{\rightarrow} Seq ( Message ) ] ]}%
+\@x{\@s{32.8} {\BY}\@pfstepnum{4}{1} ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{1}
+ ,\,\@pfstepnum{4}{3} ,\, Zenon {\DEF} nw}%
+ \@x{\@s{16.4}\@pfstepnum{3}{6.} \.{\land} ack \.{'} \.{\in} [ Proc
+ \.{\rightarrow} {\SUBSET} Proc ]}%
+\@x{\@s{36.95} \.{\land} crit \.{'} \.{\in} {\SUBSET} Proc}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{1}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{4}
+ ,\,\@pfstepnum{3}{5} ,\,\@pfstepnum{3}{6} ,\, Zenon}%
+\@x{\@s{8.2}\@pfstepnum{2}{5.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\,}%
+\@x{\@s{70.33} {\NEW} q\@s{0.25} \.{\in} Proc \.{\,\backslash\,} \{ p \} ,\,}%
+\@x{\@s{70.33} ReceiveAck ( p ,\, q )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} TypeOK \.{'}}%
+\@x{\@s{16.4} {\BY}\@pfstepnum{2}{5}\  {\DEF} ReceiveAck}%
+\@x{\@s{8.2}\@pfstepnum{2}{6.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\,}%
+\@x{\@s{70.33} {\NEW} q\@s{0.25} \.{\in} Proc \.{\,\backslash\,} \{ p \} ,\,}%
+\@x{\@s{70.33} ReceiveRelease ( p ,\, q )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} TypeOK \.{'}}%
+\@x{\@s{16.4} {\BY}\@pfstepnum{2}{6}\  {\DEF} ReceiveRelease}%
+\@x{\@s{8.2}\@pfstepnum{2}{7.} {\CASE} {\UNCHANGED} vars}%
+\@x{\@s{16.4} {\BY}\@pfstepnum{2}{7}\  {\DEF} vars}%
+ \@x{\@s{8.2}\@pfstepnum{2}{8.}\  {\QED}\@s{8.2} {\BY}\@pfstepnum{2}{1}
+ ,\,\@pfstepnum{2}{2} ,\,\@pfstepnum{2}{3} ,\,\@pfstepnum{2}{4}
+ ,\,\@pfstepnum{2}{5} ,\,\@pfstepnum{2}{6} ,\,\@pfstepnum{2}{7}\  {\DEF}
+ Next}%
+ \@x{\@pfstepnum{1}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{1}{1}
+ ,\,\@pfstepnum{1}{2} ,\, PTL {\DEF} Spec}%
+\@pvspace{8.0pt}%
+\@x{}\midbar\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Inductive invariants for the algorithm.
+\end{cpar}%
+\end{lcom}%
+\@pvspace{8.0pt}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+We start the proof of safety by defining some auxiliary predicates:
+\end{cpar}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+ - \ensuremath{Contains(s,\,mt)} holds if channel \ensuremath{s} contains a
+ message of type \ensuremath{mt}.
+\end{cpar}%
+\begin{cpar}{0}{T}{T}{0}{2.5}{%
+-}%
+ \ensuremath{AtMostOne(s,\,mt)} holds if channel \ensuremath{s} holds zero or
+ one messages of
+ type \ensuremath{mtype}.
+\end{cpar}%
+\begin{cpar}{1}{T}{T}{0}{2.5}{%
+-}%
+ \ensuremath{Precedes(s,\,mt1,\,mt2)} holds if in channel \ensuremath{s}, any
+ message of type \ensuremath{mt1
+} precedes any message of type \ensuremath{mt2}.
+\end{cpar}%
+\end{lcom}%
+ \@x{ Contains ( s ,\, mtype ) \.{\defeq} \E\, i \.{\in} 1 \.{\dotdot} Len ( s
+ ) \.{:} s [ i ] . type \.{=} mtype}%
+ \@x{ AtMostOne ( s ,\, mtype ) \.{\defeq} \A\, i ,\, j \.{\in} 1 \.{\dotdot}
+ Len ( s ) \.{:}}%
+ \@x{\@s{8.2} s [ i ] . type \.{=} mtype \.{\land} s [ j ] . type \.{=} mtype
+ \.{\implies} i \.{=} j}%
+ \@x{ Precedes ( s ,\, mt1 ,\, mt2 ) \.{\defeq} \A\, i ,\, j \.{\in} 1
+ \.{\dotdot} Len ( s ) \.{:}}%
+ \@x{\@s{8.2} s [ i ] . type \.{=} mt1 \.{\land} s [ j ] . type \.{=} mt2
+ \.{\implies} i \.{<} j}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} NotContainsAtMostOne \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, {\NEW} mtype ,\,
+ {\lnot} Contains ( s ,\, mtype )}%
+\@x{\@s{8.2} {\PROVE}\@s{4.1} AtMostOne ( s ,\, mtype )}%
+\@x{ {\BY} {\DEF} Contains ,\, AtMostOne}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} NotContainsPrecedes \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, {\NEW} mt1 ,\,
+ {\NEW} mt2 ,\, {\lnot} Contains ( s ,\, mt2 )}%
+\@x{\@s{8.2} {\PROVE}\@s{4.1} \.{\land} Precedes ( s ,\, mt1 ,\, mt2 )}%
+\@x{\@s{46.44} \.{\land} Precedes ( s ,\, mt2 ,\, mt1 )}%
+\@x{ {\BY} {\DEF} Contains ,\, Precedes}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} PrecedesHead \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, {\NEW} mt1 ,\,
+ {\NEW} mt2 ,\,}%
+\@x{\@s{46.44} s \.{\neq} {\langle} {\rangle} ,\,}%
+ \@x{\@s{46.44} Precedes ( s ,\, mt1 ,\, mt2 ) ,\, Head ( s ) . type \.{=}
+ mt2}%
+\@x{\@s{8.2} {\PROVE}\@s{4.1} {\lnot} Contains ( s ,\, mt1 )}%
+\@x{ {\BY} {\DEF} Precedes ,\, Contains}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} AtMostOneTail \.{\defeq}}%
+\@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, {\NEW} mtype ,\,}%
+\@x{\@s{46.44} s \.{\neq} {\langle} {\rangle} ,\, AtMostOne ( s ,\, mtype )}%
+\@x{\@s{8.2} {\PROVE}\@s{4.1} AtMostOne ( Tail ( s ) ,\, mtype )}%
+\@x{ {\BY} {\DEF} AtMostOne}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} ContainsTail \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, s \.{\neq}
+ {\langle} {\rangle} ,\,}%
+\@x{\@s{46.44} {\NEW} mtype ,\, AtMostOne ( s ,\, mtype )}%
+ \@x{\@s{8.2} {\PROVE}\@s{4.1} Contains ( Tail ( s ) ,\, mtype ) \.{\equiv}
+ Contains ( s ,\, mtype ) \.{\land} Head ( s ) . type \.{\neq} mtype}%
+\@x{ {\BY} {\DEF} Contains ,\, AtMostOne}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} AtMostOneHead \.{\defeq}}%
+\@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, {\NEW} mtype ,\,}%
+ \@x{\@s{46.44} AtMostOne ( s ,\, mtype ) ,\, s \.{\neq} {\langle} {\rangle}
+ ,\, Head ( s ) . type \.{=} mtype}%
+\@x{\@s{8.2} {\PROVE}\@s{4.1} {\lnot} Contains ( Tail ( s ) ,\, mtype )}%
+ \@x{\@pfstepnum{1}{} . {\SUFFICES} {\ASSUME} {\NEW} i \.{\in} 1 \.{\dotdot}
+ Len ( Tail ( s ) ) ,\, Tail ( s ) [ i ] . type \.{=} mtype}%
+\@x{\@s{59.84} {\PROVE}\@s{4.1} {\FALSE}}%
+ \@x{\@s{8.2} {\BY} Tail ( s ) \.{\in} Seq ( Message ) ,\, Isa {\DEF}
+ Contains}%
+ \@x{\@pfstepnum{1}{} . {\QED}\@s{4.1} {\BY} HeadTailProperties {\DEF}
+ AtMostOne}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} ContainsSend \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, {\NEW} mtype ,\,
+ {\NEW} m \.{\in} Message}%
+ \@x{\@s{8.2} {\PROVE}\@s{4.1} Contains ( Append ( s ,\, m ) ,\, mtype )
+ \.{\equiv} m . type \.{=} mtype \.{\lor} Contains ( s ,\, mtype )}%
+\@x{ {\BY} {\DEF} Contains}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} NotContainsSend \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, {\NEW} mtype ,\,
+ {\lnot} Contains ( s ,\, mtype ) ,\, {\NEW} m \.{\in} Message}%
+ \@x{\@s{8.2} {\PROVE}\@s{4.1} \.{\land} AtMostOne ( Append ( s ,\, m ) ,\,
+ mtype )}%
+ \@x{\@s{46.44} \.{\land} m . type \.{\neq} mtype \.{\implies} {\lnot}
+ Contains ( Append ( s ,\, m ) ,\, mtype )}%
+\@x{ {\BY} {\DEF} Contains ,\, AtMostOne}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} AtMostOneSend \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s\@s{4.03} \.{\in} Seq ( Message ) ,\, {\NEW}
+ mtype ,\, AtMostOne ( s ,\, mtype ) ,\,}%
+\@x{\@s{46.44} {\NEW} m \.{\in} Message ,\, m . type \.{\neq} mtype}%
+\@x{\@s{8.2} {\PROVE}\@s{4.1} AtMostOne ( Append ( s ,\, m ) ,\, mtype )}%
+\@x{ {\BY} {\DEF} AtMostOne}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} PrecedesSend \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s\@s{4.03} \.{\in} Seq ( Message ) ,\, {\NEW}
+ mt1 ,\, {\NEW} mt2 ,\,}%
+\@x{\@s{46.44} {\NEW} m \.{\in} Message ,\, m . type \.{\neq} mt1}%
+ \@x{\@s{8.2} {\PROVE}\@s{4.1} Precedes ( Append ( s ,\, m ) ,\, mt1 ,\, mt2 )
+ \.{\equiv} Precedes ( s ,\, mt1 ,\, mt2 )}%
+\@x{ {\BY} {\DEF} Precedes}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} PrecedesTail \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, {\NEW} mt1 ,\,
+ {\NEW} mt2 ,\, Precedes ( s ,\, mt1 ,\, mt2 )}%
+\@x{\@s{8.2} {\PROVE}\@s{4.1} Precedes ( Tail ( s ) ,\, mt1 ,\, mt2 )}%
+\@x{ {\BY} {\DEF} Precedes}%
+\@pvspace{8.0pt}%
+\@x{ {\LEMMA} PrecedesInTail \.{\defeq}}%
+ \@x{\@s{8.2} {\ASSUME} {\NEW} s \.{\in} Seq ( Message ) ,\, s \.{\neq}
+ {\langle} {\rangle} ,\,}%
+\@x{\@s{46.44} {\NEW} mt1 ,\, {\NEW} mt2 ,\, mt1 \.{\neq} mt2 ,\,}%
+ \@x{\@s{46.44} Head ( s ) . type \.{=} mt1 \.{\lor} Head ( s ) . type
+ \.{\notin} \{ mt1 ,\, mt2 \} ,\,}%
+\@x{\@s{46.44} Precedes ( Tail ( s ) ,\, mt1 ,\, mt2 )}%
+\@x{\@s{8.2} {\PROVE}\@s{4.1} Precedes ( s ,\, mt1 ,\, mt2 )}%
+\@x{ {\BY} SMTT ( 30 ) {\DEF} Precedes}%
+\@pvspace{8.0pt}%
+\@x{}\midbar\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+In order to prove the safety property of the algorithm, we prove two
+ inductive invariants. Our first invariant is itself a conjunction of
+ two predicates:
+ - The first one states that each channel holds at most one message of
+\end{cpar}%
+\begin{cpar}{0}{T}{F}{5.0}{0}{}%
+each type. Moreover, no process ever sends a message to itself.
+\end{cpar}%
+\begin{cpar}{1}{T}{T}{0}{2.5}{%
+-}%
+The second predicate describes how request, acknowledgement, and
+ release messages are exchanged among processes, but does not refer to
+ clock values held in the clock and \ensuremath{req} variables.
+\end{cpar}%
+\end{lcom}%
+\@pvspace{8.0pt}%
+\@x{ NetworkInv ( p ,\, q ) \.{\defeq}}%
+\@x{\@s{8.2} \.{\LET} s \.{\defeq} network [ p ] [ q ]}%
+\@x{\@s{8.2} \.{\IN} \.{\land} AtMostOne ( s ,\,\@w{req} )}%
+\@x{\@s{28.59} \.{\land} AtMostOne ( s ,\,\@w{ack} )}%
+\@x{\@s{28.59} \.{\land} AtMostOne ( s ,\,\@w{rel} )}%
+\@x{\@s{28.59} \.{\land} network [ p ] [ p ] \.{=} {\langle} {\rangle}}%
+\@pvspace{8.0pt}%
+\@x{ CommInv ( p ) \.{\defeq}}%
+ \@x{\@s{8.2} \.{\lor} \.{\land} req [ p ] [ p ] \.{=} 0 \.{\land} ack [ p ]
+ \.{=} \{ \} \.{\land} p \.{\notin} crit}%
+ \@x{\@s{19.31} \.{\land} \A\, q \.{\in} Proc \.{:} {\lnot} Contains ( network
+ [ p ] [ q ] ,\,\@w{req} ) \.{\land} {\lnot} Contains ( network [ q ] [ p ]
+ ,\,\@w{ack} )}%
+ \@x{\@s{8.2} \.{\lor} \.{\land} req [ p ] [ p ] \.{>} 0 \.{\land} p \.{\in}
+ ack [ p ]}%
+\@x{\@s{19.31} \.{\land} p \.{\in} crit \.{\implies} ack [ p ] \.{=} Proc}%
+\@x{\@s{19.31} \.{\land} \A\, q \.{\in} Proc \.{:}}%
+\@x{\@s{37.64} \.{\LET} pq\@s{4.35} \.{\defeq} network [ p ] [ q ]}%
+\@x{\@s{62.14} qp \.{\defeq} network [ q ] [ p ]}%
+\@x{\@s{37.64} \.{\IN}\@s{4.09} \.{\lor} \.{\land} q \.{\in} ack [ p ]}%
+ \@x{\@s{73.25} \.{\land} {\lnot} Contains ( pq ,\,\@w{req} ) \.{\land}
+ {\lnot} Contains ( qp ,\,\@w{ack} ) \.{\land} {\lnot} Contains ( pq
+ ,\,\@w{rel} )}%
+ \@x{\@s{62.14} \.{\lor} \.{\land} q \.{\notin} ack [ p ] \.{\land} Contains (
+ qp ,\,\@w{ack} )}%
+ \@x{\@s{73.25} \.{\land} {\lnot} Contains ( pq ,\,\@w{req} ) \.{\land}
+ {\lnot} Contains ( pq ,\,\@w{rel} )}%
+ \@x{\@s{62.14} \.{\lor} \.{\land} q \.{\notin} ack [ p ] \.{\land} Contains (
+ pq ,\,\@w{req} )}%
+ \@x{\@s{73.25} \.{\land} {\lnot} Contains ( qp ,\,\@w{ack} ) \.{\land}
+ Precedes ( pq ,\,\@w{rel} ,\,\@w{req} )}%
+\@pvspace{8.0pt}%
+\@x{ BasicInv \.{\defeq}}%
+ \@x{\@s{8.2} \.{\land} \A\, p ,\, q \.{\in} Proc \.{:} NetworkInv ( p ,\, q
+ )}%
+\@x{\@s{8.2} \.{\land} \A\, p \.{\in} Proc \.{:} CommInv ( p )}%
+\@pvspace{8.0pt}%
+\@x{ {\THEOREM} BasicInvariant \.{\defeq} Spec \.{\implies} {\Box} BasicInv}%
+\@x{\@pfstepnum{1}{1.}\  Init \.{\implies} BasicInv}%
+ \@x{\@s{8.2} {\BY} {\DEF} Init ,\, BasicInv ,\, CommInv ,\, NetworkInv ,\,
+ Contains ,\, AtMostOne}%
+ \@x{\@pfstepnum{1}{2.}\  TypeOK \.{\land} BasicInv \.{\land} [ Next ]_{ vars}
+ \.{\implies} BasicInv \.{'}}%
+ \@x{\@s{8.2}\@pfstepnum{2}{}\  {\SUFFICES} {\ASSUME} TypeOK ,\, BasicInv ,\,
+ [ Next ]_{ vars}}%
+\@x{\@s{68.59} {\PROVE}\@s{4.1} BasicInv \.{'}}%
+\@x{\@s{16.4} {\OBVIOUS}}%
+\@x{\@s{8.2}\@pfstepnum{2}{} . {\USE} {\DEF} TypeOK}%
+ \@x{\@s{8.2}\@pfstepnum{2}{1.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, Request
+ ( n )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} BasicInv \.{'}}%
+\@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} req [ n ] [ n ] \.{=} 0}%
+ \@x{\@s{36.95} \.{\land} req \.{'} \.{=} [ req {\EXCEPT} {\bang} [ n ] [ n ]
+ \.{=} clock [ n ] ]}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ n
+ ] \.{=} Broadcast ( n ,\, ReqMessage ( clock [ n ] ) ) ]}%
+ \@x{\@s{36.95} \.{\land} ack \.{'} \.{=}\@s{4.1} [ ack {\EXCEPT} {\bang} [ n
+ ] \.{=} \{ n \} ]}%
+\@x{\@s{36.95} \.{\land} crit \.{'} \.{=} crit}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{2}{1}\  {\DEF} Request}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . \.{\land} ReqMessage ( clock [ n ] ) \.{\in}
+ Message}%
+\@x{\@s{31.95} \.{\land} ReqMessage ( clock [ n ] ) . type \.{=}\@w{req}}%
+\@x{\@s{24.59} {\BY} {\DEF} ReqMessage ,\, Message}%
+\@x{\@s{16.4}\@pfstepnum{3}{a.}\  {\lnot} ( req [ n ] [ n ] \.{>} 0 )}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{1}\ }%
+\@x{\@s{16.4}\@pfstepnum{3}{2.} \.{\land} n \.{\notin} crit}%
+ \@x{\@s{36.95} \.{\land} \A\, q \.{\in} Proc \.{:} {\lnot} Contains ( network
+ [ n ] [ q ] ,\,\@w{req} ) \.{\land} {\lnot} Contains ( network [ q ] [ n ]
+ ,\,\@w{ack} )}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{a}\  {\DEF} BasicInv ,\, CommInv}%
+ \@x{\@s{16.4}\@pfstepnum{3}{3.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} NetworkInv ( p ,\, q ) \.{'}}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{3}{3} ,\, NotContainsSend ,\, AtMostOneSend {\DEF} Broadcast
+ ,\, BasicInv ,\, NetworkInv}%
+\@x{\@s{16.4}\@pfstepnum{3}{4.}\  {\ASSUME} {\NEW} p \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} CommInv ( p ) \.{'}}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \.{\land} req \.{'} [ p ] [ p ] \.{>} 0
+ \.{\land} p \.{\in} ack \.{'} [ p ]}%
+\@x{\@s{48.35} \.{\land} p \.{\notin} crit \.{'}}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{4}{1}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \.{\land} {\lnot} Contains ( network \.{'} [
+ p ] [ n ] ,\,\@w{req} )}%
+ \@x{\@s{48.35} \.{\land} {\lnot} Contains ( network \.{'} [ n ] [ p ]
+ ,\,\@w{ack} )}%
+ \@x{\@s{48.35} \.{\land} {\lnot} Contains ( network \.{'} [ p ] [ n ]
+ ,\,\@w{rel} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{3} ,\,\@pfstepnum{4}{1}\  {\DEF} NetworkInv
+ ,\, Contains}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\ASSUME} {\NEW} q \.{\in} Proc
+ \.{\,\backslash\,} \{ n \}}%
+\@x{\@s{48.35} {\PROVE}\@s{4.1} \.{\land} q \.{\notin} ack \.{'} [ p ]}%
+\@x{\@s{86.59} \.{\land} Contains ( network \.{'} [ p ] [ q ] ,\,\@w{req} )}%
+ \@x{\@s{86.59} \.{\land} {\lnot} Contains ( network \.{'} [ q ] [ p ]
+ ,\,\@w{ack} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{4}{1} ,\, ContainsSend {\DEF} Broadcast}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \A\, q \.{\in} Proc \.{\,\backslash\,} \{ n
+ \} \.{:} Precedes ( network [ p ] [ q ] ,\,\@w{rel} ,\,\@w{req} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{2} ,\,\@pfstepnum{4}{1} ,\,
+ NotContainsPrecedes}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \A\, q \.{\in} Proc \.{\,\backslash\,} \{ n
+ \} \.{:} Precedes ( network \.{'} [ p ] [ q ] ,\,\@w{rel} ,\,\@w{req} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1} ,\, PrecedesSend
+ {\DEF} Broadcast}%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY} {\DEF} CommInv}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} p \.{\neq} n}%
+\@x{\@s{32.8}\@pfstepnum{5}{} . CommInv ( p )}%
+\@x{\@s{41.0} {\BY} {\DEF} BasicInv}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\UNCHANGED} {\langle} req [ p ] [ p ] ,\,
+ ack [ p ] ,\, crit {\rangle}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \A\, q \.{\in} Proc \.{:} {\UNCHANGED}
+ network [ p ] [ q ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \.{\land} \A\, q \.{\in} Proc
+ \.{\,\backslash\,} \{ n \} \.{:} {\UNCHANGED} network [ q ] [ p ]}%
+ \@x{\@s{48.35} \.{\land} p \.{=} n \.{\implies} {\UNCHANGED} network [ n ] [
+ p ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\  {\DEF} Broadcast}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . n \.{\neq} p \.{\implies} Contains ( network
+ \.{'} [ n ] [ p ] ,\,\@w{ack} ) \.{\equiv} Contains ( network [ n ] [ p ]
+ ,\,\@w{ack} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2} ,\, ContainsSend
+ {\DEF} Broadcast}%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY} {\DEF} CommInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{3}{4}\  {\DEF} BasicInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{2.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, Enter (
+ n )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} BasicInv \.{'}}%
+ \@x{\@s{16.4} {\BY}\@pfstepnum{2}{2}\  {\DEF} Enter ,\, BasicInv ,\,
+ NetworkInv ,\, CommInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{3.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, Exit ( n
+ )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} BasicInv \.{'}}%
+\@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} req [ n ] [ n ] \.{>} 0}%
+\@x{\@s{36.95} \.{\land} ack [ n ] \.{=} Proc}%
+ \@x{\@s{36.95} \.{\land} \A\, q \.{\in} Proc \.{:} \.{\land} {\lnot} Contains
+ ( network [ n ] [ q ] ,\,\@w{req} )}%
+ \@x{\@s{102.69} \.{\land} {\lnot} Contains ( network [ q ] [ n ] ,\,\@w{ack}
+ )}%
+ \@x{\@s{102.69} \.{\land} {\lnot} Contains ( network [ n ] [ q ] ,\,\@w{rel}
+ )}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ n
+ ] \.{=}}%
+ \@x{\@s{106.27} [ q \.{\in} Proc \.{\mapsto} {\IF} n \.{=} q \.{\THEN}
+ network [ n ] [ q ] \.{\ELSE} Append ( network [ n ] [ q ] ,\, RelMessage )
+ ] ]}%
+\@x{\@s{36.95} \.{\land} crit \.{'} \.{=} crit \.{\,\backslash\,} \{ n \}}%
+ \@x{\@s{36.95} \.{\land} req \.{'}\@s{2.10} \.{=} [ req {\EXCEPT} {\bang} [ n
+ ] [ n ] \.{=} 0 ]}%
+ \@x{\@s{36.95} \.{\land} ack \.{'} \.{=} [ ack {\EXCEPT} {\bang} [ n ] \.{=}
+ \{ \} ]}%
+\@x{\@s{36.95} \.{\land} clock \.{'} \.{=} clock}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{2}{3}\  {\DEF} Exit ,\, Broadcast ,\,
+ BasicInv ,\, CommInv}%
+\@x{\@s{16.4}\@pfstepnum{3}{} . \.{\land} RelMessage \.{\in} Message}%
+\@x{\@s{31.95} \.{\land} RelMessage . type \.{=}\@w{rel}}%
+\@x{\@s{24.59} {\BY} {\DEF} RelMessage ,\, Message}%
+ \@x{\@s{16.4}\@pfstepnum{3}{2.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} NetworkInv ( p ,\, q ) \.{'}}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \.{\land} AtMostOne ( network \.{'} [ p ] [ q
+ ] ,\,\@w{req} )}%
+\@x{\@s{48.35} \.{\land} AtMostOne ( network \.{'} [ p ] [ q ] ,\,\@w{rel} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1} ,\,
+ NotContainsAtMostOne ,\, NotContainsSend}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . AtMostOne ( network [ p ] [ q ] ,\,\@w{ack}
+ )}%
+\@x{\@s{41.0} {\BY} {\DEF} BasicInv ,\, NetworkInv}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . AtMostOne ( network \.{'} [ p ] [ q ]
+ ,\,\@w{ack} )}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1} ,\, AtMostOneSend}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . network \.{'} [ p ] [ p ] \.{=} {\langle}
+ {\rangle}}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}\  {\DEF} BasicInv
+ ,\, NetworkInv}%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY} {\DEF} NetworkInv}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} p \.{\neq} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \.{\land} network \.{'} [ p ] [ p ] \.{=}
+ network [ p ] [ p ]}%
+ \@x{\@s{48.35} \.{\land} network \.{'} [ p ] [ q ]\@s{0.25} \.{=} network [ p
+ ] [ q ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY} {\DEF} BasicInv ,\,
+ NetworkInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2}\ }%
+\@x{\@s{16.4}\@pfstepnum{3}{3.}\  {\ASSUME} {\NEW} p \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} CommInv ( p ) \.{'}}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} n}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1} ,\, NotContainsSend
+ {\DEF} CommInv}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} p \.{\neq} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \.{\land} req \.{'} [ p ] [ p ] \.{=} req [ p
+ ] [ p ]}%
+\@x{\@s{48.35} \.{\land} ack \.{'} [ p ] \.{=} ack [ p ]}%
+ \@x{\@s{48.35} \.{\land} ( p \.{\in} crit \.{'} ) \.{\equiv} ( p \.{\in} crit
+ )}%
+ \@x{\@s{48.35} \.{\land} \A\, q \.{\in} Proc \.{:} network \.{'} [ p ] [ q ]
+ \.{=} network [ p ] [ q ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\ }%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\ASSUME} {\NEW} q \.{\in} Proc}%
+ \@x{\@s{48.35} {\PROVE}\@s{4.1} Contains ( network \.{'} [ q ] [ p ]
+ ,\,\@w{ack} ) \.{\equiv} Contains ( network [ q ] [ p ] ,\,\@w{ack} )}%
+\@x{\@s{41.0}\@pfstepnum{6}{1.} {\CASE} n \.{=} q}%
+ \@x{\@s{49.2}\@pfstepnum{7}{} . network \.{'} [ q ] [ p ] \.{=} Append (
+ network [ q ] [ p ] ,\, RelMessage )}%
+ \@x{\@s{57.4} {\BY}\@s{4.1}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}
+ ,\,\@pfstepnum{6}{1}\ }%
+\@x{\@s{49.2}\@pfstepnum{7}{} . {\QED}\@s{4.1} {\BY} ContainsSend}%
+\@x{\@s{41.0}\@pfstepnum{6}{2.} {\CASE} n \.{\neq} q}%
+\@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{6}{2}\ }%
+ \@x{\@s{41.0}\@pfstepnum{6}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{6}{1}
+ ,\,\@pfstepnum{6}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY} {\DEF} BasicInv ,\,
+ CommInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{3}{3}\  {\DEF} BasicInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{4.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, {\NEW} k
+ \.{\in} Proc \.{\,\backslash\,} \{ n \} ,\, ReceiveRequest ( n ,\, k )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} BasicInv \.{'}}%
+ \@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} network [ k ] [ n ] \.{\neq}
+ {\langle} {\rangle}}%
+\@x{\@s{36.95} \.{\land} \.{\LET} m \.{\defeq} Head ( network [ k ] [ n ] )}%
+\@x{\@s{48.06} \.{\IN} \.{\land} m . type \.{=}\@w{req}}%
+ \@x{\@s{68.46} \.{\land} \A\, p \.{\in} Proc \.{:} req \.{'} [ p ] [ p ]
+ \.{=} req [ p ] [ p ]}%
+ \@x{\@s{68.46} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ k
+ ] [ n ] \.{=} Tail ( network [ k ] [ n ] ) ,\,}%
+ \@x{\@s{210.90} {\bang} [ n ] [ k ] \.{=} Append ( network [ n ] [ k ] ,\,
+ AckMessage ) ]}%
+\@x{\@s{68.46} \.{\land} {\UNCHANGED} {\langle} ack ,\, crit {\rangle}}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{2}{4}\  {\DEF} ReceiveRequest}%
+ \@x{\@s{16.4}\@pfstepnum{3}{2.}\  Contains ( network [ k ] [ n ] ,\,\@w{req}
+ )}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{1}\  {\DEF} Contains}%
+ \@x{\@s{16.4}\@pfstepnum{3}{3.} \.{\land} req [ k ] [ k ] \.{>} 0 \.{\land} k
+ \.{\in} ack [ k ]}%
+ \@x{\@s{36.95} \.{\land} k\@s{0.71} \.{\in} crit \.{\implies} ack [ k ] \.{=}
+ Proc}%
+\@x{\@s{36.95} \.{\land} n \.{\notin} ack [ k ]}%
+ \@x{\@s{36.95} \.{\land} {\lnot} Contains ( network [ n ] [ k ] ,\,\@w{ack} )
+ \.{\land} {\lnot} Contains ( network [ k ] [ n ] ,\,\@w{rel} )}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2} ,\, PrecedesHead
+ {\DEF} BasicInv ,\, CommInv}%
+\@x{\@s{16.4}\@pfstepnum{3}{} . \.{\land} AckMessage \.{\in} Message}%
+\@x{\@s{31.95} \.{\land} AckMessage . type \.{=}\@w{ack}}%
+\@x{\@s{24.59} {\BY} {\DEF} AckMessage ,\, Message}%
+ \@x{\@s{16.4}\@pfstepnum{3}{4.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} NetworkInv ( p ,\, q ) \.{'}}%
+ \@x{\@s{24.59}\@pfstepnum{4}{1.}\  AtMostOne ( network \.{'} [ p ] [ q ]
+ ,\,\@w{req} )}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\, AtMostOneTail ,\, AtMostOneSend ,\,
+ Zenon {\DEF} BasicInv ,\, NetworkInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{2.}\  AtMostOne ( network \.{'} [ p ] [ q ]
+ ,\,\@w{ack} )}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\DEFINE} nw \.{\defeq} [ network {\EXCEPT}
+ {\bang} [ k ] [ n ] \.{=} Tail ( network [ k ] [ n ] ) ]}%
+ \@x{\@s{32.8}\@pfstepnum{5}{1.} \.{\land} nw \.{\in} [ Proc \.{\rightarrow} [
+ Proc \.{\rightarrow} Seq ( Message ) ] ]}%
+\@x{\@s{53.35} \.{\land} AtMostOne ( nw [ p ] [ q ] ,\,\@w{ack} )}%
+\@x{\@s{53.35} \.{\land} {\lnot} Contains ( nw [ n ] [ k ] ,\,\@w{ack} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3} ,\, AtMostOneTail
+ {\DEF} BasicInv ,\, NetworkInv}%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\HIDE} {\DEF} nw}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\DEFINE} nw2 \.{\defeq} [ nw {\EXCEPT}
+ {\bang} [ n ] [ k ] \.{=} Append ( network [ n ] [ k ] ,\, AckMessage ) ]}%
+\@x{\@s{32.8}\@pfstepnum{5}{5.}\  AtMostOne ( nw2 [ p ] [ q ] ,\,\@w{ack} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{3} ,\,\@pfstepnum{5}{1} ,\,
+ NotContainsSend}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{1}
+ ,\,\@pfstepnum{5}{5}\  {\DEF} nw}%
+ \@x{\@s{24.59}\@pfstepnum{4}{3.}\  AtMostOne ( network \.{'} [ p ] [ q ]
+ ,\,\@w{rel} )}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\, AtMostOneTail ,\, AtMostOneSend ,\,
+ Zenon {\DEF} BasicInv ,\, NetworkInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{4.}\  network \.{'} [ p ] [ p ] \.{=} {\langle}
+ {\rangle}}%
+\@x{\@s{32.8} {\BY}\@pfstepnum{3}{1}\  {\DEF} BasicInv ,\, NetworkInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2} ,\,\@pfstepnum{4}{3} ,\,\@pfstepnum{4}{4}\  {\DEF}
+ NetworkInv}%
+\@x{\@s{16.4}\@pfstepnum{3}{5.}\  {\ASSUME} {\NEW} p \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} CommInv ( p ) \.{'}}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} k}%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\SUFFICES} {\ASSUME} {\NEW} q \.{\in} Proc}%
+ \@x{\@s{92.64} {\PROVE}\@s{4.1} CommInv ( p ) {\bang} 2 {\bang} 3 {\bang} ( q
+ ) \.{'}}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{4}{1}\  {\DEF} CommInv}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\DEFINE} pq\@s{0.25} \.{\defeq} network [ p
+ ] [ q ]}%
+\@x{\@s{84.04} qp \.{\defeq} network [ q ] [ p ]}%
+\@x{\@s{32.8}\@pfstepnum{5}{1.} {\CASE} q \.{=} n}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . q \.{\notin} ack \.{'} [ p ]}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{4}{1} ,\,\@pfstepnum{5}{1}\ }%
+ \@x{\@s{41.0}\@pfstepnum{6}{} . \.{\land} pq \.{\neq} {\langle} {\rangle}
+ \.{\land} pq \.{'} \.{=} Tail ( pq )}%
+\@x{\@s{56.55} \.{\land} qp \.{'} \.{=} Append ( qp ,\, AckMessage )}%
+ \@x{\@s{56.55} \.{\land} AtMostOne ( pq ,\,\@w{req} ) \.{\land} Head ( pq ) .
+ type \.{=}\@w{req}}%
+\@x{\@s{56.55} \.{\land} {\lnot} Contains ( pq ,\,\@w{rel} )}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{4}{1} ,\,\@pfstepnum{5}{1}\  {\DEF} BasicInv ,\, NetworkInv}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . \.{\land} Contains ( qp \.{'} ,\,\@w{ack} )}%
+\@x{\@s{56.55} \.{\land} {\lnot} Contains ( pq \.{'} ,\,\@w{req} )}%
+\@x{\@s{56.55} \.{\land} {\lnot} Contains ( pq \.{'} ,\,\@w{rel} )}%
+ \@x{\@s{49.2} {\BY} ContainsSend ,\, AtMostOneHead ,\, ContainsTail {\DEF}
+ BasicInv ,\, NetworkInv}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . {\QED}\@s{4.1} {\OBVIOUS}}%
+\@x{\@s{32.8}\@pfstepnum{5}{2.} {\CASE} q \.{\neq} n}%
+ \@x{\@s{41.0}\@pfstepnum{6}{} . pq \.{'} \.{=} pq \.{\land} qp \.{'} \.{=} qp
+ \.{\land} ack \.{'} [ p ] \.{=} ack [ p ]}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{4}{1} ,\,\@pfstepnum{5}{2}\ }%
+ \@x{\@s{41.0}\@pfstepnum{6}{} . CommInv ( p ) {\bang} 2 {\bang} 3 {\bang} ( q
+ )}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{3} ,\,\@pfstepnum{4}{1}\  {\DEF} BasicInv
+ ,\, CommInv}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . {\QED}\@s{4.1} {\OBVIOUS}}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{5}{1}
+ ,\,\@pfstepnum{5}{2}\ }%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} p \.{=} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\UNCHANGED} {\langle} req [ p ] [ p ] ,\,
+ ack [ p ] ,\, crit {\rangle}\@s{4.1} {\BY}\@pfstepnum{3}{1}\ }%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\ASSUME} {\NEW} q \.{\in} Proc}%
+ \@x{\@s{48.35} {\PROVE}\@s{4.1} \.{\land} Contains ( network \.{'} [ p ] [ q
+ ] ,\,\@w{req} )\@s{1.11} \.{\equiv} Contains ( network [ p ] [ q ]
+ ,\,\@w{req} )}%
+ \@x{\@s{86.59} \.{\land} Contains ( network \.{'} [ p ] [ q ] ,\,\@w{rel}
+ )\@s{3.88} \.{\equiv} Contains ( network [ p ] [ q ] ,\,\@w{rel} )}%
+ \@x{\@s{86.59} \.{\land} Contains ( network \.{'} [ q ] [ p ] ,\,\@w{ack} )
+ \.{\equiv} Contains ( network [ q ] [ p ] ,\,\@w{ack} )}%
+ \@x{\@s{86.59} \.{\land} Precedes ( network \.{'} [ p ] [ q ] ,\,\@w{rel}
+ ,\,\@w{req} ) \.{\equiv} Precedes ( network [ p ] [ q ] ,\,\@w{rel}
+ ,\,\@w{req} )}%
+\@x{\@s{41.0}\@pfstepnum{6}{1.} {\CASE} q \.{=} k}%
+ \@x{\@s{49.2}\@pfstepnum{7}{} . \.{\land} network \.{'} [ p ] [ q ] \.{=}
+ Append ( network [ p ] [ q ] ,\, AckMessage )}%
+ \@x{\@s{64.75} \.{\land} network [ q ] [ p ] \.{\neq} {\langle} {\rangle}
+ \.{\land} Head ( network [ q ] [ p ] ) . type \.{=}\@w{req}}%
+ \@x{\@s{64.75} \.{\land} network \.{'} [ q ] [ p ] \.{=} Tail ( network [ q ]
+ [ p ] )}%
+ \@x{\@s{57.4} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}
+ ,\,\@pfstepnum{6}{1}\ }%
+ \@x{\@s{49.2}\@pfstepnum{7}{} . {\QED}\@s{4.1} {\BY} ContainsSend ,\,
+ ContainsTail ,\, PrecedesSend {\DEF} BasicInv ,\, NetworkInv}%
+\@x{\@s{41.0}\@pfstepnum{6}{2.} {\CASE} q \.{\neq} k}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}
+ ,\,\@pfstepnum{6}{2}\ }%
+ \@x{\@s{41.0}\@pfstepnum{6}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{6}{1}
+ ,\,\@pfstepnum{6}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY} {\DEF} BasicInv ,\,
+ CommInv}%
+\@x{\@s{24.59}\@pfstepnum{4}{3.} {\CASE} p \.{\notin} \{ k ,\, n \}\@s{4.1}}%
+\@y{\@s{0}%
+ all relevant variables are unchanged
+}%
+\@xx{}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \A\, q \.{\in} Proc \.{:} {\UNCHANGED}
+ {\langle} req [ p ] [ p ] ,\, ack ,\, crit ,\, network [ p ] [ q ] ,\,
+ network [ q ] [ p ] {\rangle}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{3}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY} {\DEF} BasicInv ,\,
+ CommInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2} ,\,\@pfstepnum{4}{3}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{4}
+ ,\,\@pfstepnum{3}{5}\  {\DEF} BasicInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{5.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, {\NEW} k
+ \.{\in} Proc \.{\,\backslash\,} \{ n \} ,\, ReceiveAck ( n ,\, k )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} BasicInv \.{'}}%
+ \@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} network [ k ] [ n ] \.{\neq}
+ {\langle} {\rangle}}%
+\@x{\@s{36.95} \.{\land} Head ( network [ k ] [ n ] ) . type \.{=}\@w{ack}}%
+ \@x{\@s{36.95} \.{\land} ack \.{'} \.{=} [ ack {\EXCEPT} {\bang} [ n ] \.{=}
+ @ \.{\cup} \{ k \} ]}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ k
+ ] [ n ] \.{=} Tail ( @ ) ]}%
+\@x{\@s{36.95} \.{\land} {\UNCHANGED} {\langle} req ,\, crit {\rangle}}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{2}{5}\  {\DEF} ReceiveAck}%
+ \@x{\@s{16.4}\@pfstepnum{3}{2.}\  Contains ( network [ k ] [ n ] ,\,\@w{ack}
+ )}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{1}\  {\DEF} Contains}%
+ \@x{\@s{16.4}\@pfstepnum{3}{3.} \.{\land} req [ n ] [ n ] \.{>} 0 \.{\land} n
+ \.{\in} ack [ n ]}%
+\@x{\@s{36.95} \.{\land} n \.{\in} crit \.{\implies} ack [ n ] \.{=} Proc}%
+\@x{\@s{36.95} \.{\land} k\@s{0.71} \.{\notin} ack [ n ]}%
+ \@x{\@s{36.95} \.{\land} {\lnot} Contains ( network [ n ] [ k ] ,\,\@w{req} )
+ \.{\land} {\lnot} Contains ( network [ n ] [ k ] ,\,\@w{rel} )}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{2}\  {\DEF} BasicInv ,\, CommInv}%
+ \@x{\@s{16.4}\@pfstepnum{3}{4.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} NetworkInv ( p ,\, q ) \.{'}}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{3}{1} ,\, AtMostOneTail {\DEF} BasicInv ,\,
+ NetworkInv}%
+\@x{\@s{16.4}\@pfstepnum{3}{5.}\  {\ASSUME} {\NEW} p \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} CommInv ( p ) \.{'}}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\SUFFICES} {\ASSUME} {\NEW} q \.{\in} Proc
+ ,\, CommInv ( p ) {\bang} 2 {\bang} 3 {\bang} ( q )}%
+ \@x{\@s{92.64} {\PROVE}\@s{4.1} CommInv ( p ) {\bang} 2 {\bang} 3 {\bang} ( q
+ ) \.{'}}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{4}{1} ,\, {\lnot} ( req [ n ] [ n ] \.{=} 0 ) {\DEF} BasicInv
+ ,\, CommInv}%
+\@x{\@s{32.8}\@pfstepnum{5}{1.} {\CASE} q \.{=} k}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . \.{\land} q \.{\in} ack \.{'} [ p ]}%
+ \@x{\@s{56.55} \.{\land} {\lnot} Contains ( network \.{'} [ p ] [ q ]
+ ,\,\@w{req} )}%
+ \@x{\@s{56.55} \.{\land} {\lnot} Contains ( network \.{'} [ p ] [ q ]
+ ,\,\@w{rel} )}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{4}{1} ,\,\@pfstepnum{5}{1}\  {\DEF} BasicInv ,\, NetworkInv}%
+ \@x{\@s{41.0}\@pfstepnum{6}{} . {\lnot} Contains ( network \.{'} [ q ] [ p ]
+ ,\,\@w{ack} )}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{5}{1} ,\, AtMostOneHead ,\, Zenon {\DEF} BasicInv ,\,
+ NetworkInv}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . {\QED}\@s{4.1} {\OBVIOUS}}%
+\@x{\@s{32.8}\@pfstepnum{5}{2.} {\CASE} q \.{\neq} k}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{4}{1} ,\,\@pfstepnum{5}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{5}{1}
+ ,\,\@pfstepnum{5}{2}\ }%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} p \.{=} k}%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\ASSUME} {\NEW} q \.{\in} Proc}%
+ \@x{\@s{48.35} {\PROVE}\@s{4.1} \.{\land} Contains ( network \.{'} [ p ] [ q
+ ] ,\,\@w{req} ) \.{\equiv} Contains ( network [ p ] [ q ] ,\,\@w{req} )}%
+ \@x{\@s{86.59} \.{\land} Contains ( network \.{'} [ p ] [ q ] ,\,\@w{rel}
+ )\@s{2.77} \.{\equiv} Contains ( network [ p ] [ q ] ,\,\@w{rel} )}%
+ \@x{\@s{86.59} \.{\land} Precedes ( network [ p ] [ q ] ,\,\@w{rel}
+ ,\,\@w{req} ) \.{\implies} Precedes ( network \.{'} [ p ] [ q ] ,\,\@w{rel}
+ ,\,\@w{req} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2} ,\, ContainsTail
+ ,\, PrecedesTail {\DEF} BasicInv ,\, NetworkInv}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{1}
+ ,\,\@pfstepnum{4}{2}\  {\DEF} BasicInv ,\, CommInv}%
+\@x{\@s{24.59}\@pfstepnum{4}{3.} {\CASE} p \.{\notin} \{ n ,\, k \}}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{3}\  {\DEF} BasicInv
+ ,\, CommInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2} ,\,\@pfstepnum{4}{3}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{4}
+ ,\,\@pfstepnum{3}{5}\  {\DEF} BasicInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{6.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, {\NEW} k
+ \.{\in} Proc \.{\,\backslash\,} \{ n \} ,\, ReceiveRelease ( n ,\, k )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} BasicInv \.{'}}%
+ \@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} network [ k ] [ n ] \.{\neq}
+ {\langle} {\rangle}}%
+\@x{\@s{36.95} \.{\land} Head ( network [ k ] [ n ] ) . type \.{=}\@w{rel}}%
+ \@x{\@s{36.95} \.{\land} req \.{'} \.{=} [ req {\EXCEPT} {\bang} [ n ] [ k ]
+ \.{=} 0 ]}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ k
+ ] [ n ] \.{=} Tail ( @ ) ]}%
+\@x{\@s{36.95} \.{\land} {\UNCHANGED} {\langle} ack ,\, crit {\rangle}}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{2}{6}\  {\DEF} ReceiveRelease}%
+ \@x{\@s{16.4}\@pfstepnum{3}{2.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} NetworkInv ( p ,\, q ) \.{'}}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{3}{1} ,\, AtMostOneTail {\DEF} BasicInv ,\,
+ NetworkInv}%
+ \@x{\@s{16.4}\@pfstepnum{3}{3.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, CommInv
+ ( p )}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} CommInv ( p ) \.{'}}%
+\@x{\@s{24.59}\@pfstepnum{4}{} . {\ASSUME} {\NEW} q \.{\in} Proc}%
+ \@x{\@s{40.15} {\PROVE}\@s{4.1} \.{\land} Contains ( network \.{'} [ p ] [ q
+ ] ,\,\@w{req} )\@s{1.11} \.{\equiv} Contains ( network [ p ] [ q ]
+ ,\,\@w{req} )}%
+ \@x{\@s{78.39} \.{\land} Contains ( network \.{'} [ q ] [ p ] ,\,\@w{ack} )
+ \.{\equiv} Contains ( network [ q ] [ p ] ,\,\@w{ack} )}%
+ \@x{\@s{78.39} \.{\land} Precedes ( network [ p ] [ q ] ,\,\@w{rel}
+ ,\,\@w{req} ) \.{\implies} Precedes ( network \.{'} [ p ] [ q ] ,\,\@w{rel}
+ ,\,\@w{req} )}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\, ContainsTail ,\, PrecedesTail {\DEF}
+ BasicInv ,\, NetworkInv}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . Contains ( network [ k ] [ n ] ,\,\@w{rel}
+ )}%
+\@x{\@s{32.8} {\BY}\@pfstepnum{3}{1}\  {\DEF} Contains}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\ASSUME} {\NEW} q \.{\in} Proc ,\, p
+ \.{\neq} k \.{\lor} q \.{\neq} n}%
+ \@x{\@s{40.15} {\PROVE}\@s{4.1} Contains ( network \.{'} [ p ] [ q ]
+ ,\,\@w{rel} ) \.{\equiv} Contains ( network [ p ] [ q ] ,\,\@w{rel} )}%
+\@x{\@s{32.8} {\BY}\@pfstepnum{3}{1}\ }%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{1}
+ ,\,\@pfstepnum{3}{3}\  {\DEF} CommInv}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{3}{3}\  {\DEF} BasicInv}%
+\@x{\@s{8.2}\@pfstepnum{2}{7.} {\CASE} {\UNCHANGED} vars}%
+ \@x{\@s{16.4} {\BY}\@pfstepnum{2}{7}\  {\DEF} vars ,\, BasicInv ,\, CommInv
+ ,\, NetworkInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{8.}\  {\QED}\@s{4.1} {\BY}\@pfstepnum{2}{1}
+ ,\,\@pfstepnum{2}{2} ,\,\@pfstepnum{2}{3} ,\,\@pfstepnum{2}{4}
+ ,\,\@pfstepnum{2}{5} ,\,\@pfstepnum{2}{6} ,\,\@pfstepnum{2}{7}\  {\DEF}
+ Next}%
+ \@x{\@pfstepnum{1}{} . {\QED}\@s{4.1} {\BY} TypeCorrect ,\,\@pfstepnum{1}{1}
+ ,\,\@pfstepnum{1}{2} ,\, PTL {\DEF} Spec}%
+\@pvspace{8.0pt}%
+\@x{}\midbar\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+The second invariant relates the clock values stored in the clock and
+ \ensuremath{req} variables, as well as in request messages. Its proof relies
+ on the
+ ``basic'' invariant proved previously.
+\end{cpar}%
+\end{lcom}%
+\@pvspace{8.0pt}%
+\@x{ ClockInvInner ( p ,\, q ) \.{\defeq}}%
+\@x{\@s{8.2} \.{\LET} pq\@s{4.35} \.{\defeq} network [ p ] [ q ]}%
+\@x{\@s{32.69} qp \.{\defeq} network [ q ] [ p ]}%
+ \@x{\@s{8.2} \.{\IN}\@s{4.09} \.{\land} \A\, i \.{\in} 1 \.{\dotdot} Len ( pq
+ ) \.{:} pq [ i ] . type \.{=}\@w{req} \.{\implies} pq [ i ] . clock \.{=}
+ req [ p ] [ p ]}%
+ \@x{\@s{32.69} \.{\land} Contains ( qp ,\,\@w{ack} ) \.{\lor} q \.{\in} ack [
+ p ] \.{\implies}}%
+\@x{\@s{60.21} \.{\land} req [ q ] [ p ] \.{=} req [ p ] [ p ]}%
+\@x{\@s{60.21} \.{\land} clock [ q ] \.{>} req [ p ] [ p ]}%
+ \@x{\@s{60.21} \.{\land} Precedes ( qp ,\,\@w{ack} ,\,\@w{req} )
+ \.{\implies}}%
+ \@x{\@s{79.52} \A\, i \.{\in} 1 \.{\dotdot} Len ( qp ) \.{:} qp [ i ] . type
+ \.{=}\@w{req} \.{\implies} qp [ i ] . clock \.{>} req [ p ] [ p ]}%
+\@x{\@s{32.69} \.{\land} p \.{\in} crit \.{\implies} beats ( p ,\, q )}%
+\@pvspace{8.0pt}%
+ \@x{ ClockInv \.{\defeq} \A\, p \.{\in} Proc \.{:} \A\, q \.{\in} Proc
+ \.{\,\backslash\,} \{ p \} \.{:} ClockInvInner ( p ,\, q )}%
+\@pvspace{8.0pt}%
+\@x{ {\THEOREM} ClockInvariant \.{\defeq} Spec \.{\implies} {\Box} ClockInv}%
+\@x{\@pfstepnum{1}{1.}\  Init \.{\implies} ClockInv}%
+\@x{\@s{8.2} {\BY} {\DEF} Init ,\, ClockInv ,\, ClockInvInner ,\, Contains}%
+ \@x{\@pfstepnum{1}{2.}\  TypeOK \.{\land} BasicInv \.{\land} ClockInv
+ \.{\land} [ Next ]_{ vars} \.{\implies} ClockInv \.{'}}%
+ \@x{\@s{8.2}\@pfstepnum{2}{}\  {\SUFFICES} {\ASSUME} TypeOK ,\, BasicInv ,\,
+ ClockInv ,\, [ Next ]_{ vars}}%
+\@x{\@s{68.59} {\PROVE}\@s{4.1} ClockInv \.{'}}%
+\@x{\@s{16.4} {\OBVIOUS}}%
+\@x{\@s{8.2}\@pfstepnum{2}{} . {\USE} {\DEF} TypeOK}%
+ \@x{\@s{8.2}\@pfstepnum{2}{1.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, Request
+ ( n )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} ClockInv \.{'}}%
+\@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} req [ n ] [ n ] \.{=} 0}%
+ \@x{\@s{36.95} \.{\land} req \.{'} \.{=} [ req {\EXCEPT} {\bang} [ n ] [ n ]
+ \.{=} clock [ n ] ]}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ n
+ ] \.{=} Broadcast ( n ,\, ReqMessage ( clock [ n ] ) ) ]}%
+ \@x{\@s{36.95} \.{\land} ack \.{'} \.{=}\@s{4.1} [ ack {\EXCEPT} {\bang} [ n
+ ] \.{=} \{ n \} ]}%
+\@x{\@s{36.95} \.{\land} {\UNCHANGED} {\langle} clock ,\, crit {\rangle}}%
+\@x{\@s{36.95} \.{\land} n \.{\notin} crit}%
+ \@x{\@s{36.95} \.{\land} \A\, q \.{\in} Proc \.{:} {\lnot} Contains ( network
+ [ n ] [ q ] ,\,\@w{req} ) \.{\land} {\lnot} Contains ( network [ q ] [ n ]
+ ,\,\@w{ack} )}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{2}{1}\  {\DEF} Request ,\, BasicInv ,\,
+ CommInv}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . \.{\land} ReqMessage ( clock [ n ] ) \.{\in}
+ Message}%
+\@x{\@s{31.95} \.{\land} ReqMessage ( clock [ n ] ) . type \.{=}\@w{req}}%
+ \@x{\@s{31.95} \.{\land} ReqMessage ( clock [ n ] ) . clock \.{=} req \.{'} [
+ n ] [ n ]}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{1}\  {\DEF} ReqMessage ,\, Message}%
+ \@x{\@s{16.4}\@pfstepnum{3}{2.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc \.{\,\backslash\,} \{ p \}}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} ClockInvInner ( p ,\, q ) \.{'}}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{1.}\  {\ASSUME} {\NEW} i \.{\in} 1 \.{\dotdot}
+ Len ( network \.{'} [ p ] [ q ] ) ,\, network \.{'} [ p ] [ q ] [ i ] . type
+ \.{=}\@w{req}}%
+ \@x{\@s{56.68} {\PROVE}\@s{4.1} network \.{'} [ p ] [ q ] [ i ] . clock \.{=}
+ req \.{'} [ p ] [ p ]}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{5}{1}\  {\DEF} Broadcast ,\, Contains}%
+ \@x{\@s{32.8}\@pfstepnum{5}{2.}\  {\lnot} Contains ( network \.{'} [ q ] [ p
+ ] ,\,\@w{ack} ) \.{\land} q \.{\notin} ack \.{'} [ p ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}\  {\DEF} Broadcast}%
+\@x{\@s{32.8}\@pfstepnum{5}{3.}\  p \.{\notin} crit \.{'}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{5}{1}
+ ,\,\@pfstepnum{5}{2} ,\,\@pfstepnum{5}{3}\  {\DEF} ClockInvInner}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} q \.{=} n}%
+\@x{\@s{32.8}\@pfstepnum{5}{1.}\  ClockInvInner ( p ,\, q )}%
+\@x{\@s{41.0} {\BY} {\DEF} ClockInv}%
+ \@x{\@s{32.8}\@pfstepnum{5}{2.}\  {\UNCHANGED} {\langle} network [ p ] [ q ]
+ ,\, req [ p ] [ p ] ,\, req [ p ] [ q ] ,\, req [ q ] [ p ] ,\, ack [ p ]
+ ,\, crit {\rangle}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\ }%
+\@x{\@s{32.8}\@pfstepnum{5}{} . {\DEFINE} qp \.{\defeq} network [ q ] [ p ]}%
+ \@x{\@s{32.8}\@pfstepnum{5}{3.}\  {\ASSUME} Contains ( qp \.{'} ,\,\@w{ack} )
+ \.{\lor} q \.{\in} ack \.{'} [ p ]}%
+ \@x{\@s{56.68} {\PROVE}\@s{4.1} \.{\land} req \.{'} [ q ] [ p ] \.{=} req [ p
+ ] [ p ]}%
+\@x{\@s{94.93} \.{\land} clock \.{'} [ q ] \.{>} req \.{'} [ p ] [ p ]}%
+ \@x{\@s{94.93} \.{\land} Precedes ( qp \.{'} ,\,\@w{ack} ,\,\@w{req} )
+ \.{\implies}}%
+ \@x{\@s{118.34} \A\, i \.{\in} 1 \.{\dotdot} Len ( qp \.{'} ) \.{:} qp \.{'}
+ [ i ] . type \.{=}\@w{req} \.{\implies} qp \.{'} [ i ] . clock \.{>} req
+ \.{'} [ p ] [ p ]}%
+ \@x{\@s{41.0}\@pfstepnum{6}{} . Contains ( qp ,\,\@w{ack} ) \.{\lor} q
+ \.{\in} ack [ p ]}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}
+ ,\,\@pfstepnum{5}{3} ,\, ContainsSend {\DEF} Broadcast}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . {\QED}}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}
+ ,\,\@pfstepnum{5}{1}\  {\DEF} ClockInvInner ,\, Broadcast ,\, Contains}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{5}{1}
+ ,\,\@pfstepnum{5}{2} ,\,\@pfstepnum{5}{3}\  {\DEF} ClockInvInner ,\, beats}%
+\@x{\@s{24.59}\@pfstepnum{4}{3.} {\CASE} n \.{\notin} \{ p ,\, q \}\@s{4.1}}%
+\@y{\@s{0}%
+ all relevant variables unchanged
+}%
+\@xx{}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{3}\  {\DEF} ClockInv
+ ,\, ClockInvInner ,\, beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2} ,\,\@pfstepnum{4}{3}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{2}\ 
+ {\DEF} ClockInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{2.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, Enter (
+ n )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} ClockInv \.{'}}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\SUFFICES} {\ASSUME} {\NEW} p \.{\in} Proc
+ ,\, {\NEW} q \.{\in} Proc \.{\,\backslash\,} \{ p \}}%
+\@x{\@s{76.24} {\PROVE} ClockInvInner ( p ,\, q ) \.{'}}%
+\@x{\@s{24.59} {\BY} {\DEF} ClockInv}%
+\@x{\@s{16.4}\@pfstepnum{3}{1.} {\CASE} p \.{=} n}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{2}{2} ,\,\@pfstepnum{3}{1}\  {\DEF} Enter ,\,
+ ClockInv ,\, ClockInvInner ,\, beats}%
+\@x{\@s{16.4}\@pfstepnum{3}{2.} {\CASE} p \.{\neq} n}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{2}{2} ,\,\@pfstepnum{3}{2}\  {\DEF} Enter ,\,
+ ClockInv ,\, ClockInvInner ,\, beats}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{1}
+ ,\,\@pfstepnum{3}{2}\ }%
+ \@x{\@s{8.2}\@pfstepnum{2}{3.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, Exit ( n
+ )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} ClockInv \.{'}}%
+\@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} n \.{\in} crit}%
+\@x{\@s{36.95} \.{\land} crit \.{'} \.{=} crit \.{\,\backslash\,} \{ n \}}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ n
+ ] \.{=} Broadcast ( n ,\, RelMessage ) ]}%
+ \@x{\@s{36.95} \.{\land} req \.{'}\@s{2.10} \.{=} [ req {\EXCEPT} {\bang} [ n
+ ] [ n ] \.{=} 0 ]}%
+ \@x{\@s{36.95} \.{\land} ack \.{'} \.{=} [ ack {\EXCEPT} {\bang} [ n ] \.{=}
+ \{ \} ]}%
+\@x{\@s{36.95} \.{\land} clock \.{'} \.{=} clock}%
+ \@x{\@s{36.95} \.{\land} \A\, q \.{\in} Proc \.{:} \.{\land} {\lnot} Contains
+ ( network [ n ] [ q ] ,\,\@w{req} )}%
+ \@x{\@s{102.69} \.{\land} {\lnot} Contains ( network [ q ] [ n ] ,\,\@w{ack}
+ )}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{2}{3}\  {\DEF} Exit ,\, BasicInv ,\, CommInv}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . RelMessage \.{\in} Message \.{\land}
+ RelMessage . type \.{=}\@w{rel}}%
+\@x{\@s{24.59} {\BY} {\DEF} RelMessage ,\, Message}%
+ \@x{\@s{16.4}\@pfstepnum{3}{2.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc \.{\,\backslash\,} \{ p \}}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} ClockInvInner ( p ,\, q ) \.{'}}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} n \.{=} p}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}\  {\DEF} Broadcast
+ ,\, ClockInvInner ,\, Contains}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} n \.{\neq} p}%
+ \@x{\@s{32.8}\@pfstepnum{5}{1.} \.{\land} {\UNCHANGED} {\langle} network [ p
+ ] [ q ] ,\, req [ p ] [ p ] ,\, req [ q ] [ p ] ,\, req [ p ] [ q ] ,\, ack
+ [ p ] ,\, clock {\rangle}}%
+\@x{\@s{53.35} \.{\land} p \.{\in} crit \.{'} \.{\equiv} p \.{\in} crit}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{2.}\  n \.{\neq} q \.{\implies} network \.{'} [ q
+ ] [ p ] \.{=} network [ q ] [ p ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1}\  {\DEF} Broadcast}%
+ \@x{\@s{32.8}\@pfstepnum{5}{3.} \.{\land} Contains ( network \.{'} [ n ] [ p
+ ] ,\,\@w{ack} ) \.{\equiv} Contains ( network [ n ] [ p ] ,\,\@w{ack} )}%
+ \@x{\@s{53.35} \.{\land} Precedes ( network \.{'} [ n ] [ p ] ,\,\@w{ack}
+ ,\,\@w{req} ) \.{\equiv} Precedes ( network [ n ] [ p ] ,\,\@w{ack}
+ ,\,\@w{req} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2} ,\, ContainsSend
+ ,\, PrecedesSend {\DEF} Broadcast}%
+ \@x{\@s{32.8}\@pfstepnum{5}{4.}\  \A\, i \.{\in} 1 \.{\dotdot} Len ( network
+ \.{'} [ n ] [ p ] ) \.{:} network \.{'} [ n ] [ p ] [ i ] . type
+ \.{\neq}\@w{req}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1}\  {\DEF} Broadcast ,\, Contains}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{5}{1}
+ ,\,\@pfstepnum{5}{2} ,\,\@pfstepnum{5}{3} ,\,\@pfstepnum{5}{4}\  {\DEF}
+ ClockInv ,\, ClockInvInner ,\, beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{2}\ 
+ {\DEF} ClockInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{4.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, {\NEW} k
+ \.{\in} Proc \.{\,\backslash\,} \{ n \} ,\, ReceiveRequest ( n ,\, k )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} ClockInv \.{'}}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\DEFINE} m \.{\defeq} Head ( network [ k ] [
+ n ] )}%
+ \@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} network [ k ] [ n ] \.{\neq}
+ {\langle} {\rangle}}%
+\@x{\@s{36.95} \.{\land} m . type \.{=}\@w{req}}%
+ \@x{\@s{36.95} \.{\land} req \.{'} \.{=} [ req {\EXCEPT} {\bang} [ n ] [ k ]
+ \.{=} m . clock ]}%
+ \@x{\@s{36.95} \.{\land} clock \.{'} \.{=} [ clock {\EXCEPT} {\bang} [ n ]
+ \.{=} {\IF} m . clock \.{>} clock [ n ] \.{\THEN} m . clock\@s{0.22} \.{+}
+ 1}%
+\@x{\@s{276.13} \.{\ELSE} clock [ n ] \.{+} 1 ]}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ k
+ ] [ n ] \.{=} Tail ( @ ) ,\,}%
+\@x{\@s{179.39} {\bang} [ n ] [ k ] \.{=} Append ( @ ,\, AckMessage ) ]}%
+\@x{\@s{36.95} \.{\land} {\UNCHANGED} {\langle} ack ,\, crit {\rangle}}%
+\@x{\@s{36.95} \.{\land} Contains ( network [ k ] [ n ] ,\,\@w{req} )}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{2}{4}\  {\DEF} ReceiveRequest ,\, ClockInv
+ ,\, ClockInvInner ,\, Contains}%
+\@x{\@s{16.4}\@pfstepnum{3}{2.}\  m . clock \.{=} req [ k ] [ k ]}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{3}{1}\  {\DEF} ClockInv ,\, ClockInvInner ,\,
+ Contains}%
+\@x{\@s{16.4}\@pfstepnum{3}{3.} \.{\land} req [ k ] [ k ] \.{>} 0}%
+\@x{\@s{36.95} \.{\land} n \.{\notin} ack [ k ] \.{\land} k \.{\notin} crit}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{1}\  {\DEF} BasicInv ,\, CommInv}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . AckMessage \.{\in} Message \.{\land}
+ AckMessage . type \.{=}\@w{ack}}%
+\@x{\@s{24.59} {\BY} {\DEF} AckMessage ,\, Message}%
+ \@x{\@s{16.4}\@pfstepnum{3}{4.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc \.{\,\backslash\,} \{ p \}}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} ClockInvInner ( p ,\, q ) \.{'}}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\DEFINE} pq\@s{0.25} \.{\defeq} network [ p
+ ] [ q ]}%
+\@x{\@s{75.84} qp \.{\defeq} network [ q ] [ p ]}%
+\@x{\@s{24.59}\@pfstepnum{4}{} . \.{\land} ClockInvInner ( p ,\, q )}%
+\@x{\@s{40.15} \.{\land} {\UNCHANGED} req [ p ] [ p ]}%
+\@x{\@s{32.8} {\BY}\@pfstepnum{3}{1}\  {\DEF} ClockInv}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} k \.{\land} q \.{=} n}%
+\@x{\@s{32.8}\@pfstepnum{5}{1.}\  pq \.{'} \.{=} Tail ( pq )}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1} ,\, Zenon}%
+\@x{\@s{32.8}\@pfstepnum{5}{2.}\  {\lnot} Contains ( pq \.{'} ,\,\@w{req} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{5}{1} ,\, ContainsTail {\DEF} BasicInv ,\, NetworkInv}%
+ \@x{\@s{32.8}\@pfstepnum{5}{3.}\  clock \.{'} [ q ] \.{>} req \.{'} [ p ] [ p
+ ]}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{3}{3} ,\,\@pfstepnum{4}{1}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{4.} \.{\land} req \.{'} [ q ] [ p ] \.{=} req
+ \.{'} [ p ] [ p ]}%
+\@x{\@s{53.35} \.{\land} q\@s{0.25} \.{\notin} ack \.{'} [ p ]}%
+\@x{\@s{53.35} \.{\land} p \.{\notin} crit \.{'}}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{3}{3} ,\,\@pfstepnum{4}{1}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{5.}\  {\ASSUME} Precedes ( qp \.{'} ,\,\@w{ack}
+ ,\,\@w{req} ) ,\,}%
+ \@x{\@s{94.93} {\NEW} i \.{\in} 1 \.{\dotdot} Len ( qp \.{'} ) ,\, qp \.{'} [
+ i ] . type \.{=}\@w{req}}%
+\@x{\@s{56.68} {\PROVE}\@s{4.1} {\FALSE}}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{5}{5}\  {\DEF} Precedes}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{5}{2}
+ ,\,\@pfstepnum{5}{3} ,\,\@pfstepnum{5}{4} ,\,\@pfstepnum{5}{5}\  {\DEF}
+ ClockInvInner ,\, Contains}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} p \.{=} k \.{\land} q \.{\neq} n}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\  {\DEF}
+ ClockInvInner ,\, beats}%
+\@x{\@s{24.59}\@pfstepnum{4}{3.} {\CASE} p \.{=} n \.{\land} q \.{=} k}%
+ \@x{\@s{32.8}\@pfstepnum{5}{1.}\  {\UNCHANGED} {\langle} req [ q ] [ p ] ,\,
+ clock [ q ] ,\, ack {\rangle}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{3}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{2.}\  {\ASSUME} {\NEW} i \.{\in} 1 \.{\dotdot}
+ Len ( pq \.{'} ) ,\, pq \.{'} [ i ] . type \.{=}\@w{req}}%
+ \@x{\@s{56.68} {\PROVE}\@s{4.1} i \.{\in} 1 \.{\dotdot} Len ( pq ) \.{\land}
+ pq \.{'} [ i ] \.{=} pq [ i ]}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{3}
+ ,\,\@pfstepnum{5}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{3.}\  qp \.{'} \.{=} Tail ( qp ) \.{\land} Head (
+ qp ) . type \.{=}\@w{req} \.{\land} qp \.{\neq} {\langle} {\rangle}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{3} ,\, Zenon}%
+ \@x{\@s{32.8}\@pfstepnum{5}{4.}\  Contains ( qp \.{'} ,\,\@w{ack} )
+ \.{\equiv} Contains ( qp ,\,\@w{ack} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{5}{3} ,\, ContainsTail {\DEF} BasicInv ,\,
+ NetworkInv}%
+\@x{\@s{32.8}\@pfstepnum{5}{5.}\  {\lnot} Contains ( qp \.{'} ,\,\@w{req} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{5}{3} ,\, ContainsTail {\DEF} BasicInv ,\,
+ NetworkInv}%
+\@x{\@s{32.8}\@pfstepnum{5}{7.}\  {\ASSUME} p \.{\in} crit \.{'}}%
+\@x{\@s{56.68} {\PROVE}\@s{4.1} beats ( p ,\, q ) \.{'}}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . \.{\land} p \.{\in} crit}%
+\@x{\@s{56.55} \.{\land} q\@s{0.25} \.{\in} ack [ p ]}%
+\@x{\@s{56.55} \.{\land} {\lnot} Contains ( qp ,\,\@w{ack} )}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{3}
+ ,\,\@pfstepnum{5}{7}\  {\DEF} BasicInv ,\, CommInv}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . Precedes ( qp ,\,\@w{ack} ,\,\@w{req} )}%
+\@x{\@s{49.2} {\BY} NotContainsPrecedes}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . req \.{'} [ p ] [ q ] \.{>} req [ p ] [ p ]}%
+ \@x{\@s{49.2} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{3} ,\, m \.{=} qp [ 1
+ ] ,\, 1 \.{\in} 1 \.{\dotdot} Len ( qp ) {\DEF} ClockInvInner}%
+\@x{\@s{41.0}\@pfstepnum{6}{} . {\QED}\@s{4.1} {\BY} {\DEF} beats}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{5}{1}
+ ,\,\@pfstepnum{5}{2} ,\,\@pfstepnum{5}{4} ,\,\@pfstepnum{5}{5}
+ ,\,\@pfstepnum{5}{7} ,\, Zenon {\DEF} ClockInvInner ,\, Contains}%
+\@x{\@s{24.59}\@pfstepnum{4}{4.} {\CASE} p \.{=} n \.{\land} q \.{\neq} k}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{4}\  {\DEF}
+ ClockInvInner ,\, beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{5.} {\CASE}\@s{4.1} p \.{\notin} \{ n ,\, k \}
+ \.{\land} q \.{=} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\UNCHANGED} {\langle} pq ,\, qp ,\, req [ p
+ ] [ q ] ,\, req [ q ] [ p ] ,\, ack ,\, crit {\rangle}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{5}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . clock [ q ] \.{>} req [ p ] [ p ]
+ \.{\implies} clock \.{'} [ q ] \.{>} req [ p ] [ p ]}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{4}{5}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY} {\DEF} ClockInvInner ,\,
+ beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{6.} {\CASE} p \.{\notin} \{ n ,\, k \} \.{\land}
+ q \.{\neq} n}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{6} ,\, Zenon {\DEF}
+ ClockInvInner ,\, beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2} ,\,\@pfstepnum{4}{3} ,\,\@pfstepnum{4}{4}
+ ,\,\@pfstepnum{4}{5} ,\,\@pfstepnum{4}{6}\ }%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{4}\ 
+ {\DEF} ClockInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{5.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, {\NEW} k
+ \.{\in} Proc \.{\,\backslash\,} \{ n \} ,\, ReceiveAck ( n ,\, k )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} ClockInv \.{'}}%
+ \@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} network [ k ] [ n ] \.{\neq}
+ {\langle} {\rangle}}%
+\@x{\@s{36.95} \.{\land} Head ( network [ k ] [ n ] ) . type \.{=}\@w{ack}}%
+ \@x{\@s{36.95} \.{\land} ack \.{'} \.{=} [ ack {\EXCEPT} {\bang} [ n ] \.{=}
+ @ \.{\cup} \{ k \} ]}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ k
+ ] [ n ] \.{=} Tail ( @ ) ]}%
+ \@x{\@s{36.95} \.{\land} {\UNCHANGED} {\langle} clock ,\, req ,\, crit
+ {\rangle}}%
+\@x{\@s{36.95} \.{\land} Contains ( network [ k ] [ n ] ,\,\@w{ack} )}%
+ \@x{\@s{24.59} {\BY}\@pfstepnum{2}{5}\  {\DEF} ReceiveAck ,\, BasicInv ,\,
+ CommInv ,\, Contains}%
+ \@x{\@s{16.4}\@pfstepnum{3}{2.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc \.{\,\backslash\,} \{ p \} ,\, ClockInvInner ( p ,\, q )}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} ClockInvInner ( p ,\, q ) \.{'}}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\DEFINE} pq\@s{0.25} \.{\defeq} network [ p
+ ] [ q ]}%
+\@x{\@s{75.84} qp \.{\defeq} network [ q ] [ p ]}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} n \.{\land} q \.{=} k}%
+\@x{\@s{32.8}\@pfstepnum{5}{1.} \.{\land} qp \.{\neq} {\langle} {\rangle}}%
+\@x{\@s{53.35} \.{\land} Head ( qp ) . type \.{=}\@w{ack}}%
+\@x{\@s{53.35} \.{\land} Contains ( qp ,\,\@w{ack} )}%
+\@x{\@s{53.35} \.{\land} qp \.{'} \.{=} Tail ( qp )}%
+ \@x{\@s{53.35} \.{\land} {\UNCHANGED} {\langle} pq ,\, clock ,\, req ,\, crit
+ {\rangle}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{2.}\  {\ASSUME} Precedes ( qp \.{'} ,\,\@w{ack}
+ ,\,\@w{req} )}%
+\@x{\@s{56.68} {\PROVE}\@s{4.1} Precedes ( qp ,\,\@w{ack} ,\,\@w{req} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{5}{1} ,\,\@pfstepnum{5}{2} ,\, PrecedesInTail
+ ,\, Zenon}%
+ \@x{\@s{32.8}\@pfstepnum{5}{3.}\  {\ASSUME} {\NEW} i \.{\in} 1 \.{\dotdot}
+ Len ( qp \.{'} ) ,\, qp \.{'} [ i ] . type \.{=}\@w{req}}%
+ \@x{\@s{56.68} {\PROVE}\@s{4.1} i \.{+} 1 \.{\in} 1 \.{\dotdot} Len ( qp )
+ \.{\land} qp \.{'} [ i ] \.{=} qp [ i \.{+} 1 ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{5}{1}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{5}{1} ,\,\@pfstepnum{5}{2} ,\,\@pfstepnum{5}{3}\  {\DEF}
+ ClockInvInner ,\, beats}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} p \.{=} k \.{\land} q \.{=} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{1.}\  {\UNCHANGED} {\langle} qp ,\, ack [ p ] ,\,
+ clock ,\, req ,\, crit {\rangle}}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{2.}\  {\ASSUME} {\NEW} i \.{\in} 1 \.{\dotdot}
+ Len ( pq \.{'} )}%
+ \@x{\@s{56.68} {\PROVE}\@s{4.1} i \.{+} 1 \.{\in} 1 \.{\dotdot} Len ( pq )
+ \.{\land} pq \.{'} [ i ] \.{=} pq [ i \.{+} 1 ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{5}{1} ,\,\@pfstepnum{5}{2}\  {\DEF} ClockInvInner ,\, beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{3.} {\CASE} \{ p ,\, q \} \.{\neq} \{ n ,\, k
+ \}}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{4}{3}\  {\DEF} ClockInvInner ,\, beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2} ,\,\@pfstepnum{4}{3} ,\, Zenon}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{2}\ 
+ {\DEF} ClockInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{6.}\  {\ASSUME} {\NEW} n \.{\in} Proc ,\, {\NEW} k
+ \.{\in} Proc \.{\,\backslash\,} \{ n \} ,\, ReceiveRelease ( n ,\, k )}%
+\@x{\@s{32.08} {\PROVE}\@s{4.1} ClockInv \.{'}}%
+ \@x{\@s{16.4}\@pfstepnum{3}{1.} \.{\land} network [ k ] [ n ] \.{\neq}
+ {\langle} {\rangle}}%
+\@x{\@s{36.95} \.{\land} Head ( network [ k ] [ n ] ) . type \.{=}\@w{rel}}%
+ \@x{\@s{36.95} \.{\land} req \.{'} \.{=} [ req {\EXCEPT} {\bang} [ n ] [ k ]
+ \.{=} 0 ]}%
+ \@x{\@s{36.95} \.{\land} network \.{'} \.{=} [ network {\EXCEPT} {\bang} [ k
+ ] [ n ] \.{=} Tail ( @ ) ]}%
+ \@x{\@s{36.95} \.{\land} {\UNCHANGED} {\langle} clock ,\, ack ,\, crit
+ {\rangle}}%
+\@x{\@s{36.95} \.{\land} Contains ( network [ k ] [ n ] ,\,\@w{rel} )}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{2}{6}\  {\DEF} ReceiveRelease ,\, Contains}%
+\@y{%
+ , \ensuremath{BasicInv}, \ensuremath{CommInv}, \ensuremath{Contains
+}}%
+\@xx{}%
+ \@x{\@s{16.4}\@pfstepnum{3}{2.} \.{\land} {\lnot} Contains ( network [ n ] [
+ k ] ,\,\@w{ack} )}%
+\@x{\@s{36.95} \.{\land} n \.{\notin} ack [ k ]}%
+\@x{\@s{24.59} {\BY}\@pfstepnum{3}{1} ,\, Zenon {\DEF} BasicInv ,\, CommInv}%
+ \@x{\@s{16.4}\@pfstepnum{3}{3.}\  {\ASSUME} {\NEW} p \.{\in} Proc ,\, {\NEW}
+ q \.{\in} Proc ,\, ClockInvInner ( p ,\, q )}%
+\@x{\@s{40.28} {\PROVE}\@s{4.1} ClockInvInner ( p ,\, q ) \.{'}}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\DEFINE} pq\@s{0.25} \.{\defeq} network [ p
+ ] [ q ]}%
+\@x{\@s{75.84} qp \.{\defeq} network [ q ] [ p ]}%
+\@x{\@s{24.59}\@pfstepnum{4}{1.} {\CASE} p \.{=} n \.{\land} q \.{=} k}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \.{\land} {\UNCHANGED} {\langle} pq ,\, ack
+ ,\, req [ p ] [ p ] ,\, req [ q ] [ p ] ,\, clock {\rangle}}%
+\@x{\@s{48.35} \.{\land} beats ( p ,\, q ) \.{'}}%
+ \@x{\@s{48.35} \.{\land} \A\, i \.{\in} 1 \.{\dotdot} Len ( qp \.{'} ) \.{:}
+ i \.{+} 1 \.{\in} 1 \.{\dotdot} Len ( qp ) \.{\land} qp \.{'} [ i ] \.{=} qp
+ [ i \.{+} 1 ]}%
+\@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1}\  {\DEF} beats}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . Contains ( qp \.{'} ,\,\@w{ack} ) \.{\equiv}
+ Contains ( qp ,\,\@w{ack} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1} ,\, ContainsTail
+ {\DEF} BasicInv ,\, NetworkInv}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . Precedes ( qp \.{'} ,\,\@w{ack} ,\,\@w{req} )
+ \.{\implies} Precedes ( qp ,\,\@w{ack} ,\,\@w{req} )}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{4}{1} ,\, PrecedesInTail
+ ,\, Zenon}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{3} ,\,
+ Zenon {\DEF} ClockInvInner}%
+\@x{\@s{24.59}\@pfstepnum{4}{2.} {\CASE} p \.{=} k \.{\land} q \.{=} n}%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . \.{\land} {\UNCHANGED} {\langle} qp ,\, ack
+ ,\, req [ p ] [ p ] ,\, req [ p ] [ q ] ,\, crit ,\, clock {\rangle}}%
+ \@x{\@s{48.35} \.{\land} {\lnot} Contains ( qp \.{'} ,\,\@w{ack} ) \.{\land}
+ q \.{\notin} ack \.{'} [ p ]}%
+ \@x{\@s{48.35} \.{\land} \A\, i \.{\in} 1 \.{\dotdot} Len ( pq \.{'} ) \.{:}
+ i \.{+} 1 \.{\in} 1 \.{\dotdot} Len ( pq ) \.{\land} pq \.{'} [ i ] \.{=} pq
+ [ i \.{+} 1 ]}%
+ \@x{\@s{41.0} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{2}
+ ,\,\@pfstepnum{4}{2}\ }%
+ \@x{\@s{32.8}\@pfstepnum{5}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{3}\ 
+ {\DEF} ClockInvInner ,\, beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{3.} {\CASE} \{ p ,\, q \} \.{\neq} \{ k ,\, n
+ \}}%
+ \@x{\@s{32.8} {\BY}\@pfstepnum{3}{1} ,\,\@pfstepnum{3}{3}
+ ,\,\@pfstepnum{4}{3}\  {\DEF} ClockInvInner ,\, beats}%
+ \@x{\@s{24.59}\@pfstepnum{4}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{4}{1}
+ ,\,\@pfstepnum{4}{2} ,\,\@pfstepnum{4}{3} ,\, Zenon}%
+ \@x{\@s{16.4}\@pfstepnum{3}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{3}{3}\ 
+ {\DEF} ClockInv}%
+\@x{\@s{8.2}\@pfstepnum{2}{7.} {\CASE} {\UNCHANGED} vars}%
+ \@x{\@s{16.4} {\BY}\@pfstepnum{2}{7}\  {\DEF} ClockInv ,\, ClockInvInner ,\,
+ beats ,\, vars}%
+ \@x{\@s{8.2}\@pfstepnum{2}{8.}\  {\QED}\@s{4.1} {\BY}\@pfstepnum{2}{1}
+ ,\,\@pfstepnum{2}{2} ,\,\@pfstepnum{2}{3} ,\,\@pfstepnum{2}{4}
+ ,\,\@pfstepnum{2}{5} ,\,\@pfstepnum{2}{6} ,\,\@pfstepnum{2}{7}\  {\DEF}
+ Next}%
+ \@x{\@pfstepnum{1}{} . {\QED}\@s{4.1} {\BY}\@pfstepnum{1}{1}
+ ,\,\@pfstepnum{1}{2} ,\, TypeCorrect ,\, BasicInvariant ,\, PTL {\DEF} Spec}%
+\@pvspace{8.0pt}%
+\@x{}\midbar\@xx{}%
+\begin{lcom}{0}%
+\begin{cpar}{0}{F}{F}{0}{0}{}%
+Mutual exclusion is a simple consequence of the above invariants.
+ In particular, if two distinct processes \ensuremath{p} and \ensuremath{q}
+ were ever in the
+ critical section at the same instant, then \ensuremath{beats(p,\,q)} and
+ \ensuremath{beats(q,\,p)
+} would both have to hold, but this is impossible.
+\end{cpar}%
+\end{lcom}%
+\@x{ {\THEOREM} Safety \.{\defeq} Spec \.{\implies} {\Box} Mutex}%
+ \@x{\@pfstepnum{1}{1.}\  TypeOK \.{\land} BasicInv \.{\land} ClockInv
+ \.{\implies} Mutex}%
+ \@x{\@s{8.2}\@pfstepnum{2}{} . {\SUFFICES} {\ASSUME} TypeOK ,\, BasicInv ,\,
+ ClockInv ,\,}%
+ \@x{\@s{106.28} {\NEW} p \.{\in} crit ,\, {\NEW} q \.{\in} crit ,\, p
+ \.{\neq} q}%
+\@x{\@s{68.04} {\PROVE}\@s{4.1} {\FALSE}}%
+\@x{\@s{16.4} {\BY} {\DEF} Mutex}%
+\@x{\@s{8.2}\@pfstepnum{2}{} . {\USE} {\DEF} TypeOK}%
+ \@x{\@s{8.2}\@pfstepnum{2}{} . \.{\land} req [ p ] [ p ] \.{>} 0 \.{\land}
+ req [ q ] [ q ] \.{>} 0}%
+\@x{\@s{23.75} \.{\land} p \.{\in} ack [ q ] \.{\land} q \.{\in} ack [ p ]}%
+\@x{\@s{16.4} {\BY} {\DEF} BasicInv ,\, CommInv}%
+ \@x{\@s{8.2}\@pfstepnum{2}{} . \.{\land} req [ q ] [ p ] \.{=} req [ p ] [ p
+ ]}%
+\@x{\@s{23.75} \.{\land} req [ p ] [ q ] \.{=} req [ q ] [ q ]}%
+\@x{\@s{23.75} \.{\land} beats ( p ,\, q )}%
+\@x{\@s{23.75} \.{\land} beats ( q ,\, p )}%
+\@x{\@s{16.4} {\BY} {\DEF} ClockInv ,\, ClockInvInner}%
+ \@x{\@s{8.2}\@pfstepnum{2}{} . {\QED}\@s{4.1} {\BY} NType {\DEF} Proc ,\,
+ beats}%
+ \@x{\@pfstepnum{1}{} . {\QED}\@s{4.1} {\BY} TypeCorrect ,\, BasicInvariant
+ ,\, ClockInvariant ,\,\@pfstepnum{1}{1} ,\, PTL}%
+\@pvspace{8.0pt}%
+\@x{}\bottombar\@xx{}%
+\end{document}

@@ -1,0 +1,356 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.6.7)  13 APR 2023 00:21
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**LamportMutex_proofs.tex
+(./LamportMutex_proofs.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24>
+(/usr/local/texlive/2022basic/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2022basic/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+) (/usr/local/texlive/2022basic/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
+(/usr/local/texlive/2022basic/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 149.
+(/usr/local/texlive/2022basic/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+)) (/usr/local/texlive/2022basic/texmf-dist/tex/latex/base/latexsym.sty
+Package: latexsym 1998/08/17 v2.2e Standard LaTeX package (lasy symbols)
+\symlasy=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lasy' in version `bold'
+(Font)                  U/lasy/m/n --> U/lasy/b/n on input line 52.
+) (/usr/local/texlive/2022basic/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\symlength=\skip49
+\equalswidth=\skip50
+\charwidth=\skip51
+\boxrulewd=\skip52
+\boxlineht=\skip53
+\boxruleht=\skip54
+\boxruledp=\skip55
+\pcalvspace=\skip56
+\lcomindent=\skip57
+\@xlen=\skip58
+\templena=\skip59
+\templenb=\skip60
+\tempboxa=\box50
+\vshadelen=\skip61
+\boxwidth=\skip62
+\multicommentdepth=\skip63
+\c@pardepth=\count193
+\tempsbox=\box51
+\@cparht=\skip64
+\@cpardp=\skip65
+\xmcomlen=\skip66
+\spacewidth=\skip67
+\alignboxwidth=\skip68
+\alignwidth=\skip69
+\alignbox=\box52
+\symtlaitalics=\mathgroup5
+\c@tlx@ctr=\count194
+(/usr/local/texlive/2022basic/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks16
+\verbatim@line=\toks17
+\verbatim@in@stream=\read2
+)
+(/usr/local/texlive/2022basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.d
+ef
+File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count195
+\l__pdf_internal_box=\box53
+) (./LamportMutex_proofs.aux)
+\openout1 = `LamportMutex_proofs.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 939.
+LaTeX Font Info:    ... okay on input line 939.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 939.
+LaTeX Font Info:    ... okay on input line 939.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 939.
+LaTeX Font Info:    ... okay on input line 939.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 939.
+LaTeX Font Info:    ... okay on input line 939.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 939.
+LaTeX Font Info:    ... okay on input line 939.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 939.
+LaTeX Font Info:    ... okay on input line 939.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 939.
+LaTeX Font Info:    ... okay on input line 939.
+(/usr/local/texlive/2022basic/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count196
+\scratchdimen=\dimen139
+\scratchbox=\box54
+\nofMPsegments=\count197
+\nofMParguments=\count198
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count199
+\MPscratchDim=\dimen140
+\MPnumerator=\count266
+\makeMPintoPDFobject=\count267
+\everyMPtoPDFconversion=\toks19
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 942.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 942.
+LaTeX Font Info:    Trying to load font information for U+lasy on input line 94
+2.
+(/usr/local/texlive/2022basic/texmf-dist/tex/latex/base/ulasy.fd
+File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 946.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 946.
+
+Overfull \hbox (5.73413pt too wide) in paragraph at lines 1006--1008
+[][] 
+ []
+
+[1
+
+{/usr/local/texlive/2022basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (53.59pt too wide) in paragraph at lines 1036--1037
+[][] 
+ []
+
+[2]
+Overfull \hbox (2.88535pt too wide) in paragraph at lines 1137--1138
+[][] 
+ []
+
+[3]
+Overfull \hbox (6.77646pt too wide) in paragraph at lines 1157--1158
+[][] 
+ []
+
+
+Overfull \hbox (31.41756pt too wide) in paragraph at lines 1162--1164
+[][] 
+ []
+
+[4]
+Overfull \hbox (19.34021pt too wide) in paragraph at lines 1231--1233
+[][] 
+ []
+
+
+Overfull \hbox (25.93977pt too wide) in paragraph at lines 1241--1243
+[][] 
+ []
+
+
+Overfull \hbox (9.44792pt too wide) in paragraph at lines 1274--1276
+[][] 
+ []
+
+
+Overfull \hbox (38.27425pt too wide) in paragraph at lines 1288--1289
+[][] 
+ []
+
+[5]
+Overfull \hbox (77.12238pt too wide) in paragraph at lines 1295--1296
+[][] 
+ []
+
+
+Overfull \hbox (18.2826pt too wide) in paragraph at lines 1345--1347
+[][] 
+ []
+
+[6]
+Overfull \hbox (123.7164pt too wide) in paragraph at lines 1373--1374
+[][] 
+ []
+
+
+Overfull \hbox (13.69167pt too wide) in paragraph at lines 1431--1432
+[][] 
+ []
+
+[7]
+Overfull \hbox (53.45537pt too wide) in paragraph at lines 1460--1461
+[][] 
+ []
+
+
+Overfull \hbox (13.36223pt too wide) in paragraph at lines 1484--1486
+[][] 
+ []
+
+
+Overfull \hbox (21.97403pt too wide) in paragraph at lines 1497--1498
+[][] 
+ []
+
+[8]
+Overfull \hbox (13.36223pt too wide) in paragraph at lines 1506--1508
+[][] 
+ []
+
+
+Overfull \hbox (29.11722pt too wide) in paragraph at lines 1540--1541
+[][] 
+ []
+
+
+Overfull \hbox (23.69043pt too wide) in paragraph at lines 1560--1562
+[][] 
+ []
+
+
+Overfull \hbox (20.90059pt too wide) in paragraph at lines 1562--1564
+[][] 
+ []
+
+
+Overfull \hbox (24.79842pt too wide) in paragraph at lines 1564--1567
+[][] 
+ []
+
+
+Overfull \hbox (70.20924pt too wide) in paragraph at lines 1567--1568
+[][] 
+ []
+
+
+Overfull \hbox (56.61719pt too wide) in paragraph at lines 1578--1579
+[][] 
+ []
+
+[9]
+Overfull \hbox (16.27156pt too wide) in paragraph at lines 1593--1594
+[][] 
+ []
+
+
+Overfull \hbox (4.18489pt too wide) in paragraph at lines 1650--1651
+[][] 
+ []
+
+[10]
+Overfull \hbox (22.58043pt too wide) in paragraph at lines 1660--1662
+[][] 
+ []
+
+
+Overfull \hbox (19.79059pt too wide) in paragraph at lines 1662--1665
+[][] 
+ []
+
+
+Overfull \hbox (72.43146pt too wide) in paragraph at lines 1665--1667
+[][] 
+ []
+
+
+Overfull \hbox (15.49042pt too wide) in paragraph at lines 1700--1702
+[][] 
+ []
+
+
+Overfull \hbox (16.59842pt too wide) in paragraph at lines 1702--1705
+[][] 
+ []
+
+
+Overfull \hbox (64.23146pt too wide) in paragraph at lines 1705--1707
+[][] 
+ []
+
+[11]
+Overfull \hbox (9.44792pt too wide) in paragraph at lines 1776--1778
+[][] 
+ []
+
+
+Overfull \hbox (38.27425pt too wide) in paragraph at lines 1783--1785
+[][] 
+ []
+
+
+Overfull \hbox (12.19518pt too wide) in paragraph at lines 1798--1800
+[][] 
+ []
+
+[12]
+Overfull \hbox (1.0899pt too wide) in paragraph at lines 1815--1816
+[][] 
+ []
+
+
+Overfull \hbox (41.99222pt too wide) in paragraph at lines 1827--1829
+[][] 
+ []
+
+[13]
+Overfull \hbox (14.74532pt too wide) in paragraph at lines 1892--1893
+[][] 
+ []
+
+
+Overfull \hbox (46.55638pt too wide) in paragraph at lines 1902--1904
+[][] 
+ []
+
+
+Overfull \hbox (1.41753pt too wide) in paragraph at lines 1929--1931
+[][] 
+ []
+
+[14]
+Overfull \hbox (10.7686pt too wide) in paragraph at lines 2019--2020
+[][] 
+ []
+
+[15] [16] [17] [18] (./LamportMutex_proofs.aux) ) 
+Here is how much of TeX's memory you used:
+ 1355 strings out of 479719
+ 20344 string characters out of 5880575
+ 329207 words of memory out of 5000000
+ 19389 multiletter control sequences out of 15000+600000
+ 474429 words of font info for 48 fonts, out of 8000000 for 9000
+ 319 hyphenation exceptions out of 8191
+ 34i,16n,38p,200b,317s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2022basic/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2022b
+asic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2
+022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texliv
+e/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/tex
+live/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
+exlive/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
+/texlive/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/loc
+al/texlive/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr
+/local/texlive/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+/usr/local/texlive/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b></usr/local/texlive/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
+0.pfb></usr/local/texlive/2022basic/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mti7.pfb></usr/local/texlive/2022basic/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmti8.pfb></usr/local/texlive/2022basic/texmf-dist/fonts/type1/public/amsfont
+s/latxfont/lasy10.pfb>
+Output written on LamportMutex_proofs.pdf (18 pages, 192544 bytes).
+PDF statistics:
+ 132 PDF objects out of 1000 (max. 8388607)
+ 83 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

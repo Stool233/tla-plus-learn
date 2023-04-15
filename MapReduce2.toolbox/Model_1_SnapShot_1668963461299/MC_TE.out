@@ -1,0 +1,639 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 58 and seed 1701055678500463631 with 6 workers on 12 cores with 1214MB heap and 2730MB offheap memory [pid: 30396] (Mac OS X 10.14.3 x86_64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/MapReduce2.toolbox/Model_1/MC.tla
+Parsing file /Users/wengjialin/learn-space/tla+/MapReduce2.toolbox/Model_1/MapReduce2.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/TLC.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Integers.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Sequences.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/FiniteSets.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/AppTranslocation/FFBC352A-5285-4C75-B81F-39A5D7ACB72A/d/TLA+ Toolbox.app/Contents/Eclipse/plugins/org.lamport.tlatools_1.0.0.202012311918/tla2sany/StandardModules/Naturals.tla
+Parsing file /Users/wengjialin/learn-space/tla+/MapReduce2.toolbox/Model_1/PT.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module PT
+Semantic processing of module MapReduce2
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2022-11-21 00:57:36)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 1 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 2 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 4 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 8 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 16 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 32 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2269:0 @!@!@
+Computed 64 initial states...
+@!@!@ENDMSG 2269 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 81 distinct states generated at 2022-11-21 00:57:37.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2114:1 @!@!@
+Deadlock reached.
+@!@!@ENDMSG 2114 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "FairWorker" @@ w2 :> "RegularWorker" @@ Reducer :> "Schedule")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<>> @@ w2 :> <<>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = (w1 :> <<>> @@ w2 :> <<>> @@ Reducer :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <Schedule line 154, col 13 to line 164, col 39 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "FairWorker" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = (w1 :> <<>> @@ w2 :> <<>> @@ Reducer :> <<>>)
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <FairWorker line 198, col 21 to line 208, col 50 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <WaitForQueue line 129, col 23 to line 133, col 76 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "Process" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 0 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <Process line 135, col 18 to line 144, col 47 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "Process" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 1 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<0>> @@ w2 :> <<1, 0>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <Process line 135, col 18 to line 144, col 47 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "Process" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <Process line 135, col 18 to line 144, col 47 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "Result" @@ w2 :> "RegularWorker" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <RegularWorker line 212, col 24 to line 222, col 53 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "Result" @@ w2 :> "WaitForQueue" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+9: <WaitForQueue line 129, col 23 to line 133, col 76 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "Result" @@ w2 :> "Process" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = ( w1 :> [total |-> NULL, count |-> NULL] @@
+  w2 :> [total |-> NULL, count |-> NULL] )
+/\ total = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+10: <Result line 146, col 17 to line 150, col 56 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "Process" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<1, 0>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> NULL, count |-> NULL])
+/\ total = (w1 :> 2 @@ w2 :> 0 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+11: <Process line 135, col 18 to line 144, col 47 of module MapReduce2>
+/\ final = (w1 :> 0 @@ w2 :> 0)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "Process" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> FALSE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<0>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> NULL, count |-> NULL])
+/\ total = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+12: <ReduceResult line 166, col 17 to line 187, col 69 of module MapReduce2>
+/\ final = (w1 :> 2 @@ w2 :> 0)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "Process" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> TRUE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<0>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> NULL, count |-> NULL])
+/\ total = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+13: <Process line 135, col 18 to line 144, col 47 of module MapReduce2>
+/\ final = (w1 :> 2 @@ w2 :> 0)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "Process" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> TRUE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 2 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> NULL, count |-> NULL])
+/\ total = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+14: <Process line 135, col 18 to line 144, col 47 of module MapReduce2>
+/\ final = (w1 :> 2 @@ w2 :> 0)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "Result" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> TRUE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 2 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> NULL, count |-> NULL])
+/\ total = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+15: <Result line 146, col 17 to line 150, col 56 of module MapReduce2>
+/\ final = (w1 :> 2 @@ w2 :> 0)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "WaitForQueue" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> TRUE @@ w2 :> FALSE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 2 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> 1, count |-> 2])
+/\ total = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+16: <ReduceResult line 166, col 17 to line 187, col 69 of module MapReduce2>
+/\ final = (w1 :> 2 @@ w2 :> 1)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "WaitForQueue" @@ Reducer :> "ReduceResult")
+/\ consumed = (w1 :> TRUE @@ w2 :> TRUE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 2 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> 1, count |-> 2])
+/\ total = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+17: <ReduceResult line 166, col 17 to line 187, col 69 of module MapReduce2>
+/\ final = (w1 :> 2 @@ w2 :> 1)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "WaitForQueue" @@ Reducer :> "Finish")
+/\ consumed = (w1 :> TRUE @@ w2 :> TRUE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 2 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> 1, count |-> 2])
+/\ total = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+18: <Finish line 189, col 11 to line 194, col 50 of module MapReduce2>
+/\ final = (w1 :> 2 @@ w2 :> 1)
+/\ pc = (w1 :> "WaitForQueue" @@ w2 :> "WaitForQueue" @@ Reducer :> "Done")
+/\ consumed = (w1 :> TRUE @@ w2 :> TRUE)
+/\ assignments = (w1 :> <<2, 0>> @@ w2 :> <<1, 0>>)
+/\ input = <<0, 0, 1, 2>>
+/\ count = (w1 :> 2 @@ w2 :> 2 @@ Reducer :> 0)
+/\ queue = (w1 :> <<>> @@ w2 :> <<>>)
+/\ result = (w1 :> [total |-> 2, count |-> 2] @@ w2 :> [total |-> 1, count |-> 2])
+/\ total = (w1 :> 2 @@ w2 :> 1 @@ Reducer :> 0)
+/\ stack = ( w1 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  w2 :> <<[pc |-> "Done", total |-> 0, count |-> 0, procedure |-> "work"]>> @@
+  Reducer :> <<>> )
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2022-11-21 00:57:40
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 113, col 1 to line 113, col 4 of module MapReduce2>: 162:162
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 114, col 12 to line 114, col 35 of module MapReduce2: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 115, col 12 to line 115, col 72 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 116, col 12 to line 116, col 43 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 118, col 12 to line 118, col 44 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 119, col 12 to line 119, col 44 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 121, col 12 to line 121, col 40 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 122, col 12 to line 122, col 47 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 123, col 12 to line 123, col 49 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 124, col 12 to line 124, col 47 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 125, col 12 to line 127, col 85 of module MapReduce2: 162
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<WaitForQueue line 129, col 1 to line 129, col 18 of module MapReduce2>: 2429:3890
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 129, col 26 to line 129, col 50 of module MapReduce2: 49217
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 129, col 26 to line 129, col 33 of module MapReduce2: 45327
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 130, col 26 to line 130, col 44 of module MapReduce2: 13739
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 130, col 26 to line 130, col 36 of module MapReduce2: 9849
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 130, col 41 to line 130, col 44 of module MapReduce2: 9849
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 131, col 26 to line 131, col 62 of module MapReduce2: 3890
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 132, col 26 to line 133, col 76 of module MapReduce2: 3890
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Process line 135, col 1 to line 135, col 13 of module MapReduce2>: 7006:12654
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 135, col 21 to line 135, col 40 of module MapReduce2: 57979
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 135, col 21 to line 135, col 28 of module MapReduce2: 45325
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 136, col 24 to line 136, col 42 of module MapReduce2: 12654
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 137, col 29 to line 140, col 68 of module MapReduce2: 8914
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 141, col 32 to line 141, col 67 of module MapReduce2: 3740
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 142, col 32 to line 142, col 66 of module MapReduce2: 3740
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 143, col 21 to line 144, col 47 of module MapReduce2: 12654
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Result line 146, col 1 to line 146, col 12 of module MapReduce2>: 2084:4072
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 146, col 20 to line 146, col 38 of module MapReduce2: 49391
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 146, col 20 to line 146, col 27 of module MapReduce2: 45319
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 147, col 20 to line 147, col 101 of module MapReduce2: 4072
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 148, col 20 to line 148, col 61 of module MapReduce2: 4072
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 149, col 20 to line 150, col 56 of module MapReduce2: 4072
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Schedule line 154, col 1 to line 154, col 8 of module MapReduce2>: 82:325
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 154, col 16 to line 154, col 39 of module MapReduce2: 15444
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 154, col 16 to line 154, col 26 of module MapReduce2: 15119
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 156, col 18 to line 161, col 41 of module MapReduce2: 325
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 162, col 16 to line 162, col 60 of module MapReduce2: 325
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 163, col 16 to line 164, col 39 of module MapReduce2: 325
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<ReduceResult line 166, col 1 to line 166, col 12 of module MapReduce2>: 1459:6341
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 166, col 20 to line 166, col 47 of module MapReduce2: 20890
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 166, col 20 to line 166, col 30 of module MapReduce2: 15118
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 167, col 23 to line 167, col 52 of module MapReduce2: 13965
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 167, col 41 to line 167, col 52 of module MapReduce2: 15110
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 167, col 32 to line 167, col 38 of module MapReduce2: 13965
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 170, col 39 to line 171, col 82 of module MapReduce2: 1866
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  line 168, col 49 to line 169, col 99 of module MapReduce2: 13391:15257
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 169, col 46 to line 169, col 98 of module MapReduce2: 26782
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 169, col 46 to line 169, col 57 of module MapReduce2: 26782
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 169, col 62 to line 169, col 98 of module MapReduce2: 17370
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 168, col 56 to line 168, col 62 of module MapReduce2: 13391
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 172, col 37 to line 172, col 68 of module MapReduce2: 1866
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 176, col 39 to line 183, col 83 of module MapReduce2: 3901
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  line 173, col 72 to line 175, col 56 of module MapReduce2: 13391:17292
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 174, col 60 to line 174, col 113 of module MapReduce2: 13391
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 174, col 60 to line 174, col 71 of module MapReduce2: 13391
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 174, col 76 to line 174, col 113 of module MapReduce2: 4550
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 173, col 79 to line 173, col 91 of module MapReduce2: 13391
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 184, col 31 to line 184, col 75 of module MapReduce2: 5767
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 185, col 31 to line 185, col 69 of module MapReduce2: 574
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 186, col 31 to line 186, col 81 of module MapReduce2: 574
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 187, col 20 to line 187, col 69 of module MapReduce2: 6341
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Finish line 189, col 1 to line 189, col 6 of module MapReduce2>: 238:493
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 189, col 14 to line 189, col 35 of module MapReduce2: 15608
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 189, col 14 to line 189, col 24 of module MapReduce2: 15115
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 190, col 14 to line 191, col 65 of module MapReduce2: 493
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 192, col 14 to line 192, col 50 of module MapReduce2: 493
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 193, col 14 to line 194, col 50 of module MapReduce2: 493
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<FairWorker line 198, col 1 to line 198, col 16 of module MapReduce2>: 576:1378
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 198, col 24 to line 198, col 46 of module MapReduce2: 16482
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 198, col 24 to line 198, col 31 of module MapReduce2: 15104
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 199, col 24 to line 203, col 72 of module MapReduce2: 1378
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 204, col 24 to line 204, col 58 of module MapReduce2: 1378
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 205, col 24 to line 205, col 58 of module MapReduce2: 1378
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 206, col 24 to line 206, col 65 of module MapReduce2: 1378
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 207, col 24 to line 208, col 50 of module MapReduce2: 1378
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<RegularWorker line 212, col 1 to line 212, col 19 of module MapReduce2>: 1615:2269
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 212, col 27 to line 212, col 52 of module MapReduce2: 17372
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 212, col 27 to line 212, col 34 of module MapReduce2: 15103
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 213, col 27 to line 217, col 75 of module MapReduce2: 2269
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 218, col 27 to line 218, col 61 of module MapReduce2: 2269
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 27 to line 219, col 61 of module MapReduce2: 2269
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 220, col 27 to line 220, col 68 of module MapReduce2: 2269
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 221, col 27 to line 222, col 53 of module MapReduce2: 2269
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Terminating line 227, col 1 to line 227, col 11 of module MapReduce2>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 227, col 19 to line 227, col 56 of module MapReduce2: 15102
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 228, col 19 to line 228, col 32 of module MapReduce2: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(19) at 2022-11-21 00:57:40: 31,470 states generated (384,483 s/min), 15,570 distinct states found (190,226 ds/min), 468 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+31470 states generated, 15570 distinct states found, 468 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2194:0 @!@!@
+The depth of the complete state graph search is 19.
+@!@!@ENDMSG 2194 @!@!@
+@!@!@STARTMSG 2268:0 @!@!@
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 3 and the 95th percentile is 2).
+@!@!@ENDMSG 2268 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 4921ms at (2022-11-21 00:57:40)
+@!@!@ENDMSG 2186 @!@!@
