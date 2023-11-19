@@ -214,5 +214,9 @@ Next ==
 \* This is just how the system works.
 Spec == Init /\ [][Next]_vars /\ WF_vars(CacheFairness)
 
+
+CounterBound == counter =< 2
+
+
 =============================================================================
 
