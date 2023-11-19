@@ -1,0 +1,302 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 110 and seed -3823289513282349730 with 1 worker on 12 cores with 3641MB heap and 64MB offheap memory [pid: 10438] (Mac OS X 10.16 x86_64, Oracle Corporation 11.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/cacheinvalidationv2.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/Naturals.tla
+Parsing file /Users/wengjialin/learn-space/tla+/cacherequirements.tla
+Semantic processing of module Naturals
+Semantic processing of module cacherequirements
+Semantic processing of module cacheinvalidationv2
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2023-11-18 00:58:02)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 1 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at 2023-11-18 00:58:02.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2192:0 @!@!@
+Checking temporal properties for the current state space with 11910 total distinct states at (2023-11-18 00:58:05)
+@!@!@ENDMSG 2192 @!@!@
+@!@!@STARTMSG 2116:1 @!@!@
+Temporal properties were violated.
+
+@!@!@ENDMSG 2116 @!@!@
+@!@!@STARTMSG 2264:1 @!@!@
+The following behavior constitutes a counter-example:
+
+@!@!@ENDMSG 2264 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ invalidationQueue = {}
+/\ database = (k1 :> 0)
+/\ cacheFillStates = (k1 :> [state |-> "inactive", version |-> 0])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <CacheStartReadThroughFill line 62, col 5 to line 66, col 55 of module cacheinvalidationv2>
+/\ invalidationQueue = {}
+/\ database = (k1 :> 0)
+/\ cacheFillStates = (k1 :> [state |-> "started", version |-> 0])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <DatabaseRespondToCacheFill line 71, col 5 to line 76, col 55 of module cacheinvalidationv2>
+/\ invalidationQueue = {}
+/\ database = (k1 :> 0)
+/\ cacheFillStates = (k1 :> [state |-> "respondedto", version |-> 0])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <DatabaseUpdate line 48, col 5 to line 56, col 43 of module cacheinvalidationv2>
+/\ invalidationQueue = {[key |-> k1, version |-> 1]}
+/\ database = (k1 :> 1)
+/\ cacheFillStates = (k1 :> [state |-> "respondedto", version |-> 0])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <CacheIgnoreInvalidationMessage line 150, col 5 to line 159, col 53 of module cacheinvalidationv2>
+/\ invalidationQueue = {}
+/\ database = (k1 :> 1)
+/\ cacheFillStates = (k1 :> [state |-> "respondedto", version |-> 0])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <CacheCompleteFill line 81, col 5 to line 99, col 48 of module cacheinvalidationv2>
+/\ invalidationQueue = {}
+/\ database = (k1 :> 1)
+/\ cacheFillStates = (k1 :> [state |-> "inactive", version |-> 0])
+/\ cache = (k1 :> [version |-> 0, type |-> "hit"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2218:4 @!@!@
+7: Stuttering
+@!@!@ENDMSG 2218 @!@!@
+@!@!@STARTMSG 2267:0 @!@!@
+Finished checking temporal properties in 00s at 2023-11-18 00:58:05
+@!@!@ENDMSG 2267 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2023-11-18 00:58:05
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 32, col 1 to line 32, col 4 of module cacheinvalidationv2>: 2:2
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 33, col 5 to line 42, col 29 of module cacheinvalidationv2: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<DatabaseUpdate line 45, col 1 to line 45, col 17 of module cacheinvalidationv2 (48 5 56 43)>: 111:11915
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 48, col 8 to line 49, col 46 of module cacheinvalidationv2: 11915
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 53, col 8 to line 55, col 73 of module cacheinvalidationv2: 11915
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 56, col 8 to line 56, col 43 of module cacheinvalidationv2: 11915
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheStartReadThroughFill line 60, col 1 to line 60, col 28 of module cacheinvalidationv2>: 16:2240
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 62, col 8 to line 62, col 29 of module cacheinvalidationv2: 14154
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 62, col 8 to line 62, col 15 of module cacheinvalidationv2: 11914
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 62, col 21 to line 62, col 29 of module cacheinvalidationv2: 11914
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 64, col 8 to line 64, col 44 of module cacheinvalidationv2: 11133
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 64, col 8 to line 64, col 31 of module cacheinvalidationv2: 8893
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 65, col 8 to line 65, col 73 of module cacheinvalidationv2: 2240
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 66, col 8 to line 66, col 55 of module cacheinvalidationv2: 2240
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<DatabaseRespondToCacheFill line 70, col 1 to line 70, col 29 of module cacheinvalidationv2>: 15:1232
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 71, col 8 to line 71, col 43 of module cacheinvalidationv2: 13145
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 71, col 8 to line 71, col 31 of module cacheinvalidationv2: 11913
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 72, col 8 to line 75, col 27 of module cacheinvalidationv2: 1232
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 76, col 8 to line 76, col 55 of module cacheinvalidationv2: 1232
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheCompleteFill line 80, col 1 to line 80, col 20 of module cacheinvalidationv2>: 3796:5421
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 81, col 8 to line 81, col 47 of module cacheinvalidationv2: 17333
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 81, col 8 to line 81, col 31 of module cacheinvalidationv2: 11912
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 83, col 11 to line 83, col 32 of module cacheinvalidationv2: 10842
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 83, col 11 to line 83, col 18 of module cacheinvalidationv2: 5421
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 83, col 24 to line 83, col 32 of module cacheinvalidationv2: 5421
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 85, col 11 to line 86, col 58 of module cacheinvalidationv2: 5421
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 87, col 8 to line 90, col 27 of module cacheinvalidationv2: 5421
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 8 to line 98, col 17 of module cacheinvalidationv2: 5421
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 99, col 8 to line 99, col 48 of module cacheinvalidationv2: 5421
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheIgnoreFill line 102, col 1 to line 102, col 18 of module cacheinvalidationv2>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 103, col 8 to line 103, col 47 of module cacheinvalidationv2: 11911
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 105, col 8 to line 106, col 56 of module cacheinvalidationv2: 5420
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 107, col 8 to line 110, col 25 of module cacheinvalidationv2: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 112, col 8 to line 112, col 55 of module cacheinvalidationv2: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheHandleInvalidationMessage line 129, col 1 to line 129, col 30 of module cacheinvalidationv2>: 0:7217
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 132, col 15 to line 132, col 45 of module cacheinvalidationv2: 73159
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 132, col 15 to line 132, col 32 of module cacheinvalidationv2: 65942
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 132, col 38 to line 132, col 45 of module cacheinvalidationv2: 65942
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 134, col 15 to line 134, col 58 of module cacheinvalidationv2: 7217
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 134, col 15 to line 134, col 40 of module cacheinvalidationv2: 14760
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 134, col 44 to line 134, col 58 of module cacheinvalidationv2: 14760
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 136, col 12 to line 142, col 21 of module cacheinvalidationv2: 7217
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 144, col 12 to line 144, col 61 of module cacheinvalidationv2: 7217
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 130, col 23 to line 130, col 39 of module cacheinvalidationv2: 11911
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 146, col 8 to line 146, col 46 of module cacheinvalidationv2: 7217
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheIgnoreInvalidationMessage line 149, col 1 to line 149, col 30 of module cacheinvalidationv2>: 17530:58725
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 152, col 15 to line 152, col 46 of module cacheinvalidationv2: 117124
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 152, col 15 to line 152, col 32 of module cacheinvalidationv2: 65942
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 152, col 38 to line 152, col 46 of module cacheinvalidationv2: 65942
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 154, col 18 to line 154, col 52 of module cacheinvalidationv2: 73485
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 154, col 18 to line 154, col 35 of module cacheinvalidationv2: 65942
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 154, col 44 to line 154, col 52 of module cacheinvalidationv2: 65942
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 155, col 18 to line 155, col 62 of module cacheinvalidationv2: 7543
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 155, col 18 to line 155, col 43 of module cacheinvalidationv2: 14760
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 155, col 48 to line 155, col 62 of module cacheinvalidationv2: 14760
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 157, col 12 to line 157, col 61 of module cacheinvalidationv2: 58725
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 150, col 23 to line 150, col 39 of module cacheinvalidationv2: 11911
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 159, col 8 to line 159, col 53 of module cacheinvalidationv2: 58725
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheEvict line 162, col 1 to line 162, col 13 of module cacheinvalidationv2>: 0:3021
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 163, col 8 to line 163, col 28 of module cacheinvalidationv2: 14931
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 163, col 8 to line 163, col 15 of module cacheinvalidationv2: 11910
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 163, col 21 to line 163, col 28 of module cacheinvalidationv2: 11910
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 164, col 8 to line 164, col 55 of module cacheinvalidationv2: 3021
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 165, col 8 to line 165, col 65 of module cacheinvalidationv2: 3021
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(17) at 2023-11-18 00:58:05: 89,762 states generated (1,416,176 s/min), 21,469 distinct states found (338,716 ds/min), 9,559 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+89762 states generated, 21469 distinct states found, 9559 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 3813ms at (2023-11-18 00:58:05)
+@!@!@ENDMSG 2186 @!@!@

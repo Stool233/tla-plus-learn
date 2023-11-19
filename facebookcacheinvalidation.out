@@ -1,0 +1,595 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with fp 63 and seed 2898381244129186461 with 1 worker on 12 cores with 3641MB heap and 64MB offheap memory [pid: 23241] (Mac OS X 10.16 x86_64, Oracle Corporation 11.0.1 x86_64, MSBDiskFPSet, DiskStateQueue).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /Users/wengjialin/learn-space/tla+/facebookcacheinvalidation.tla
+Parsing file /private/var/folders/w1/mgb5yw_j7tncb87mwhbx6h940000gn/T/Naturals.tla
+Parsing file /Users/wengjialin/learn-space/tla+/cacherequirements.tla
+Semantic processing of module Naturals
+Semantic processing of module cacherequirements
+Semantic processing of module facebookcacheinvalidation
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2023-11-19 23:15:53)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2284:3 @!@!@
+Declaring state or action constraints during liveness checking is dangerous: Please read section 14.3.5 on page 247 of Specifying Systems (https://lamport.azurewebsites.net/tla/book.html) and optionally the discussion at https://discuss.tlapl.us/msg00994.html for more details.
+@!@!@ENDMSG 2284 @!@!@
+@!@!@STARTMSG 2212:0 @!@!@
+Implied-temporal checking--satisfiability problem has 1 branches.
+@!@!@ENDMSG 2212 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated at 2023-11-19 23:15:53.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2192:0 @!@!@
+Checking temporal properties for the current state space with 35655 total distinct states at (2023-11-19 23:15:56)
+@!@!@ENDMSG 2192 @!@!@
+@!@!@STARTMSG 2116:1 @!@!@
+Temporal properties were violated.
+
+@!@!@ENDMSG 2116 @!@!@
+@!@!@STARTMSG 2264:1 @!@!@
+The following behavior constitutes a counter-example:
+
+@!@!@ENDMSG 2264 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ counter = 0
+/\ invalidationQueue = {}
+/\ cacheVersions = (k1 :> [type |-> "miss"])
+/\ database = (k1 :> 0)
+/\ cacheFillStates = (k1 :> [version |-> 0, state |-> "inactive"])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+2: <CacheStartFillVersion line 110, col 5 to line 114, col 53 of module facebookcacheinvalidation>
+/\ counter = 0
+/\ invalidationQueue = {}
+/\ cacheVersions = (k1 :> [type |-> "miss"])
+/\ database = (k1 :> 0)
+/\ cacheFillStates = (k1 :> [version |-> 0, state |-> "startfillversion"])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+3: <DatabaseRespondWithVersion line 117, col 5 to line 123, col 53 of module facebookcacheinvalidation>
+/\ counter = 0
+/\ invalidationQueue = {}
+/\ cacheVersions = (k1 :> [type |-> "miss"])
+/\ database = (k1 :> 0)
+/\ cacheFillStates = (k1 :> [version |-> 0, state |-> "respondedtoversion"])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+4: <CacheFillVersion line 128, col 5 to line 145, col 64 of module facebookcacheinvalidation>
+/\ counter = 0
+/\ invalidationQueue = {}
+/\ cacheVersions = (k1 :> [version |-> 0, type |-> "hit"])
+/\ database = (k1 :> 0)
+/\ cacheFillStates = (k1 :> [version |-> 0, state |-> "inactive"])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+5: <DatabaseUpdate line 65, col 5 to line 70, col 67 of module facebookcacheinvalidation>
+/\ counter = 0
+/\ invalidationQueue = {[key |-> k1, version |-> 1]}
+/\ cacheVersions = (k1 :> [version |-> 0, type |-> "hit"])
+/\ database = (k1 :> 1)
+/\ cacheFillStates = (k1 :> [version |-> 0, state |-> "inactive"])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+6: <DatabaseUpdate line 65, col 5 to line 70, col 67 of module facebookcacheinvalidation>
+/\ counter = 0
+/\ invalidationQueue = {[key |-> k1, version |-> 1], [key |-> k1, version |-> 2]}
+/\ cacheVersions = (k1 :> [version |-> 0, type |-> "hit"])
+/\ database = (k1 :> 2)
+/\ cacheFillStates = (k1 :> [version |-> 0, state |-> "inactive"])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+7: <IgnoreInvalidationMessage line 247, col 5 to line 258, col 72 of module facebookcacheinvalidation>
+/\ counter = 1
+/\ invalidationQueue = {[key |-> k1, version |-> 1]}
+/\ cacheVersions = (k1 :> [version |-> 0, type |-> "hit"])
+/\ database = (k1 :> 2)
+/\ cacheFillStates = (k1 :> [version |-> 0, state |-> "inactive"])
+/\ cache = (k1 :> [type |-> "miss"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+8: <UpdateFromInvalidationMessage line 186, col 5 to line 212, col 59 of module facebookcacheinvalidation>
+/\ counter = 1
+/\ invalidationQueue = {}
+/\ cacheVersions = (k1 :> [version |-> 1, type |-> "hit"])
+/\ database = (k1 :> 2)
+/\ cacheFillStates = (k1 :> [version |-> 0, state |-> "inactive"])
+/\ cache = (k1 :> [version |-> 1, type |-> "hit"])
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2218:4 @!@!@
+9: Stuttering
+@!@!@ENDMSG 2218 @!@!@
+@!@!@STARTMSG 2267:0 @!@!@
+Finished checking temporal properties in 00s at 2023-11-19 23:15:57
+@!@!@ENDMSG 2267 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2023-11-19 23:15:57
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2773:0 @!@!@
+<Init line 49, col 1 to line 49, col 4 of module facebookcacheinvalidation>: 2:2
+@!@!@ENDMSG 2773 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 50, col 5 to line 60, col 18 of module facebookcacheinvalidation: 2
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<DatabaseUpdate line 63, col 1 to line 63, col 17 of module facebookcacheinvalidation (65 5 70 67)>: 2990:35662
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 65, col 8 to line 66, col 46 of module facebookcacheinvalidation: 35662
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 67, col 8 to line 69, col 57 of module facebookcacheinvalidation: 35662
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 70, col 8 to line 70, col 67 of module facebookcacheinvalidation: 35662
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheStartFillMetadata line 73, col 1 to line 73, col 25 of module facebookcacheinvalidation>: 6112:6602
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 75, col 8 to line 75, col 29 of module facebookcacheinvalidation: 42262
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 75, col 8 to line 75, col 15 of module facebookcacheinvalidation: 35660
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 75, col 21 to line 75, col 29 of module facebookcacheinvalidation: 35660
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 76, col 8 to line 76, col 44 of module facebookcacheinvalidation: 28391
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 76, col 8 to line 76, col 31 of module facebookcacheinvalidation: 21789
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 77, col 8 to line 77, col 83 of module facebookcacheinvalidation: 6602
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 78, col 8 to line 79, col 53 of module facebookcacheinvalidation: 6602
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<DatabaseRespondWithMetadata line 81, col 1 to line 81, col 30 of module facebookcacheinvalidation>: 2939:6553
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 82, col 8 to line 82, col 53 of module facebookcacheinvalidation: 42213
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 82, col 8 to line 82, col 31 of module facebookcacheinvalidation: 35660
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 83, col 8 to line 86, col 28 of module facebookcacheinvalidation: 6553
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 87, col 8 to line 88, col 53 of module facebookcacheinvalidation: 6553
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheFillMetadata line 92, col 1 to line 92, col 20 of module facebookcacheinvalidation>: 3307:4838
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 93, col 8 to line 93, col 55 of module facebookcacheinvalidation: 40498
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 93, col 8 to line 93, col 31 of module facebookcacheinvalidation: 35660
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 94, col 8 to line 96, col 28 of module facebookcacheinvalidation: 4838
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 99, col 8 to line 104, col 17 of module facebookcacheinvalidation: 4838
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 105, col 8 to line 105, col 72 of module facebookcacheinvalidation: 4838
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheStartFillVersion line 108, col 1 to line 108, col 24 of module facebookcacheinvalidation>: 4885:4886
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 110, col 8 to line 110, col 37 of module facebookcacheinvalidation: 40546
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 110, col 8 to line 110, col 23 of module facebookcacheinvalidation: 35660
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 110, col 29 to line 110, col 37 of module facebookcacheinvalidation: 35660
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 111, col 8 to line 111, col 44 of module facebookcacheinvalidation: 21804
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 111, col 8 to line 111, col 31 of module facebookcacheinvalidation: 16918
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 112, col 8 to line 112, col 82 of module facebookcacheinvalidation: 4886
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 113, col 8 to line 114, col 53 of module facebookcacheinvalidation: 4886
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<DatabaseRespondWithVersion line 116, col 1 to line 116, col 29 of module facebookcacheinvalidation>: 2060:4853
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 117, col 8 to line 117, col 52 of module facebookcacheinvalidation: 40512
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 117, col 8 to line 117, col 31 of module facebookcacheinvalidation: 35659
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 118, col 8 to line 121, col 28 of module facebookcacheinvalidation: 4853
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 122, col 8 to line 123, col 53 of module facebookcacheinvalidation: 4853
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheFillVersion line 127, col 1 to line 127, col 19 of module facebookcacheinvalidation>: 1509:3385
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 128, col 8 to line 128, col 54 of module facebookcacheinvalidation: 39043
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 128, col 8 to line 128, col 31 of module facebookcacheinvalidation: 35658
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 130, col 12 to line 130, col 41 of module facebookcacheinvalidation: 6770
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 130, col 12 to line 130, col 27 of module facebookcacheinvalidation: 3385
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 130, col 33 to line 130, col 41 of module facebookcacheinvalidation: 3385
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 132, col 12 to line 133, col 67 of module facebookcacheinvalidation: 3385
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 135, col 8 to line 137, col 28 of module facebookcacheinvalidation: 3385
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 139, col 8 to line 144, col 26 of module facebookcacheinvalidation: 3385
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 145, col 8 to line 145, col 64 of module facebookcacheinvalidation: 3385
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheIgnoreFillVersion line 147, col 1 to line 147, col 25 of module facebookcacheinvalidation>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 148, col 8 to line 148, col 54 of module facebookcacheinvalidation: 35657
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 150, col 8 to line 151, col 64 of module facebookcacheinvalidation: 3384
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 152, col 8 to line 155, col 28 of module facebookcacheinvalidation: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 156, col 8 to line 156, col 29 of module facebookcacheinvalidation: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 157, col 8 to line 158, col 53 of module facebookcacheinvalidation: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheFailFill line 161, col 1 to line 161, col 16 of module facebookcacheinvalidation>: 1797:8222
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 162, col 8 to line 162, col 81 of module facebookcacheinvalidation: 43879
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 162, col 8 to line 162, col 31 of module facebookcacheinvalidation: 35657
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 162, col 37 to line 162, col 81 of module facebookcacheinvalidation: 35657
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 164, col 8 to line 167, col 28 of module facebookcacheinvalidation: 8222
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 168, col 8 to line 168, col 29 of module facebookcacheinvalidation: 8222
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 169, col 8 to line 170, col 44 of module facebookcacheinvalidation: 8222
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<CacheEvict line 172, col 1 to line 172, col 13 of module facebookcacheinvalidation>: 311:9429
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 173, col 8 to line 173, col 28 of module facebookcacheinvalidation: 45086
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 173, col 8 to line 173, col 15 of module facebookcacheinvalidation: 35657
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 173, col 21 to line 173, col 28 of module facebookcacheinvalidation: 35657
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 174, col 8 to line 174, col 44 of module facebookcacheinvalidation: 23300
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 174, col 8 to line 174, col 31 of module facebookcacheinvalidation: 13871
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 175, col 8 to line 175, col 55 of module facebookcacheinvalidation: 9429
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 176, col 8 to line 176, col 63 of module facebookcacheinvalidation: 9429
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 177, col 8 to line 177, col 29 of module facebookcacheinvalidation: 9429
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 178, col 8 to line 179, col 39 of module facebookcacheinvalidation: 9429
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<UpdateFromInvalidationMessage line 185, col 1 to line 185, col 29 of module facebookcacheinvalidation>: 2052:14390
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 188, col 18 to line 188, col 48 of module facebookcacheinvalidation: 52878
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 188, col 18 to line 188, col 35 of module facebookcacheinvalidation: 49321
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 188, col 41 to line 188, col 48 of module facebookcacheinvalidation: 49321
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 189, col 18 to line 189, col 57 of module facebookcacheinvalidation: 23824
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 189, col 18 to line 189, col 43 of module facebookcacheinvalidation: 20267
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 189, col 49 to line 189, col 57 of module facebookcacheinvalidation: 20267
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 191, col 18 to line 191, col 56 of module facebookcacheinvalidation: 60154
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 191, col 18 to line 191, col 43 of module facebookcacheinvalidation: 49321
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 191, col 49 to line 191, col 56 of module facebookcacheinvalidation: 49321
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 192, col 18 to line 192, col 70 of module facebookcacheinvalidation: 10833
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 192, col 18 to line 192, col 51 of module facebookcacheinvalidation: 25317
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 192, col 56 to line 192, col 70 of module facebookcacheinvalidation: 25317
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 195, col 12 to line 195, col 58 of module facebookcacheinvalidation: 44301
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 195, col 12 to line 195, col 45 of module facebookcacheinvalidation: 29911
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 201, col 12 to line 205, col 26 of module facebookcacheinvalidation: 14390
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 206, col 12 to line 210, col 18 of module facebookcacheinvalidation: 14390
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 211, col 12 to line 211, col 61 of module facebookcacheinvalidation: 14390
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 212, col 12 to line 212, col 59 of module facebookcacheinvalidation: 14390
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 186, col 20 to line 186, col 36 of module facebookcacheinvalidation: 35657
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<FailUpdateInvalidationMessageEvictKey line 215, col 1 to line 215, col 37 of module facebookcacheinvalidation>: 39:10487
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 218, col 18 to line 218, col 48 of module facebookcacheinvalidation: 52877
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 218, col 18 to line 218, col 35 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 218, col 41 to line 218, col 48 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 219, col 18 to line 219, col 57 of module facebookcacheinvalidation: 23824
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 219, col 18 to line 219, col 43 of module facebookcacheinvalidation: 20267
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 219, col 49 to line 219, col 57 of module facebookcacheinvalidation: 20267
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 221, col 18 to line 221, col 56 of module facebookcacheinvalidation: 56250
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 221, col 18 to line 221, col 43 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 221, col 49 to line 221, col 56 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 222, col 18 to line 222, col 69 of module facebookcacheinvalidation: 6930
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 222, col 18 to line 222, col 51 of module facebookcacheinvalidation: 25316
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 222, col 55 to line 222, col 69 of module facebookcacheinvalidation: 25316
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 224, col 12 to line 224, col 58 of module facebookcacheinvalidation: 33712
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 224, col 12 to line 224, col 45 of module facebookcacheinvalidation: 23225
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 226, col 12 to line 228, col 59 of module facebookcacheinvalidation: 10487
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 229, col 12 to line 231, col 59 of module facebookcacheinvalidation: 10487
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 233, col 12 to line 233, col 61 of module facebookcacheinvalidation: 10487
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 234, col 12 to line 234, col 59 of module facebookcacheinvalidation: 10487
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 216, col 20 to line 216, col 36 of module facebookcacheinvalidation: 35656
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<FailUpdateInvalidationMessageIgnore line 236, col 1 to line 236, col 35 of module facebookcacheinvalidation>: 3125:6134
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 239, col 12 to line 239, col 50 of module facebookcacheinvalidation: 55454
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 239, col 12 to line 239, col 37 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 239, col 43 to line 239, col 50 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 240, col 12 to line 240, col 63 of module facebookcacheinvalidation: 6134
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 240, col 12 to line 240, col 45 of module facebookcacheinvalidation: 25316
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 240, col 49 to line 240, col 63 of module facebookcacheinvalidation: 25316
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 241, col 12 to line 241, col 33 of module facebookcacheinvalidation: 6134
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 242, col 12 to line 242, col 61 of module facebookcacheinvalidation: 6134
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 243, col 12 to line 244, col 54 of module facebookcacheinvalidation: 6134
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 237, col 20 to line 237, col 36 of module facebookcacheinvalidation: 35656
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<IgnoreInvalidationMessage line 246, col 1 to line 246, col 25 of module facebookcacheinvalidation>: 4770:14537
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 249, col 18 to line 249, col 49 of module facebookcacheinvalidation: 57723
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 249, col 18 to line 249, col 35 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 249, col 41 to line 249, col 49 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 251, col 18 to line 251, col 64 of module facebookcacheinvalidation: 37456
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 251, col 18 to line 251, col 51 of module facebookcacheinvalidation: 29053
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 253, col 18 to line 253, col 56 of module facebookcacheinvalidation: 55454
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 253, col 18 to line 253, col 43 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 253, col 49 to line 253, col 56 of module facebookcacheinvalidation: 49320
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 254, col 18 to line 254, col 69 of module facebookcacheinvalidation: 6134
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 254, col 18 to line 254, col 51 of module facebookcacheinvalidation: 25316
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 254, col 55 to line 254, col 69 of module facebookcacheinvalidation: 25316
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 255, col 12 to line 255, col 61 of module facebookcacheinvalidation: 14537
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 256, col 12 to line 256, col 33 of module facebookcacheinvalidation: 14537
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 258, col 12 to line 258, col 72 of module facebookcacheinvalidation: 14537
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 247, col 20 to line 247, col 36 of module facebookcacheinvalidation: 35656
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2774:0 @!@!@
+<TypeOk line 40, col 1 to line 40, col 6 of module facebookcacheinvalidation>
+@!@!@ENDMSG 2774 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 41, col 5 to line 47, col 22 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 41, col 8 to line 41, col 41 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 42, col 8 to line 42, col 37 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 44, col 8 to line 44, col 45 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 45, col 8 to line 45, col 51 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 46, col 8 to line 46, col 55 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 46, col 8 to line 46, col 24 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||line 46, col 30 to line 46, col 55 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |||line 46, col 37 to line 46, col 55 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  ||||line 26, col 24 to line 26, col 56 of module facebookcacheinvalidation: 129959
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  |line 47, col 8 to line 47, col 22 of module facebookcacheinvalidation: 59462
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(155) at 2023-11-19 23:15:57: 129,959 states generated (2,044,988 s/min), 35,897 distinct states found (564,862 ds/min), 242 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2199:0 @!@!@
+129959 states generated, 35897 distinct states found, 242 states left on queue.
+@!@!@ENDMSG 2199 @!@!@
+@!@!@STARTMSG 2186:0 @!@!@
+Finished in 3820ms at (2023-11-19 23:15:57)
+@!@!@ENDMSG 2186 @!@!@
