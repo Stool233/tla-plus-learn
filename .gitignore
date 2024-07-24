@@ -1,3 +1,5 @@
 states
 *.out
 *.toolbox
+*.dvi
+*.log
